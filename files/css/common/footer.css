@@ -1,0 +1,45 @@
+/* ------------ footer ------------*/
+.footer{
+  margin: 100px 100px 0px;
+}
+.footer_inner{
+  display: flex;
+  justify-content: space-between;
+  background-color: #F5F6F8;
+  border-radius: 40px;
+  padding: 50px 100px;
+}
+.footer_item{
+  max-width: 250px;
+}
+.footer_customer{        
+  font-size: 16px;
+  font-weight: 600;
+}
+.footer_links_pages{
+  display: flex;
+  flex-direction: column;
+}
+.footer_item_info{
+  font-size: 16px;
+  font-weight: 400;
+}
+.footer_customer_link{
+  color: #000;
+  padding-top: 15px;
+}
+.footer_item_info{
+  padding-top: 15px;
+  line-height: 23px;
+}
+.footer_links_social{
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.footer_links_social a:not(:last-child){
+  padding-right: 6px;
+}
+.Copyright{
+  padding: 40px 100px;
+}

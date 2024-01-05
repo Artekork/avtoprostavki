@@ -1,0 +1,86 @@
+/* ------------ header ------------*/
+
+.header{
+  padding-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 76%;
+  margin: 0 auto;
+}
+.logo_inner{
+  display: flex;
+  vertical-align: middle;
+  position: relative;
+
+}
+.new_year_hat{
+  position: absolute;
+  top: -22px;
+  left: 16px;
+}
+.header_tittle{
+  margin: auto 20px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: black;
+}
+.header_nav {
+  margin: auto 0;
+}
+.header_nav ul{
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+}
+.dialog_contacts{
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.20);
+  padding: 40px;
+  position: absolute;
+  width: max-content;
+  transform: translate(-29%, 20px);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.50s;
+}
+.link_contact:hover .dialog_contacts{
+  visibility:visible;
+  opacity: 1;
+}
+.dialog_contacts_tittle{    
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+.dialog_contacts .contacts_info_tittle{
+  text-align: center;
+  padding: 20px 0;
+}
+.dialog_contact_btn{
+  margin: 20px auto 0;
+}
+.header_nav ul li{
+  position: relative;
+}
+.header_link{
+  vertical-align: middle;
+  display: flex;
+  margin: auto 0;
+  align-items: center;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+.header_nav ul li:not(:last-child){
+  margin-right: 55px;
+}
+.header_nav_img{
+  margin-right: 10px;
+  height: 30px;
+}
+.phone_svg{
+ filter: invert(0%) sepia(0%) saturate(7467%) hue-rotate(224deg) brightness(94%) contrast(107%);
+}

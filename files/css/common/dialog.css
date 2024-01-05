@@ -20,8 +20,6 @@
 .open_dialog_btn img{
   transition: .3s;
   padding-right: 10px;
-  fill: red; 
-  /* filter: invert(53%) sepia(82%) saturate(4444%) hue-rotate(227deg) brightness(96%) contrast(95%); */
 }
 #close{
   position: absolute;

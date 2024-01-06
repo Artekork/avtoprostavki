@@ -21,7 +21,7 @@
 .header_tittle{
   margin: auto 20px;
   font-size: 18px;
-  font-weight: 500;
+  font-family: 'ProximaNova_Regular';
   text-transform: uppercase;
   color: black;
 }
@@ -52,8 +52,22 @@
 }
 .dialog_contacts_tittle{    
   font-size: 24px;
-  font-weight: 700;
+  font-family: 'ProximaNova_Bold';
   text-align: center;
+}
+.contacts_info_item{  
+  font-size: 16px;
+  font-family: 'ProximaNova_Regular';
+
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+}
+.contacts_info_item:not(:first-child){
+  padding-top: 20px;
+}
+.contacts_info_item img{
+  padding-right: 20px;;
 }
 .dialog_contacts .contacts_info_tittle{
   text-align: center;
@@ -72,7 +86,7 @@
   align-items: center;
   color: #000;
   font-size: 16px;
-  font-weight: 500;
+  font-family: 'ProximaNova_Regular';
 }
 .header_nav ul li:not(:last-child){
   margin-right: 55px;

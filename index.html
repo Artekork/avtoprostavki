@@ -10,22 +10,19 @@
     <link rel="stylesheet" href="/files/css/common/dialog.css">
     <link rel="stylesheet" href="/files/css/common/footer.css">
     <link rel="stylesheet" href="/files/css/common/normalise.css">
+    <link rel="stylesheet" href="/files/css/common/fonts.css">
+    <link rel="stylesheet" href="/files/css/common/general.css">
 
     <link rel="stylesheet" href="/files/css/index.css">
 
 
-    <!-- TODO: change this font to "Proxima Nova" -->
-    <!-- Font Raleway -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="overlay"></div>
     <dialog>
       <img id="close" src="/files/images/other/close.png" alt="">
 
-      <p class="dialog_tittle">
+      <p class="dialog_tittle" id="asd">
         Заказать звонок
       </p>
       <!--  -->
@@ -50,12 +47,22 @@
           <p class="dialog_desc">Комментарий</p>
           <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
 
-          <div class="dialog_chebox">
-            <input required type="checkbox" id="check" 
-            oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-            <p class="dialog_chebox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          <div class="dialog_checkbox">
+
+            <label class="checkbox-container">
+              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <div class="checkmark"></div>
+            </label>
+
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
             <!-- <p class="checkbox_error">Примите соглашение</p> -->
           </div>
+
+
+          <!-- <div class="dialog_checkbox">
+            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          </div> -->
 
           <p class="dialog_chose">Как вы хотите получить ответ?</p>
 
@@ -76,7 +83,7 @@
     <div class="content_container">
       <header class="header">
         <div class="logo">
-          <a href="#" class="logo_inner">
+          <a href="/index.html" class="logo_inner">
             <img src="/files/images/other/logo.png" alt="">
             <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
             <div class="header_tittle">Belavtoprostavki</div>
@@ -191,7 +198,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -207,7 +214,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -223,7 +230,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -239,7 +246,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -255,7 +262,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -271,7 +278,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -287,7 +294,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -303,7 +310,7 @@
               <div class="product_item_desc">
                 <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
                 <div class="product_item_price">
-                  45 руб/ком.
+                  45.49 руб/к
                   <div class="product_item_btn">
                     <img src="/files/images/other/buy.png" alt=""> Купить
                   </div>
@@ -532,14 +539,16 @@
     <!------------------- Scripts ------------------->  
 
     <!-------- Modal window -------->  
-    <script src="/https://unpkg.com/imask"></script>
+    <script src="https://unpkg.com/imask"></script>
     <script src="/files/js/modal.js"></script>
+
+
     
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->
-    <script src="/https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-    <script src="/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/files/js/scroll_anim.js"></script>
   </body>
 </html>

@@ -10,20 +10,20 @@
     <link rel="stylesheet" href="/files/css/common/dialog.css">
     <link rel="stylesheet" href="/files/css/common/footer.css">
     <link rel="stylesheet" href="/files/css/common/normalise.css">
+    <link rel="stylesheet" href="/files/css/common/fonts.css">
+    <link rel="stylesheet" href="/files/css/common/general.css">
 
     <link rel="stylesheet" href="/files/css/item.css">
 
-    <!-- Font Raleway -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Slider Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
     <div class="overlay"></div>
     <dialog>
       <img id="close" src="/files/images/other/close.png" alt="">
 
-      <p class="dialog_tittle">
+      <p class="dialog_tittle" id="asd">
         Заказать звонок
       </p>
       <!--  -->
@@ -48,12 +48,22 @@
           <p class="dialog_desc">Комментарий</p>
           <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
 
-          <div class="dialog_chebox">
-            <input required type="checkbox" id="check" 
-            oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-            <p class="dialog_chebox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          <div class="dialog_checkbox">
+
+            <label class="checkbox-container">
+              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <div class="checkmark"></div>
+            </label>
+
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
             <!-- <p class="checkbox_error">Примите соглашение</p> -->
           </div>
+
+
+          <!-- <div class="dialog_checkbox">
+            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          </div> -->
 
           <p class="dialog_chose">Как вы хотите получить ответ?</p>
 
@@ -74,7 +84,7 @@
     <div class="content_container">
       <header class="header">
         <div class="logo">
-          <a href="#" class="logo_inner">
+          <a href="/index.html" class="logo_inner">
             <img src="/files/images/other/logo.png" alt="">
             <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
             <div class="header_tittle">Belavtoprostavki</div>
@@ -108,7 +118,174 @@
         </nav>
       </header>
       <main>  
-        
+        <section class="item">
+          <div class="item-tittle">
+            <p class="item-tittle__tittle">
+              Проставки для Audi A8 (D2)(1994-2002) (15 мм) задние. Арт.: A8 (D2)-R-15/K
+            </p>
+            <a onclick="javascript:history.back(); return false;" class="item-tittle__go-back">
+              <img class="item-tittle__arrow" src="/files/images/other/arrow.png" alt=""> Назад
+            </a>
+          </div> 
+          
+          <div class="item-description">
+            
+            <div class="item-description__slider">
+              <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                  </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+              <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contacts_info">
+              <h2 class="contacts_info_price">48,71 руб/комплект</h2>
+              
+              <button class="common_button">
+                <img src="/files/images/other/buy.png" alt="">Купить
+              </button>
+              
+              <button class="common_button favourite-btn">
+                <img src="/files/images/other/purple_heart.png" alt="">Добавить в избранное
+              </button>
+
+              <div class="contacts_info_desc">
+                <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 </div>
+                <div class="contacts_info_item"><img src="/files/images/other/mail.png" alt="">2info@1ak.by </div>
+                <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно 8:00-22:00 (без обеда)</div>
+                <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
+              </div>
+              <button class="common_button">
+                <img src="/files/images/other/call.png" alt="">Заказать звонок
+              </button>
+            </div>            
+          </div>
+
+          <div class="item-text">
+            <p class="item-text__tittle ">
+              Описание
+            </p>
+            <p class="item-text__desc">
+              Проставки из капролона  для задней оси автомобилей Audi A8 (D2) , высотой 15 мм.<br>
+              Место установки : На заднюю верхнюю штатную резинку (между кузовом и штатной резинкой сверху).<br>
+              Увеличивает клиренс автомобиля на 2-3 см.<br>
+              ВНИМАНИЕ ! Штатная  резинка в комплект не входит !!!<br>
+              Схема установки (условная): <br>
+            </p>
+            <img src="/files/images/content/product-brand/product-bmw/5.png" alt="">
+          </div>
+          <div class="item-properties">
+            <p class="item-properties__tittle">
+              Характеристики
+            </p>
+            <ul class="item-properties__desc">
+              <li><b>Материал:</b> капролон</li>
+              <li><b>Модель авто:</b> А8</li>
+              <li><b>Тип по изготовителю:</b> Оригинал</li>
+              <li><b>Состояние:</b> новый</li>
+              <li><b>Толщина:</b> 15мм</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="product">
+          <h2 class="product_tittle item-text__tittle">Просмотренные товары </h2>
+          <div class="product_list">
+                       
+            <a href="/files/html/item.html" class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 руб/к 
+                </div>
+              </div>
+            </a>
+                       
+            <a href="/files/html/item.html" class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 руб/к
+                </div>
+              </div>
+            </a>
+            
+            <a href="/files/html/item.html" class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 руб/к 
+                </div>
+              </div>
+            </a>
+            
+            <a href="/files/html/item.html" class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 руб/к 
+                </div>
+              </div>
+            </a>
+            
+            <a href="/files/html/item.html" class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 руб/к 
+                </div>
+              </div>
+            </a>            
+          </div>
+        </section>
       </main>
       <footer class="footer">
         <div class="footer_inner">
@@ -155,17 +332,43 @@
       </footer>
     </div>
 
+
+
     <!------------------- Scripts ------------------->  
 
     <!-------- Modal window -------->  
-    <script src="/https://unpkg.com/imask"></script>
+    <script src="https://unpkg.com/imask"></script>
     <script src="/files/js/modal.js"></script>
     
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->
-    <script src="/https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-    <script src="/https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/files/js/scroll_anim.js"></script>
+
+    <!-- Slider Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>          
+      <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+          swiper: swiper,
+        },
+      });
+    </script>
+
   </body>
 </html>

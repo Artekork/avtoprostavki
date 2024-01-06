@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     var dialog = document.querySelector('dialog');
     var openButtons = document.querySelectorAll('.open_dialog_btn');
@@ -18,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
         dialog.close();
         body.classList.remove('dialog-opened');
     });
+
+    
 
     // Кнопки "Звонок" и "Написать"
     var callButton = document.getElementById('call');
@@ -64,6 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault(); // Предотвращаем отправку формы
         } else {
             phoneNumberInput.setCustomValidity('');
+        }
+    });
+
+    dialog.addEventListener('click', function (event) {
+        // Проверяем, был ли клик вне диалогового окна
+        if (event.target === dialog) {
+            dialog.close();
+            body.classList.remove('dialog-opened');
         }
     });
 });

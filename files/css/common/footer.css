@@ -1,6 +1,6 @@
 /* ------------ footer ------------*/
 .footer{
-  margin: 100px 100px 0px;
+  margin: 100px 7% 0px;
 }
 .footer_inner{
   display: flex;
@@ -14,7 +14,7 @@
 }
 .footer_customer{        
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'ProximaNova_SemiBold';
 }
 .footer_links_pages{
   display: flex;
@@ -22,7 +22,7 @@
 }
 .footer_item_info{
   font-size: 16px;
-  font-weight: 400;
+  font-family: 'ProximaNova_Regular';
 }
 .footer_customer_link{
   color: #000;

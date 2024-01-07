@@ -1,0 +1,13 @@
+.banner{
+  background-size:cover; 
+  background-position: center;
+  background-image: url("/files/images/content/backgrounds/brands.png");
+  background-repeat: no-repeat;
+  border-radius: 40px;
+  margin: 25px 6% 0;
+  padding: 50px 6%;
+  color: white;
+  font-family: 'ProximaNova_Bold';
+  font-size: 55px;
+}
+

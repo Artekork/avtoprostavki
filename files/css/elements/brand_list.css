@@ -1,0 +1,61 @@
+/* ------------ Brand ------------*/
+.brand{
+  margin: 100px 12% 0;
+}
+.section_tittle{
+  font-size: 32px;
+  font-family: 'ProximaNova_Bold';
+}
+.brand_list{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 60px;
+}
+.brand_item{
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(21, 11, 50, 0.13);
+  display: flex;
+  min-width: max-content;
+
+  transition: 0.7s cubic-bezier(.49, 0, .50, 1);
+}
+.brand_item:hover{
+  transform: rotate3d(0, 0, 1, 720deg) scale(1);
+}
+.brand_item:not(:nth-child(3n)){
+  margin-right: 35px;
+}
+.brand_item:nth-child(n+4){
+  margin-top: 30px;  
+}
+.brand_item_desc{
+  font-size: 24px;
+  font-family: 'ProximaNova_SemiBold';
+
+  max-width: max-content;
+  max-height: max-content;
+  color: black;
+}
+.brand_item_desc img{
+  margin: 20px;
+  vertical-align: middle;
+}
+.brand_item > img{
+  height: 25px;
+  width: 25px;
+  margin: auto 20px auto auto;
+}
+.section_note{
+  display: inline-block;
+  font-size: 16px;
+  color: #757575;
+  font-family: 'ProximaNova_SemiBold';
+
+  width: 100%;
+  text-align: center;
+  padding-top: 45px;
+}
+.section_note img {
+  margin-bottom: -1px;
+}

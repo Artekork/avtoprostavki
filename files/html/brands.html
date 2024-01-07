@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!------------------- links ------------------->  
+    <link rel="stylesheet" href="/files/css/common/header.css">
+    <link rel="stylesheet" href="/files/css/common/dialog.css">
+    <link rel="stylesheet" href="/files/css/common/footer.css">
+    <link rel="stylesheet" href="/files/css/common/normalise.css">
+    <link rel="stylesheet" href="/files/css/common/fonts.css">
+    <link rel="stylesheet" href="/files/css/common/general.css">
+
+    <link rel="stylesheet" href="/files/css/brands.css">
+    <link rel="stylesheet" href="/files/css/elements/brand_list.css">
+
+
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <dialog>
+      <img id="close" src="/files/images/other/close.png" alt="">
+
+      <p class="dialog_tittle" id="asd">
+        Заказать звонок
+      </p>
+      <!--  -->
+      <form action="https://jsonplaceholder.typicode.com/posts" method="POST"> 
+        <div class="form_container">
+          <p class="dialog_desc">Имя*</p>
+          <input class="dialog_input" 
+            required 
+            type="text" 
+            name="Name"
+            oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')"
+            id="name">
+          <p class="dialog_desc">Телефон*</p>
+          <input class="dialog_input" 
+            required 
+            type="tel" 
+            oninvalid="this.setCustomValidity('Введите телефон')" oninput="setCustomValidity('')"
+            name="Number" 
+            id="number">
+          <p class="dialog_desc">Почта</p>
+          <input class="dialog_input" type="email" name="E-mail" id="mail">
+          <p class="dialog_desc">Комментарий</p>
+          <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
+
+          <div class="dialog_checkbox">
+
+            <label class="checkbox-container">
+              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <div class="checkmark"></div>
+            </label>
+
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            <!-- <p class="checkbox_error">Примите соглашение</p> -->
+          </div>
+
+
+          <!-- <div class="dialog_checkbox">
+            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          </div> -->
+
+          <p class="dialog_chose">Как вы хотите получить ответ?</p>
+
+          <div class="dialog_buttons">
+            <button id="call" class="dialog_btn">
+              Звонок
+            </button>
+            <button id="write" class="dialog_btn">
+              Написать
+            </button>
+            <input type="hidden" name="Method" id="methodField" value="call or write">
+          </div>
+        </div>
+      </form>
+
+    </dialog>
+
+    <div class="content_container">
+      <header class="header">
+        <div class="logo">
+          <a href="/index.html" class="logo_inner">
+            <img src="/files/images/other/logo.png" alt="">
+            <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
+            <div class="header_tittle">Belavtoprostavki</div>
+          </a>
+        </div>
+        <nav class="header_nav">
+          <ul>
+            <li><button class="open_dialog_btn"><img src="/files/images/other/call.svg" alt="">Заказать звонок</button></li>
+            <li class="link_contact"> 
+              <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
+              <div class="dialog_contacts">
+                <div class="dialog_contacts_tittle">
+                  Контакты
+                </div>
+                <h3 class="contacts_info_tittle">Интернет-магазин «Belavtoprostavki»</h3>
+                  <div class="contacts_info_desc">
+                    <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв<br> ул. Гришина 122, п. 1, кв. 133 </div>
+                    <div class="contacts_info_item"><img src="/files/images/other/mail.png" alt="">2info@1ak.by </div>
+                    <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно <br>8:00-22:00 (без обеда)</div>
+                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
+                  </div>
+                  <button class="open_dialog_btn dialog_contact_btn">
+                    <img src="/files/images/other/call.png" alt="">Заказать звонок
+                  </button>
+              </div>
+            </li>
+            <!-- <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное</a></li>
+            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> -->
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="banner">
+          Доступные марки
+        </section>
+
+        <section class="brand">
+          <h2 class="brand_tittle section_tittle">Марки</h2>
+          <div class="brand_list">
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/subaru.png" alt=""> Subaru
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/hyundai.png" alt=""> Hyundai
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/subaru.png" alt=""> Subaru
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/hyundai.png" alt=""> Hyundai
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/toyota.png" alt=""> Toyota
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/volkswagen.png" alt=""> Volkswagen
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+            
+            <a href="/files/html/brands.html" class="brand_item">
+              <div class="brand_item_desc">
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
+              </div>
+              <img src="/files/images/other/arrow.png" alt="">
+            </a>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer_inner">
+          <div class="footer_item">
+            <p class="footer_customer">Покупателям</p>
+            <div class="footer_links_pages">          
+              <a href="#" class="footer_customer_link">Каталог товаров</a>
+              <a href="#" class="footer_customer_link">О нас</a>
+              <a href="#" class="footer_customer_link">Отзывы</a>
+            </div>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              Онлайн-заказ: круглосуточно<br>
+              Время работы: 8:00-22:00<br>
+              Оператор: 8:00-22:00<br>
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              Тел.: +375 (22) 344-55-78 (МТС)<br>
+              +375 (22) 344-55-78 (A1) <br>
+              E-mail: 2info@1ak.by <br>
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Социальные сети</p>
+            <div class="footer_links_social">              
+              <a href="#"><img src="/files/images/other/tg.png" alt=""></a>
+              <a href="#"><img src="/files/images/other/viber.png" alt=""></a>
+              <a href="#"><img src="/files/images/other/whatsapp.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <p class="Copyright"> Copyright © 2023 Artekok.inc. All Rights Reserved </p>
+      </footer>
+    </div>
+
+    <!------------------- Scripts ------------------->  
+
+    <!-------- Modal window -------->  
+    <script src="https://unpkg.com/imask"></script>
+    <script src="/files/js/modal.js"></script>
+
+
+    
+    <!-------------------- Links -------------------->  
+    
+    <!-- Smooth scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/files/js/scroll_anim.js"></script>
+  </body>
+</html>

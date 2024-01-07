@@ -41,7 +41,7 @@
   position: absolute;
   width: max-content;
   transform: translate(-29%, 20px);
-
+  z-index: 2;
   visibility: hidden;
   opacity: 0;
   transition: 0.50s;

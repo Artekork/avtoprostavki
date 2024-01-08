@@ -39,7 +39,7 @@
     margin-top: 10px;
 }
 
-.sign-in__check-pass{
+.sign-in__check-pass, .sign-up__check-pass{
     width: 25px;
     height: 25px;
     background-image: url("/files/images/other/eye_off.svg");
@@ -50,10 +50,10 @@
     right: 10px;
     top: 43px;
 }
-.sign-in__check-pass_active{
+.sign-in__check-pass_active, .sign-up__check-pass_active{
     background-image: url("/files/images/other/eye.svg");
 }
-.sing-in-pass__error, .sing-up-conf-pass__error, .sing-up-pass__error, .sing-up-email__error{
+.sing-in-email__error,.sing-in-pass__error, .sing-up-conf-pass__error, .sing-up-pass__error, .sing-up-email__error{
     padding-top: 5px;
     font-size: 15px;
     font-family: 'ProximaNova_Regular';

@@ -16,7 +16,7 @@
 
     <div class="burger-button">Бургер(блеск)</div>
 
-    <div class="burger-panel burger-panel_is-active">
+    <div class="burger-panel ">
         <div class="burger-panel__content">
             <p class="burger-palel__element">
                 element 1
@@ -32,7 +32,7 @@
             Картошка
         </div>
     </div>    
-<!-- 
+
 
     <div class="dialog-sing-in">
         <div class="dialog-sing-in__container">
@@ -44,7 +44,8 @@
                     E-mail
                 </div>
                 <input class="sign-in__input" type="email" id="sign-in-input-email">
-                
+                <div class="sing-in-email__error">
+                </div>
             </div>
             <div class="dialog-sing-in__pass">
                 <div class="sing-in-pass__tittle">
@@ -69,7 +70,7 @@
                 
             </div>
         </div>
-    </div> -->
+    </div>
 
     <button class="open_dialog_btn"><img src="files/images/other/call.png" alt="">Заказать звонок</button>
     
@@ -85,26 +86,23 @@
                 </div>
                 <input class="sign-in__input" type="email" id="sign-up-input-email">
                 <div class="sing-up-email__error">
-                    Данная почта уже зарегистрирована
                 </div>
             </div>
             <div class="dialog-sing-in__pass">
                 <div class="sing-in-pass__tittle">
                     Пароль
                 </div>
-                <input class="sign-in__input" type="password" id="sign-up-input-pass">
+                <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
                 <div class="sing-up-pass__error">
-                    Пароль должен быть не короче 8-ми символов
                 </div>
             </div>
             <div class="dialog-sing-in__conf-pass">
                 <div class="sing-in-pass__tittle">
                     Повторите Пароль
                 </div>
-                <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+                <div class="sign-up__check-pass sign-up__check-pass_active"></div>
                 <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
                 <div class="sing-up-conf-pass__error">
-                    Пароли не совпадают
                 </div>
             </div>
             <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
@@ -134,14 +132,10 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script>
 
-    <script src="/files/js/firebase/initial.js" type="module">
-
-        
-    </script>
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
 
 
 
 
-    <script src="/files/js/firebase/initial.js"></script>
 </body>
 </html>

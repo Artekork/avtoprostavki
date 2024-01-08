@@ -7,5 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.burger-panel').classList.toggle('burger-panel_is-active')
         consol.log('asd');
     })
-
+    function testAlert() {
+        alert("Hello world!");  
+    }
 })

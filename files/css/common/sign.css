@@ -1,0 +1,87 @@
+.dialog-sing-in, .dialog-sing-up{
+    background: #fff;
+    border-radius: 20px;
+    width: max-content;
+    overflow: hidden;
+}
+.dialog-sing-in__container{
+    padding: 40px 40px 30px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dialog-sing-in__tittle{
+    text-align: center;    
+    font-size: 24px;
+    font-family: 'ProximaNova_Bold';
+}
+.dialog-sing-in__email, .dialog-sing-in__pass, .dialog-sing-in__conf-pass{
+    margin-top:27px;
+    position: relative;
+}
+.sing-in-email__tittle, .sing-in-pass__tittle{
+    color: black;
+    font-size: 16px;
+    font-family: 'ProximaNova_Regular';
+}
+.sign-in__input{
+    border-radius: 15px;
+    background-color: #EAEAEA;
+    border: 0;
+    height: 50px;
+    width: 350px;
+    max-width: 350px;
+    padding-left: 10px;
+    
+    font-size: 16px;
+    font-family: 'ProximaNova_Regular';
+    margin-top: 10px;
+}
+
+.sign-in__check-pass{
+    width: 25px;
+    height: 25px;
+    background-image: url("/files/images/other/eye_off.svg");
+    filter: invert(65%) sepia(48%) saturate(964%) hue-rotate(201deg) brightness(90%) contrast(108%);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 10px;
+    top: 43px;
+}
+.sign-in__check-pass_active{
+    background-image: url("/files/images/other/eye.svg");
+}
+.sing-in-pass__error, .sing-up-conf-pass__error, .sing-up-pass__error, .sing-up-email__error{
+    padding-top: 5px;
+    font-size: 15px;
+    font-family: 'ProximaNova_Regular';
+    color: #cc0000b9;
+}
+.sing-in-pass__tittle{
+    display: flex;
+    justify-content: space-between;
+}
+.sign-in-pass-tittle__forgot-pass{
+    color: #9F9F9F;
+}
+.dialog-sing-in__btn-sign-in, .dialog-sing-up__btn-sign-up{
+    color: white;
+    background: #7866F0;
+    width: 200px;
+    padding: 15px 0;
+    border: 0;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'ProximaNova_Regular';
+    margin: 30px auto;
+}
+.sing-in-create__tittle{
+    color: #9F9F9F;
+    font-size: 16px;
+    font-family: 'ProximaNova_Regular';
+}
+.sing-in__link{
+    color: #7866F0;
+}

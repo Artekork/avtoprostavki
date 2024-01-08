@@ -130,7 +130,13 @@
 .filter__drop-list_active .drop-list__inner{
   opacity: 1;
   z-index: 2;
-
+}
+.filter__drop-list-img{
+  transition: .3s ease-in-out;
+  
+}
+.filter__drop-list_active .filter__drop-list-img{
+  transform: rotateZ(-90deg);
 }
 .filter-checkbox_inner{
   margin: 5px;

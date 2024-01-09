@@ -76,9 +76,94 @@
 .dialog_contact_btn{
   margin: 20px auto 0;
 }
-.header_nav ul li{
+.header_nav_li{
   position: relative;
 }
+
+.nav-user-card{
+  position: absolute;
+  top: 100%;
+  right: -20px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.20);
+  border-radius: 20px;
+  color: black;
+  font-size: 16px;
+  font-family: 'ProximaNova_Regular';
+  width: 280px;
+  transform-origin: right top;
+  transform: scale(0);
+  transition: .3s ease-in-out;
+}
+
+.header_nav_li:hover .nav-user-card{
+  transform: scale(1);
+}
+.user-card__info{
+  display: flex;
+}
+.user-card__desc{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 15px;
+  width: max-content;
+}
+.user-card__info img{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+.user-card__name{
+  font-family: 'ProximaNova_SemiBold';
+  font-size: 18px;
+}
+.user-card__exit{
+  font-family: 'ProximaNova_SemiBold';
+  font-size: 14px;
+  color: #939EB3;
+  transition: .3s ease-in-out;
+  width: max-content;
+}
+.user-card__exit:hover{
+  color: #7866F0;
+}
+.user-card__li{  
+  display: flex;
+  align-items: center;
+}
+.user-card__li:not(:first-child){
+  padding-top: 12px;
+}
+.user-card__list{
+  padding-top: 20px;
+}
+.user-car__list-img{
+  transition: 1s ease-in-out;
+  padding-right: 10px;
+}
+.user-card__li:hover .user-car__list-img{
+  filter: invert(39%) sepia(80%) saturate(2212%) hue-rotate(228deg) brightness(97%) contrast(94%);
+}
+.user-card__list ul{
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.user-card__li span{
+}
+
+
+
+
+
+
+
+
+
+
 .header_link{
   vertical-align: middle;
   display: flex;
@@ -88,8 +173,8 @@
   font-size: 16px;
   font-family: 'ProximaNova_Regular';
 }
-.header_nav ul li:not(:last-child){
-  margin-right: 55px;
+.header_nav_li:not(:first-child){
+  margin-left: 55px;
 }
 .header_nav_img{
   margin-right: 10px;
@@ -97,4 +182,28 @@
 }
 .phone_svg{
  filter: invert(0%) sepia(0%) saturate(7467%) hue-rotate(224deg) brightness(94%) contrast(107%);
+}
+
+.li_nav_authorized-only{
+  display: none;
+}
+
+.header_nav_authorized .li_nav_authorized-only{
+  display: inline;
+}
+.user__arrow-img{
+  transition: .3s ease-in-out;  
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  right: -17px;
+  transform-origin: center center;
+  transform: rotateZ(-90deg);  
+
+  filter: invert(88%) sepia(100%) saturate(0%) hue-rotate(149deg) brightness(105%) contrast(101%);
+}
+
+.header_nav_li:hover .user__arrow-img {
+  transform: rotateZ(0deg);
+  filter: invert(39%) sepia(80%) saturate(2212%) hue-rotate(228deg) brightness(97%) contrast(94%);
 }

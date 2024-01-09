@@ -34,8 +34,10 @@
     </div>    
 
 
-    <div class="dialog-sing-in">
+    <dialog class="dialog-auth  dialog-auth_sign-up dialog-auth_sign-in">
         <div class="dialog-sing-in__container">
+            <img id="close-sign-in" src="/files/images/other/close.png" alt="">
+
             <div class="dialog-sing-in__tittle">
                 Вход в личный кабинет
             </div>
@@ -66,17 +68,13 @@
             <div class="dialog-sing-in__create-acc">
                 <div class="sing-in-create__tittle">
                     У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
-                </div>
-                
+                </div>                
             </div>
         </div>
-    </div>
 
-    <button class="open_dialog_btn"><img src="files/images/other/call.png" alt="">Заказать звонок</button>
-    
+        <div class="dialog-sing-up__container">
+            <img id="close-sign-up" src="/files/images/other/close.png" alt="">
 
-    <div class="dialog-sing-up">
-        <div class="dialog-sing-in__container">
             <div class="dialog-sing-in__tittle">
                 Регистрация
             </div>
@@ -98,7 +96,7 @@
             </div>
             <div class="dialog-sing-in__conf-pass">
                 <div class="sing-in-pass__tittle">
-                    Повторите Пароль
+                    Повторите пароль
                 </div>
                 <div class="sign-up__check-pass sign-up__check-pass_active"></div>
                 <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
@@ -112,6 +110,13 @@
                 </div>                
             </div>
         </div>
+    </dialog>
+
+    <button class="open_dialog_btn"><img src="files/images/other/call.png" alt="">Заказать звонок</button>
+    
+
+    <div class="dialog-sing-up">
+        
     </div>
 
 

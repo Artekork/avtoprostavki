@@ -29,16 +29,6 @@ async function isUserExists(email) {
     var userSnapshot = await get(ref(db, userPath));
     return userSnapshot.exists();
 }
-async function getUserData(email) {
-    var userPath = `Accounts/${email.replace('.', ',').replace(/\s/g, '').toLowerCase()}/`;
-    var userSnapshot = await get(ref(db, userPath));
-
-    if (userSnapshot.exists()) {
-        return userSnapshot.val(); // Возвращает объект данных пользователя
-    } else {
-        return null; // Пользователь не найден
-    }
-}
 function validationSignUp() {
     var email = document.getElementById('sign-up-input-email').value;
     var password = document.getElementById('sign-up-input-pass').value;
@@ -80,6 +70,13 @@ function validationSignUp() {
             set(ref(db, userPath + "/email"), email);
             set(ref(db, userPath + "/password"), password);
             alert("Пользователь успешно зарегистрирован!");
+            
+            document.querySelector('.header_nav').classList.add('header_nav_authorized');
+            document.querySelector('.li_nav_sign').style.display = 'none';
+
+
+            document.body.classList.remove('dialog-sign-opened');
+            clearSignData()
         }
     })
     .catch((error) => {
@@ -115,6 +112,12 @@ function validationSignIn() {
 
                 if (password === storedPassword) {
                     alert("Успех");
+
+                    document.querySelector('.header_nav').classList.add('header_nav_authorized');
+                    document.querySelector('.li_nav_sign').style.display = 'none';
+
+                    document.body.classList.remove('dialog-sign-opened');
+                    clearSignData()
                 } else {
                     document.querySelector('.sing-in-pass__error').innerText = 'Неверный логин или пароль';
         return;
@@ -166,4 +169,44 @@ document.querySelector('.sign-up__check-pass').addEventListener('click', functio
 });
 })
 
+function clearSignData(){
+    document.getElementById('sign-in-input-email').value = "";
+    document.getElementById('sign-in-input-pass').value= "";
 
+    document.getElementById('sign-up-input-email').value= "";
+    document.getElementById('sign-up-input-pass').value= "";
+    document.getElementById('sign-up-input-conf-pass').value= "";
+
+    document.querySelector('.sing-in-email__error').innerText = '';
+    document.querySelector('.sing-in-pass__error').innerText = '';
+    document.querySelector('.sing-up-email__error').innerText = '';
+    document.querySelector('.sing-up-pass__error').innerText = '';
+    document.querySelector('.sing-up-conf-pass__error').innerText = '';
+    
+}
+document.querySelectorAll('.sing-in-create__tittle').forEach(function(element){
+    element.addEventListener('click', function(){
+        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-in')
+        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-up')
+
+        clearSignData()
+    })
+})
+
+document.querySelector('.sign-in-button').addEventListener('mousedown', function(){
+    document.body.classList.add('dialog-sign-opened');
+
+    
+})
+
+document.querySelectorAll('.close-sign').forEach(function(element){
+    element.addEventListener('click', function(){
+        document.body.classList.remove('dialog-sign-opened');
+
+        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-in')
+        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-up')
+
+        
+        clearSignData()
+    })
+})

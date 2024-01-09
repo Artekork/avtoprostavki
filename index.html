@@ -7,11 +7,12 @@
 
     <!------------------- links ------------------->  
     <link rel="stylesheet" href="/files/css/common/header.css">
-    <link rel="stylesheet" href="/files/css/common/dialog.css">
+    <link rel="stylesheet" href="/files/css/common/dialog_call.css">
     <link rel="stylesheet" href="/files/css/common/footer.css">
     <link rel="stylesheet" href="/files/css/common/normalise.css">
     <link rel="stylesheet" href="/files/css/common/fonts.css">
     <link rel="stylesheet" href="/files/css/common/general.css">
+    <link rel="stylesheet" href="/files/css/common/sign.css">
 
     <link rel="stylesheet" href="/files/css/elements/brand_list.css">
     <link rel="stylesheet" href="/files/css/index.css">
@@ -20,7 +21,7 @@
   </head>
   <body>
     <div class="overlay"></div>
-    <dialog>
+    <dialog class="dialog_call">
       <img id="close" src="/files/images/other/close.png" alt="">
 
       <p class="dialog_tittle" id="asd">
@@ -81,6 +82,84 @@
 
     </dialog>
 
+    <dialog class="dialog-auth  dialog-auth_sign-up dialog-auth_sign-in">
+      <div class="dialog-sing-in__container">
+          <img class="close-sign" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-sing-in__tittle">
+              Вход в личный кабинет
+          </div>
+          <div class="dialog-sing-in__email">
+              <div class="sing-in-email__tittle">
+                  E-mail
+              </div>
+              <input class="sign-in__input" type="email" id="sign-in-input-email">
+              <div class="sing-in-email__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__pass">
+              <div class="sing-in-pass__tittle">
+                  <div class="sign-in-pass-tittle__text">
+                      Пароль
+                  </div>
+                  <div class="sign-in-pass-tittle__forgot-pass">
+                      Забыли пароль?
+                  </div>
+              </div>
+              <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+
+              <input class="sign-in__input" type="password" id="sign-in-input-pass">
+              <div class="sing-in-pass__error">
+              </div>
+          </div>
+          <button class="dialog-sing-in__btn-sign-in">Вход</button>
+          <div class="dialog-sing-in__create-acc">
+              <div class="sing-in-create__tittle">
+                  У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+              </div>                
+          </div>
+      </div>
+
+      <div class="dialog-sing-up__container">
+          <img class="close-sign" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-sing-in__tittle">
+              Регистрация
+          </div>
+          <div class="dialog-sing-in__email">
+              <div class="sing-in-email__tittle">
+                  E-mail
+              </div>
+              <input class="sign-in__input" type="email" id="sign-up-input-email">
+              <div class="sing-up-email__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__pass">
+              <div class="sing-in-pass__tittle">
+                  Пароль
+              </div>
+              <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
+              <div class="sing-up-pass__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__conf-pass">
+              <div class="sing-in-pass__tittle">
+                  Повторите пароль
+              </div>
+              <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+              <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+              <div class="sing-up-conf-pass__error">
+              </div>
+          </div>
+          <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
+          <div class="dialog-sing-in__create-acc">
+              <div class="sing-in-create__tittle">
+                  У вас есть аккаунт? <a class="sing-in__link">Войти</a>
+              </div>                
+          </div>
+      </div>
+    </dialog>   
+
     <div class="content_container">
       <header class="header">
         <div class="logo">
@@ -90,10 +169,9 @@
             <div class="header_tittle">Belavtoprostavki</div>
           </a>
         </div>
-        <nav class="header_nav">
+        <nav class="header_nav ">
           <ul>
-            <li><button class="open_dialog_btn"><img src="/files/images/other/call.svg" alt="">Заказать звонок</button></li>
-            <li class="link_contact"> 
+            <li class="header_nav_li link_contact "> 
               <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
               <div class="dialog_contacts">
                 <div class="dialog_contacts_tittle">
@@ -111,9 +189,37 @@
                   </button>
               </div>
             </li>
-            <!-- <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное</a></li>
-            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
-            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> -->
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a href="/files/html/test.html" class="header_link">
+                <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
+              </a>
+            </li>
+            <li class="header_nav_li li_nav_authorized-only"> <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+
+            <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              </a>
+              <div class="nav-user-card">
+                <div class="user-card__info">
+                  <img src="/files/images/other/user.png" alt="">
+                  <div class="user-card__desc">
+                    <div class="user-card__name">Артём Каравацкий</div>
+                    <div class="user-card__phone">+375 (29) 134-21-71</div>
+                    <div class="user-card__exit">Выйти</div>
+                  </div>
+                </div>
+                <div class="user-card__list">
+                  <ul>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </nav>
       </header>
@@ -539,9 +645,13 @@
 
     <!------------------- Scripts ------------------->  
 
-    <!-------- Modal window -------->  
+    <!-------- Dialog call window -------->  
     <script src="https://unpkg.com/imask"></script>
-    <script src="/files/js/modal.js"></script>
+    <script src="/files/js/dialog_call.js"></script>
+
+    <!-------- Firebase  -------->  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script>
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
 
 
     

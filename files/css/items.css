@@ -108,7 +108,7 @@
 .drop-list__inner{
   position: absolute;
   border-radius: 10px;
-  background-color: #e7e7e7;
+  background-color: #ececec;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -123,17 +123,18 @@
   outline: 1px solid rgba(153, 153, 153, 0.13);
   box-shadow: 0px 4px 20px 0px rgba(64, 0, 255, 0.13);
 
-  opacity: 0;
+  transform: scale(0);
   transition: .3s ease-in-out;
+  transform-origin: left top;
   z-index: 0;
 }
 .filter__drop-list_active .drop-list__inner{
-  opacity: 1;
+  transform: scale(1);
+
   z-index: 2;
 }
 .filter__drop-list-img{
-  transition: .3s ease-in-out;
-  
+  transition: .3s ease-in-out;  
 }
 .filter__drop-list_active .filter__drop-list-img{
   transform: rotateZ(-90deg);

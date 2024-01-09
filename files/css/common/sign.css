@@ -1,16 +1,41 @@
-.dialog-sing-in, .dialog-sing-up{
+.dialog-auth{
+    height: 580px;
     background: #fff;
     border-radius: 20px;
-    width: max-content;
+    width: 430px;
     overflow: hidden;
+    display: none;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 1000;
+    transition: 1s ease-in-out;   
 }
-.dialog-sing-in__container{
+.close-sign{
+    position: absolute;
+    top: 20px;
+    right: 32px;
+}
+.dialog-sing-in__container, .dialog-sing-up__container{
     padding: 40px 40px 30px;
     
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 1s ease-in-out;
+    transform: translateX(-101%);  
 }
+.dialog-auth_sign-in .dialog-sing-in__container, .dialog-auth_sign-up .dialog-sing-up__container{
+    transform: none;
+    transform: translateX(0);   
+}
+.dialog-auth_sign-in{
+    height: 460px;
+}
+
 .dialog-sing-in__tittle{
     text-align: center;    
     font-size: 24px;
@@ -85,3 +110,25 @@
 .sing-in__link{
     color: #7866F0;
 }
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 999;
+}
+
+.dialog-sign-opened .overlay{
+    display: block;
+}
+.dialog-sign-opened .dialog-auth{
+    display: flex;
+}
+
+
+
+

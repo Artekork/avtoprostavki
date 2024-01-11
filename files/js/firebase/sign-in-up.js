@@ -104,6 +104,7 @@ function validationSignIn() {
     }
 
 
+
     get(ref(db, userPath))
         .then((userSnapshot) => {
             if (userSnapshot.exists()) {
@@ -112,6 +113,8 @@ function validationSignIn() {
 
                 if (password === storedPassword) {
                     alert("Успех");
+
+                    // addCarRecord()
 
                     document.querySelector('.header_nav').classList.add('header_nav_authorized');
                     document.querySelector('.li_nav_sign').style.display = 'none';
@@ -167,7 +170,9 @@ document.querySelector('.sign-up__check-pass').addEventListener('click', functio
         passwordInput.type = 'password';
     }
 });
-})
+
+
+
 
 function clearSignData(){
     document.getElementById('sign-in-input-email').value = "";
@@ -193,10 +198,8 @@ document.querySelectorAll('.sing-in-create__tittle').forEach(function(element){
     })
 })
 
-document.querySelector('.sign-in-button').addEventListener('mousedown', function(){
-    document.body.classList.add('dialog-sign-opened');
-
-    
+document.querySelector('.sign-in-button').addEventListener('click', function(){
+    document.body.classList.add('dialog-sign-opened');    
 })
 
 document.querySelectorAll('.close-sign').forEach(function(element){
@@ -209,4 +212,128 @@ document.querySelectorAll('.close-sign').forEach(function(element){
         
         clearSignData()
     })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addSimpleProduct() {
+    // Получите ссылку на базу данных
+  
+    // Путь к вашим данным в базе данных Firebase
+    const path = '/prostavki/prostavka4337/';
+  
+
+
+    // Данные для добавления
+    const carData = {
+      article: "56-123-22",
+      characteristics: {
+        condition: "новый",
+        material: "капролон",
+        models: {
+            audi: "rs7, rs8",
+            bmw: "m5, m6"
+        },
+        thickness: "15мм",
+        type: "оригинал"
+      },
+      images: {
+        1: "https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F2.png?alt=media&token=a01c97c7-3dd9-4d79-b1cd-fd95b4725704",
+        2: "https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F2.png?alt=media&token=a01c97c7-3dd9-4d79-b1cd-fd95b4725704",
+      },
+      description: "Проставки из резины для передней оси автомобилей Audi A8 (D2)",
+      id: 2,
+      placement: "Передние",
+      price: "2,28"
+    };
+  
+
+
+    // Добавление данных в Firebase
+    set(ref(db, path), carData)
+      .then(() => {
+        console.log('Запись успешно добавлена в Firebase!');
+      })
+      .catch((error) => {
+        console.error('Ошибка при добавлении записи в Firebase:', error);
+      });
+}
+
+
+function addCarProduct() {
+    // Получите ссылку на базу данных
+  
+    // Путь к вашим данным в базе данных Firebase
+    const path = '/cars/audi/models/rs7(2022)/prostavka1';
+  
+    // Данные для добавления
+    const carData = {
+      article: "",
+      characteristics: {
+        condition: "новый",
+        material: "капролон",
+        model: "rs7",
+        thickness: "15мм",
+        type: "оригинал"
+      },
+      description: "Проставки из капролона для задней оси автомобилей Audi A8 (D2) ...", // Ваше описание
+      id: 1,
+      placement: "задние",
+      price: "23,49"
+    };
+  
+
+
+    // Добавление данных в Firebase
+    set(ref(db, path), carData)
+      .then(() => {
+        console.log('Запись успешно добавлена в Firebase!');
+      })
+      .catch((error) => {
+        console.error('Ошибка при добавлении записи в Firebase:', error);
+      });
+}
+
+function addCar() {
+    var car_name = "volkswagen"
+
+    var car_text = "Volkswagen"
+    var car_url = "https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/cars_logo%2Fvolkswagen.png?alt=media&token=5d629739-0fb7-48ae-a52b-4b854d76b80f"
+        
+    const path = '/cars/'+car_name;
+  
+    // Данные для добавления
+    const carData = {      
+        img: car_url,
+        text: car_text
+    };
+    
+  
+    // Добавление данных в Firebase
+    set(ref(db, path), carData)
+      .then(() => {
+        console.log('Запись успешно добавлена в Firebase!');
+      })
+      .catch((error) => {
+        console.error('Ошибка при добавлении записи в Firebase:', error);
+    });
+}
+    
+document.querySelector('h1').addEventListener('click', function(){
+    addSimpleProduct();
+})
 })

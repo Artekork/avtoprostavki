@@ -240,54 +240,15 @@
         <section class="brand">
             <h2 class="brand_tittle section_tittle">Доступные марки</h2>
             <div class="brand_list">
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/subaru.png" alt=""> Subaru
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
+              <!-- 
 
               <a href="/files/html/brands.html" class="brand_item">
                 <div class="brand_item_desc">
                   <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
                 </div>
                 <img src="/files/images/other/arrow.png" alt="">
-              </a>
+              </a> -->
               
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/hyundai.png" alt=""> Hyundai
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
-              
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/toyota.png" alt=""> Toyota
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
-              
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/volkswagen.png" alt=""> Volkswagen
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
-              
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
-              
-              <a href="/files/html/brands.html" class="brand_item">
-                <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-                </div>
-                <img src="/files/images/other/arrow.png" alt="">
-              </a>
             </div>
             <a href="/files/html/brands.html" class="brand_note section_note">
               Список всех марок <img src="/files/images/other/shortarrow.png" alt="">
@@ -297,7 +258,119 @@
         <section class="product">
           <h2 class="product_tittle section_tittle">Автопроставки</h2>
           <div class="product_list">
-            <a href="/files/html/item.html" class="product_item">
+          
+<!--             
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+
+        // Инициализация Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+          authDomain: "avtoprostavki-1337.firebaseapp.com",
+          databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+          projectId: "avtoprostavki-1337",
+          storageBucket: "avtoprostavki-1337.appspot.com",
+          messagingSenderId: "580863358064",
+          appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+          measurementId: "G-SL7W9G5G4E"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Ваш код дальше
+
+        var database = firebase.database();
+        var prostavkiRef = database.ref('prostavki');
+
+        prostavkiRef.once('value')
+          .then(function(snapshot) {
+            var product_list = document.querySelector('.product_list');
+
+            snapshot.forEach(function(childSnapshot) {
+              var prostavkaData = childSnapshot.val();
+              var description = prostavkaData.description;
+              var price = prostavkaData.price;
+              
+
+
+              var imageUrl = prostavkaData.images["1"];
+
+
+              // Создаем элемент карточки
+              var productItem = document.createElement('a');
+              productItem.href = "/files/html/item.html";
+              productItem.classList.add("product_item");
+
+              // Создаем элемент для изображения
+              var productItemImg = document.createElement('div');
+              productItemImg.classList.add("product_item_img");
+
+              // Создаем изображение для избранного
+              var heartImg = document.createElement('img');
+              heartImg.classList.add("product_item_img_tofavourite");
+              heartImg.src = "/files/images/other/heart_notfill.png";
+              heartImg.alt = "";
+
+              // Создаем изображение товара
+              var productImg = document.createElement('img');
+              productImg.classList.add("product_item_img_cont");
+              productImg.src = imageUrl;
+              productImg.alt = "";
+
+              // Добавляем изображения в элемент карточки
+              productItemImg.appendChild(heartImg);
+              productItemImg.appendChild(productImg);
+
+              // Создаем элемент описания
+              var productItemDesc = document.createElement('div');
+              productItemDesc.classList.add("product_item_desc");
+
+              // Создаем параграф для описания
+              var descriptionParagraph = document.createElement('p');
+              descriptionParagraph.textContent = description;
+
+              // Создаем элемент для цены
+              var productItemPrice = document.createElement('div');
+              productItemPrice.classList.add("product_item_price");
+
+              // Добавляем цену
+              productItemPrice.textContent = price;
+
+              // Создаем элемент кнопки
+              var productItemBtn = document.createElement('div');
+              productItemBtn.classList.add("product_item_btn");
+
+              // Создаем изображение для кнопки
+              var buyImg = document.createElement('img');
+              buyImg.src = "/files/images/other/buy.png";
+              buyImg.alt = "";
+
+              // Добавляем кнопку
+              productItemBtn.appendChild(buyImg);
+              productItemBtn.appendChild(document.createTextNode(" Купить"));
+
+              // Добавляем элементы описания в элемент карточки
+              productItemDesc.appendChild(descriptionParagraph);
+              productItemDesc.appendChild(productItemPrice);
+              productItemDesc.appendChild(productItemBtn);
+
+              // Добавляем изображения и описание в элемент карточки
+              productItem.appendChild(productItemImg);
+              productItem.appendChild(productItemDesc);
+
+              // Добавляем элемент карточки в список продуктов
+              product_list.appendChild(productItem);
+            });
+          })
+          .catch(function(error) {
+            console.error("Error fetching data: ", error);
+          });
+      });
+    </script> -->
+            
+
+
+  <!-- <a href="/files/html/item.html" class="product_item">
               <div class="product_item_img">
                 <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
                 <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
@@ -312,122 +385,9 @@
                 </div>
               </div>
             </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
-            <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-            
+             -->
            
-            
-            
+    
           </div>
           <a href="/files/html/items.html" class="product_note section_note">
             Список всех товаров <img src="/files/images/other/shortarrow.png" alt="">
@@ -650,10 +610,195 @@
     <script src="/files/js/dialog_call.js"></script>
 
     <!-------- Firebase  -------->  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+    
     <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
 
 
+    <!-- Car brand -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+    
+      // Инициализация Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+        authDomain: "avtoprostavki-1337.firebaseapp.com",
+        databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+        projectId: "avtoprostavki-1337",
+        storageBucket: "avtoprostavki-1337.appspot.com",
+        messagingSenderId: "580863358064",
+        appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+        measurementId: "G-SL7W9G5G4E"
+    };
+    
+      firebase.initializeApp(firebaseConfig);
+    
+      // Ваш код дальше
+    
+      var database = firebase.database();
+      var brandsRef = database.ref('cars');
+    
+      brandsRef.once('value')
+        .then(function(snapshot) {
+          var brandList = document.querySelector('.brand_list');
+    
+          snapshot.forEach(function(childSnapshot) {
+            var brandData = childSnapshot.val();
+            var brandName = brandData.text;
+            var brandImgUrl = brandData.img;
+    
+            var brandItem = document.createElement('a');
+            brandItem.href = "/files/html/brands.html";
+            brandItem.classList.add("brand_item");
+    
+            var brandItemDesc = document.createElement('div');
+            brandItemDesc.classList.add("brand_item_desc");
+            brandItemDesc.innerHTML = '<img src="' + brandImgUrl + '" alt=""> ' + brandName;
+    
+            var arrowImg = document.createElement('img');
+            arrowImg.src = "/files/images/other/arrow.png";
+            arrowImg.alt = "";
+    
+            brandItem.appendChild(brandItemDesc);
+            brandItem.appendChild(arrowImg);
+    
+            brandList.appendChild(brandItem);
+          });
+        })
+        .catch(function(error) {
+          console.error("Error fetching data: ", error);
+        });
+        });
+    </script>
+
+
+    <!-- Prostavki -->
+
+    <script>
+      // Инициализация Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+        authDomain: "avtoprostavki-1337.firebaseapp.com",
+        databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+        projectId: "avtoprostavki-1337",
+        storageBucket: "avtoprostavki-1337.appspot.com",
+        messagingSenderId: "580863358064",
+        appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+        measurementId: "G-SL7W9G5G4E"
+      };
+    
+      firebase.initializeApp(firebaseConfig);
+    
+      // Ваш код дальше
+    
+      var database = firebase.database();
+      var prostavkiRef = database.ref('prostavki');
+    
+      // Ищем элемент с классом product_list внутри контейнера body
+      var productContainer = document.querySelector('.product_list');
+    
+      prostavkiRef.once('value')
+        .then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var prostavkaData = childSnapshot.val();
+            var description = prostavkaData.description;
+            var productId = childSnapshot.key; // Получаем ID продукта
+            var price = prostavkaData.price;
+            var imageUrl = prostavkaData.images["1"];
+    
+            // Создаем элемент карточки
+            var productItem = document.createElement('a');
+            productItem.href = "";
+            productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+            productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+    
+            // Создаем элемент для изображения
+            var productItemImg = document.createElement('div');
+            productItemImg.classList.add("product_item_img");
+    
+            // Создаем изображение для избранного
+            var heartImg = document.createElement('img');
+            heartImg.classList.add("product_item_img_tofavourite");
+            heartImg.src = "/files/images/other/heart_notfill.png";
+            heartImg.alt = "";
+    
+            // Создаем изображение товара
+            var productImg = document.createElement('img');
+            productImg.classList.add("product_item_img_cont");
+            productImg.src = imageUrl;
+            productImg.alt = "";
+    
+            // Добавляем изображения в элемент карточки
+            productItemImg.appendChild(heartImg);
+            productItemImg.appendChild(productImg);
+    
+            // Создаем элемент описания
+            var productItemDesc = document.createElement('div');
+            productItemDesc.classList.add("product_item_desc");
+    
+            // Создаем параграф для описания
+            var descriptionParagraph = document.createElement('p');
+            descriptionParagraph.textContent = description;
+    
+            // Создаем элемент для цены
+            var productItemPrice = document.createElement('div');
+            productItemPrice.classList.add("product_item_price");
+    
+            // Добавляем цену
+            productItemPrice.textContent = price;
+    
+            // Создаем элемент кнопки
+            var productItemBtn = document.createElement('div');
+            productItemBtn.classList.add("product_item_btn");
+    
+            // Создаем изображение для кнопки
+            var buyImg = document.createElement('img');
+            buyImg.src = "/files/images/other/buy.png";
+            buyImg.alt = "";
+    
+            // Добавляем кнопку
+            productItemBtn.appendChild(buyImg);
+            productItemBtn.appendChild(document.createTextNode(" Купить"));
+    
+            // Добавляем элементы описания в элемент карточки
+            productItemDesc.appendChild(descriptionParagraph);
+            productItemDesc.appendChild(productItemPrice);
+            productItemPrice.appendChild(productItemBtn);
+    
+            // Добавляем изображения и описание в элемент карточки
+            productItem.appendChild(productItemImg);
+            productItem.appendChild(productItemDesc);
+
+
+
+
+            productItem.addEventListener('click', function(event) {
+              event.preventDefault();
+
+              // Получаем ID продукта из атрибута data-product-id
+              var selectedProductId = event.currentTarget.dataset.productId;
+
+              // Сохраняем ID продукта в локальное хранилище
+              localStorage.setItem('selectedProductId', selectedProductId);
+
+              // Переадресация на страницу товара
+              window.location.href = '/files/html/item.html';
+            });
+    
+            // Добавляем элемент карточки в найденный контейнер
+            productContainer.appendChild(productItem);
+          });
+        })
+        .catch(function(error) {
+          console.error("Error fetching data: ", error);
+        });
+    </script>
+    
+    
     
     <!-------------------- Links -------------------->  
     

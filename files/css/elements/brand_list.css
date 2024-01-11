@@ -18,6 +18,9 @@
   display: flex;
   min-width: max-content;
 
+
+  height: 90px;
+
   transition: 0.7s cubic-bezier(.49, 0, .50, 1);
 }
 .brand_item:hover{
@@ -27,12 +30,14 @@
   margin-right: 35px;
 }
 .brand_item:nth-child(n+4){
-  margin-top: 30px;  
+  margin-top: 35px;
 }
 .brand_item_desc{
   font-size: 24px;
   font-family: 'ProximaNova_SemiBold';
 
+  display: flex;
+  align-items: center;
   max-width: max-content;
   max-height: max-content;
   color: black;
@@ -40,6 +45,8 @@
 .brand_item_desc img{
   margin: 20px;
   vertical-align: middle;
+  max-width: 50px;
+  max-height: 50px;
 }
 .brand_item > img{
   height: 25px;

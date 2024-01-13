@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="/files/css/common/fonts.css">
     <link rel="stylesheet" href="/files/css/common/general.css">
 
-    <link rel="stylesheet" href="/files/css/brands.css">
     <link rel="stylesheet" href="/files/css/elements/brand_list.css">
+    
+    <link rel="stylesheet" href="/files/css/brands.css">
 
 
   </head>
@@ -124,104 +125,15 @@
 
         <section class="brand">
           <h2 class="brand_tittle section_tittle">Марки</h2>
-          <div class="brand_list">
+          <div class="brand_list">            
+<!--             
             <a href="/files/html/brands.html" class="brand_item">
               <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/subaru.png" alt=""> Subaru
+                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
               </div>
               <img src="/files/images/other/arrow.png" alt="">
-            </a>
+            </a> -->
 
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/hyundai.png" alt=""> Hyundai
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/subaru.png" alt=""> Subaru
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/hyundai.png" alt=""> Hyundai
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/toyota.png" alt=""> Toyota
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/volkswagen.png" alt=""> Volkswagen
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
-            
-            <a href="/files/html/brands.html" class="brand_item">
-              <div class="brand_item_desc">
-                <img src="/files/images/content/car-brand/lamborgini.png" alt=""> Lamborgini
-              </div>
-              <img src="/files/images/other/arrow.png" alt="">
-            </a>
           </div>
         </section>
       </main>
@@ -276,7 +188,70 @@
     <script src="https://unpkg.com/imask"></script>
     <script src="/files/js/dialog_call.js"></script>
 
+    <!-------- Firebase  -------->  
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
 
+    
+    <!-- <script src="/files/js/firebase/sign-in-up.js" type="module"></script> -->
+
+
+    <!-- Car brand -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+    
+      // Инициализация Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+        authDomain: "avtoprostavki-1337.firebaseapp.com",
+        databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+        projectId: "avtoprostavki-1337",
+        storageBucket: "avtoprostavki-1337.appspot.com",
+        messagingSenderId: "580863358064",
+        appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+        measurementId: "G-SL7W9G5G4E"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+      // Ваш код дальше
+    
+      var database = firebase.database();
+      var brandsRef = database.ref('cars');
+    
+      brandsRef.once('value')
+        .then(function(snapshot) {
+          var brandList = document.querySelector('.brand_list');
+    
+          snapshot.forEach(function(childSnapshot) {
+            var brandData = childSnapshot.val();
+            var brandName = brandData.text;
+            var brandImgUrl = brandData.img;
+    
+            var brandItem = document.createElement('a');
+            brandItem.href = "/files/html/brands.html";
+            brandItem.classList.add("brand_item");
+    
+            var brandItemDesc = document.createElement('div');
+            brandItemDesc.classList.add("brand_item_desc");
+            brandItemDesc.innerHTML = '<img src="' + brandImgUrl + '" alt=""> ' + brandName;
+    
+            var arrowImg = document.createElement('img');
+            arrowImg.src = "/files/images/other/arrow.png";
+            arrowImg.alt = "";
+    
+            brandItem.appendChild(brandItemDesc);
+            brandItem.appendChild(arrowImg);
+    
+            brandList.appendChild(brandItem);
+          });
+        })
+        .catch(function(error) {
+          console.error("Error fetching data: ", error);
+        });
+        });
+    </script>
     
     <!-------------------- Links -------------------->  
     

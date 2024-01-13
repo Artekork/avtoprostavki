@@ -29,6 +29,9 @@
 .brand_item:not(:nth-child(3n)){
   margin-right: 35px;
 }
+.brand_item:nth-child(n+7){
+display: none;
+}
 .brand_item:nth-child(n+4){
   margin-top: 35px;
 }

@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function() {
   var selectedProductId = localStorage.getItem('selectedProductId');
 
   if (selectedProductId) {
-    alert(selectedProductId);
+    //alert(selectedProductId);
 
     const firebaseConfig = {
       apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
@@ -34,49 +34,97 @@ window.addEventListener('DOMContentLoaded', function() {
         var price = prostavkaData.price;
         var desc = prostavkaData.description;
 
-        var condition = prostavkaData.child(characteristics).condition;
+        var condition = prostavkaData.characteristics.condition;
         var material  = prostavkaData.characteristics.material;
         var thickness = prostavkaData.characteristics.thickness;
         var type       = prostavkaData.characteristics.type;
         // Создаем объект для хранения массивов моделей по маркам
         var modelsByBrand = {};
+        
 
         // Перебираем дочерние элементы в characteristics.models
-        for (var brand in characteristics.models) {
-          if (characteristics.models.hasOwnProperty(brand)) {
+        for (var brand in prostavkaData.characteristics.models) {
+          if (prostavkaData.characteristics.models.hasOwnProperty(brand)) {
             // Разбиваем строки на массивы и сохраняем в modelsByBrand
-            modelsByBrand[brand] = characteristics.models[brand].split(',').map(model => model.trim());
+            modelsByBrand[brand] = prostavkaData.characteristics.models[brand].split(',').map(model => model.trim());
           }
         }
-
-
-        prostavkaData.images.once('value')
-          .then(function(snapshot) {
-            // Получаем значения из снимка
-            var imagesData = snapshot.val();
-
-            // Проверяем, есть ли данные в imagesData
-            if (imagesData) {
-              // Преобразуем объект значений в массив
-              var imagesArray = Object.values(imagesData);
-
-              // Теперь у вас есть массив изображений
-              console.log(imagesArray);
-            } else {
-              console.log("Нет данных в узле 'images'.");
+        var allModels = Object.values(modelsByBrand)
+          .flat()
+          .join(', ');
+          modelsByBrand = allModels;
+        if (prostavkaData.images) {
+          // Создаем объект для хранения массива изображений
+          var imagesArray = [];
+    
+          // Перебираем все дочерние элементы в узле images
+          for (var key in prostavkaData.images) {
+            if (prostavkaData.images.hasOwnProperty(key)) {
+              imagesArray.push(prostavkaData.images[key]);
             }
-          })
+          }
+        }
         // Теперь у вас есть данные для элемента с известным именем
 
-        console.log(tittle);
-        console.log(price);
-        console.log(desc);
-        console.log(condition);
-        console.log(material);
-        console.log(thickness);
-        console.log(type);
-        console.log(modelsByBrand);
-        console.log(imagesArray);
+        // alert(tittle);
+        // alert(price);
+        // alert(desc);
+        // alert(condition);
+        // alert(material);
+        // alert(thickness);
+        // alert(type);
+        // alert(modelsByBrand);
+        // alert(imagesArray[0]);
+
+        var slider1 = document.querySelector('.slider1');
+        var slider2 = document.querySelector('.slider2');
+        createSlider(slider1);
+        createSlider(slider2);
+        function createSlider(sliderEl){
+          imagesArray.forEach(function(imageUrl) {
+            var slide = document.createElement('div');
+            slide.classList.add('swiper-slide');
+  
+            var image = document.createElement('img');
+            image.src = imageUrl;
+  
+            slide.appendChild(image);
+            sliderEl.appendChild(slide);
+          });
+        }
+
+        document.querySelector('.item-text__desc').innerText = desc;
+        document.querySelector('.contacts_info_price').innerText = price + ' руб/комплект';
+
+        // Находим элемент списка
+var itemPropertiesDesc = document.querySelector('.item-properties__desc');
+
+// Очищаем содержимое элемента списка (если нужно)
+itemPropertiesDesc.innerHTML = '';
+
+
+
+
+// Создаем и добавляем элементы списка
+var properties = {
+  "Материал": material,
+  "Модель авто": modelsByBrand, // Объединяем модели через запятую
+  "Тип по изготовителю": type,
+  "Состояние": condition,
+  "Толщина": thickness
+};
+
+for (var property in properties) {
+  if (properties.hasOwnProperty(property)) {
+    var li = document.createElement('li');
+    li.innerHTML = '<b>' + property + ':</b> ' + properties[property];
+    itemPropertiesDesc.appendChild(li);
+  }
+}
+
+        // Перебираем массив imagesArray и создаем слайды для каждой ссылки
+        
+
 
 
       })

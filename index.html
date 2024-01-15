@@ -20,6 +20,9 @@
 
   </head>
   <body>
+    <script>
+      // localStorage.removeItem('currentUser');
+    </script>
     <div class="overlay"></div>
     <dialog class="dialog_call">
       <img id="close" src="/files/images/other/close.png" alt="">
@@ -259,8 +262,24 @@
           <h2 class="product_tittle section_tittle">Автопроставки</h2>
           <div class="product_list">
           
-<!--             
-    <script>
+
+            <!-- <a class="product_item">
+              <div class="product_item_img">
+                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+              </div>
+              <div class="product_item_desc">
+                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
+                <div class="product_item_price">
+                  45.49 р.
+                  <div class="product_item_btn">
+                    <img src="/files/images/other/buy.png" alt=""> Купить
+                  </div>
+                </div>
+              </div>
+            </a> -->
+
+<!-- <script>
       window.addEventListener('DOMContentLoaded', function() {
 
         // Инициализация Firebase
@@ -370,21 +389,7 @@
             
 
 
-    <!-- <a class="product_item">
-      <div class="product_item_img">
-        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-        <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-      </div>
-      <div class="product_item_desc">
-        <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
-        <div class="product_item_price">
-          45.49 р.
-          <div class="product_item_btn">
-            <img src="/files/images/other/buy.png" alt=""> Купить
-          </div>
-        </div>
-      </div>
-    </a> -->
+   
             
            
     
@@ -829,6 +834,43 @@
                   }
               }
             });    
+
+
+            
+
+
+
+
+
+
+
+
+            var currentUser = localStorage.getItem('currentUser');
+if (currentUser) {
+    var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
+    
+    userFavoritesRef.child(productId).once('value')
+        .then(function(snapshot) {
+            if (snapshot.exists()) {
+                heartImg.src = '/files/images/other/heart_fill.png';
+            } else {
+                heartImg.src = '/files/images/other/heart_notfill.png';
+            }
+        })
+        .catch(function(error) {
+            console.error("Error checking user favorites: ", error);
+        });
+} else {
+    heartImg.src = '/files/images/other/heart_notfill.png';
+}
+
+
+
+
+
+
+
+
             // Добавляем элемент карточки в найденный контейнер
             productContainer.appendChild(productItem);
           });
@@ -874,42 +916,7 @@
 
 
 
-    <script>
-      function checkFavourites(){
-          var currentUser = localStorage.getItem('currentUser');
-
-          if (currentUser) {
-              // Получаем ссылку на базу данных для избранного пользователя
-              var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
-
-              // Ищем все элементы с классом product_item
-              var productItems = document.querySelectorAll('.product_item');
-
-              productItems.forEach(function(productItem) {
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductId = productItem.dataset.productId;
-
-                  // Проверяем, есть ли товар в избранном у пользователя
-                  userFavoritesRef.child(selectedProductId).once('value')
-                      .then(function(snapshot) {
-                          var heartImg = productItem.querySelector('.product_item_img_tofavourite');
-
-                          if (snapshot.exists()) {
-                              // Товар в избранном, меняем иконку на заполненное сердечко
-                              heartImg.src = '/files/images/other/heart_fill.png';
-                          } else {
-                              // Товар не в избранном, меняем иконку на пустое сердечко
-                              heartImg.src = '/files/images/other/heart_notfill.png';
-                          }
-                      })
-                      .catch(function(error) {
-                          console.error("Error checking user favorites: ", error);
-                      });
-              });
-          }
-        }
-    </script>
-
+    
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->

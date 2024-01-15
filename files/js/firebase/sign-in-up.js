@@ -75,8 +75,10 @@ function validationSignUp() {
 
             saveCurrentUser(email);
 
+
             document.body.classList.remove('dialog-sign-opened');
             clearSignData()
+            location.reload();
         }
     })
     .catch((error) => {
@@ -122,7 +124,8 @@ function validationSignIn() {
                     saveCurrentUser(email);
 
                     document.body.classList.remove('dialog-sign-opened');
-                    clearSignData()
+                    clearSignData();
+                    location.reload();
                 } else {
                     document.querySelector('.sing-in-pass__error').innerText = 'Неверный логин или пароль';
         return;
@@ -229,6 +232,24 @@ function saveCurrentUser(userLogin) {
 
 
 
+this.document.querySelector('.product_tittle').addEventListener('click', function(){
+
+    alert(localStorage.getItem('currentUser'))
+})
+
+
+var isAutorised = localStorage.getItem('currentUser');
+if (isAutorised) {
+    document.querySelector('.header_nav').classList.add('header_nav_authorized');
+    document.querySelector('.li_nav_sign').style.display = 'none';
+} else {
+}
+
+this.document.querySelector('.user-card__exit').addEventListener('click', function(){
+    localStorage.removeItem('currentUser');
+    location.reload();
+
+})
 
 
 

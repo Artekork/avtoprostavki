@@ -1,5 +1,4 @@
 productItem.addEventListener('click', function() {
-  event.preventDefault();
     // Получаем ID товара
     var productId = childSnapshot.key;
   

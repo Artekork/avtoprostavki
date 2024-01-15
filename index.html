@@ -82,7 +82,7 @@
 
     </dialog>
 
-    <dialog class="dialog-auth  dialog-auth_sign-up dialog-auth_sign-in">
+    <dialog class="dialog-auth dialog-auth_sign-up dialog-auth_sign-in">
       <div class="dialog-sing-in__container">
           <img class="close-sign" src="/files/images/other/close.png" alt="">
 
@@ -370,22 +370,22 @@
             
 
 
-  <!-- <a href="/files/html/item.html" class="product_item">
-              <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-              </div>
-              <div class="product_item_desc">
-                <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
-                <div class="product_item_price">
-                  45.49 р.
-                  <div class="product_item_btn">
-                    <img src="/files/images/other/buy.png" alt=""> Купить
-                  </div>
-                </div>
-              </div>
-            </a>
-             -->
+    <!-- <a class="product_item">
+      <div class="product_item_img">
+        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+      </div>
+      <div class="product_item_desc">
+        <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
+        <div class="product_item_price">
+          45.49 р.
+          <div class="product_item_btn">
+            <img src="/files/images/other/buy.png" alt=""> Купить
+          </div>
+        </div>
+      </div>
+    </a> -->
+            
            
     
           </div>
@@ -618,7 +618,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
 
     
-    <!-- <script src="/files/js/firebase/sign-in-up.js" type="module"></script> -->
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
 
 
     <!-- Car brand -->
@@ -679,6 +679,7 @@
 
     <!-- Prostavki -->
 
+    
     <script>
       // Инициализация Firebase
       const firebaseConfig = {
@@ -778,37 +779,142 @@
 
 
             productItem.addEventListener('click', function(event) {
-              event.preventDefault();
+              if (!event.target.classList.contains('product_item_img_tofavourite')) {
+                  event.preventDefault();
 
-              // Получаем ID продукта из атрибута data-product-id
-              var selectedProductId = event.currentTarget.dataset.productId;
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductId = event.currentTarget.dataset.productId;
 
-              // Сохраняем ID продукта в локальное хранилище
-              localStorage.setItem('selectedProductId', selectedProductId);
+                  // Сохраняем ID продукта в локальное хранилище
+                  localStorage.setItem('selectedProductId', selectedProductId);
 
-              // Переадресация на страницу товара
-              window.location.href = '/files/html/item.html';
-            });
-    
+                  // Переадресация на страницу товара
+                  window.location.href = '/files/html/item.html';
+              } else {
+                  event.preventDefault(); // Предотвращаем переход по ссылке
+                  event.stopPropagation(); // Останавливаем всплытие события
+
+                  // Меняем иконку сердечка
+                  var heartImg = event.target;
+
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductId = event.currentTarget.dataset.productId;
+
+                  // Проверяем, вошел ли пользователь
+                  var currentUser = localStorage.getItem('currentUser');
+
+                  if (currentUser) {
+                      // Получаем ссылку на базу данных для избранного пользователя
+                      var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
+
+                      // Проверяем, есть ли уже такой товар в избранном
+                      userFavoritesRef.child(selectedProductId).once('value')
+                          .then(function(snapshot) {
+                              if (snapshot.exists()) {
+                                  // Товар уже в избранном, удаляем его
+                                  userFavoritesRef.child(selectedProductId).remove();
+                                  heartImg.src = '/files/images/other/heart_notfill.png';
+                              } else {
+                                  // Товар не в избранном, добавляем его
+                                  userFavoritesRef.child(selectedProductId).set("1");
+                                  heartImg.src = '/files/images/other/heart_fill.png';
+                              }
+                          })
+                          .catch(function(error) {
+                              console.error("Error checking user favorites: ", error);
+                          });
+
+                  } else {
+                      alert('Зайдите в аккаунт');
+                  }
+              }
+            });    
             // Добавляем элемент карточки в найденный контейнер
             productContainer.appendChild(productItem);
           });
         })
         .catch(function(error) {
           console.error("Error fetching data: ", error);
-        });
-    </script>
-    
-    
-    
-    <!-------- Add to cart/favourites -------->  
-    <script src="/files/js/addProductInAcc.js"></script>
+        });       
+    </script> 
+ 
 
+<!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
+      <div class="product_item_img">
+        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_cont" src="https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F1.png?alt=media&amp;token=9f5db2b3-2d25-4ab7-826b-a16bb714bf19" alt="">
+      </div>
+      <div class="product_item_desc">
+        <p>Проставки из капролона для задней оси автомобилей Audi A8 (D2)</p>
+        <div class="product_item_price">23,49
+          <div class="product_item_btn">
+            <img src="/files/images/other/buy.png" alt=""> Купить
+          </div>
+        </div>
+      </div>
+    </a> -->
     
+    <!-- <a href="/files/html/item.html" class="product_item">
+      <div class="product_item_img">
+        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+      </div>
+      <div class="product_item_desc">
+        <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
+        <div class="product_item_price">
+          45.49 р.
+          <div class="product_item_btn">
+            <img src="/files/images/other/buy.png" alt=""> Купить
+          </div>
+        </div>
+      </div>
+    </a> -->
+
+
+
+
+
+    <script>
+      function checkFavourites(){
+          var currentUser = localStorage.getItem('currentUser');
+
+          if (currentUser) {
+              // Получаем ссылку на базу данных для избранного пользователя
+              var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
+
+              // Ищем все элементы с классом product_item
+              var productItems = document.querySelectorAll('.product_item');
+
+              productItems.forEach(function(productItem) {
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductId = productItem.dataset.productId;
+
+                  // Проверяем, есть ли товар в избранном у пользователя
+                  userFavoritesRef.child(selectedProductId).once('value')
+                      .then(function(snapshot) {
+                          var heartImg = productItem.querySelector('.product_item_img_tofavourite');
+
+                          if (snapshot.exists()) {
+                              // Товар в избранном, меняем иконку на заполненное сердечко
+                              heartImg.src = '/files/images/other/heart_fill.png';
+                          } else {
+                              // Товар не в избранном, меняем иконку на пустое сердечко
+                              heartImg.src = '/files/images/other/heart_notfill.png';
+                          }
+                      })
+                      .catch(function(error) {
+                          console.error("Error checking user favorites: ", error);
+                      });
+              });
+          }
+        }
+    </script>
+
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/files/js/scroll_anim.js"></script>
   </body>

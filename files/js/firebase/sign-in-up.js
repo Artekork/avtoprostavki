@@ -1,4 +1,3 @@
-
 // Импорт нужных функций из Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
@@ -74,6 +73,7 @@ function validationSignUp() {
             document.querySelector('.header_nav').classList.add('header_nav_authorized');
             document.querySelector('.li_nav_sign').style.display = 'none';
 
+            saveCurrentUser(email);
 
             document.body.classList.remove('dialog-sign-opened');
             clearSignData()
@@ -118,6 +118,8 @@ function validationSignIn() {
 
                     document.querySelector('.header_nav').classList.add('header_nav_authorized');
                     document.querySelector('.li_nav_sign').style.display = 'none';
+
+                    saveCurrentUser(email);
 
                     document.body.classList.remove('dialog-sign-opened');
                     clearSignData()
@@ -213,6 +215,11 @@ document.querySelectorAll('.close-sign').forEach(function(element){
         clearSignData()
     })
 })
+
+function saveCurrentUser(userLogin) {
+    localStorage.setItem('currentUser', userLogin);
+}
+
 
 
 
@@ -337,3 +344,5 @@ document.querySelector('h1').addEventListener('click', function(){
     addSimpleProduct();
 })
 })
+
+

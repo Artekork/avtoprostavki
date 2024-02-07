@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!------------------- links ------------------->  
+    <!---------- CSS ---------->  
+
+    <link rel="stylesheet" href="/files/css/common/header.css">
+    <link rel="stylesheet" href="/files/css/common/dialog_call.css">
+    <link rel="stylesheet" href="/files/css/common/footer.css">
+    <link rel="stylesheet" href="/files/css/common/normalise.css">
+    <link rel="stylesheet" href="/files/css/common/fonts.css">
+    <link rel="stylesheet" href="/files/css/common/general.css">
+    <link rel="stylesheet" href="/files/css/common/sign.css">
+
+    <link rel="stylesheet" href="/files/css/elements/brand_list.css">
+    <link rel="stylesheet" href="/files/css/elements/product_list.css">
+    <link rel="stylesheet" href="/files/css/profile.css">
+
+
+    <!---------- Libraries + JS ---------->  
+    <!------- Croppie ------->  
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
+    <link rel="stylesheet" href="/files/css/profile.css">
+
+
+  </head>
+  <body>
+    <script>
+      // localStorage.removeItem('currentUser');
+    </script>
+
+    <dialog class="dialog-photo"> 
+      <div class="dialog-photo-container">
+          <img class="close-sign-photo" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-photo__tittle">
+              Изменение фото
+          </div>
+          <div class="dialog-photo__desc">
+              Добавьте фотографию, это сделает профиль привлекательнее и интереснее.
+          </div>
+          <div id="image-preview"></div>
+          <button id="crop-btn">Сохранить</button>
+      </div>
+    </dialog>
+    <div class="overlay"></div>
+    <dialog class="dialog_call">
+      <img id="close" src="/files/images/other/close.png" alt="">
+
+      <p class="dialog_tittle" id="asd">
+        Заказать звонок
+      </p>
+      <!--  -->
+      <form action="https://jsonplaceholder.typicode.com/posts" method="POST"> 
+        <div class="form_container">
+          <p class="dialog_desc">Имя*</p>
+          <input class="dialog_input" 
+            required 
+            type="text" 
+            name="Name"
+            oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')"
+            id="name">
+          <p class="dialog_desc">Телефон*</p>
+          <input class="dialog_input" 
+            required 
+            type="tel" 
+            oninvalid="this.setCustomValidity('Введите телефон')" oninput="setCustomValidity('')"
+            name="Number" 
+            id="number">
+          <p class="dialog_desc">Почта</p>
+          <input class="dialog_input" type="email" name="E-mail" id="mail">
+          <p class="dialog_desc">Комментарий</p>
+          <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
+
+          <div class="dialog_checkbox">
+
+            <label class="checkbox-container">
+              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <div class="checkmark"></div>
+            </label>
+
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            <!-- <p class="checkbox_error">Примите соглашение</p> -->
+          </div>
+
+
+          <!-- <div class="dialog_checkbox">
+            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+          </div> -->
+
+          <p class="dialog_chose">Как вы хотите получить ответ?</p>
+
+          <div class="dialog_buttons">
+            <button id="call" class="dialog_btn">
+              Звонок
+            </button>
+            <button id="write" class="dialog_btn">
+              Написать
+            </button>
+            <input type="hidden" name="Method" id="methodField" value="call or write">
+          </div>
+        </div>
+      </form>
+
+    </dialog>
+
+    <dialog class="dialog-auth dialog-auth_sign-up dialog-auth_sign-in">
+      <div class="dialog-sing-in__container">
+          <img class="close-sign" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-sing-in__tittle">
+              Вход в личный кабинет
+          </div>
+          <div class="dialog-sing-in__email">
+              <div class="sing-in-email__tittle">
+                  E-mail
+              </div>
+              <input class="sign-in__input" type="email" id="sign-in-input-email">
+              <div class="sing-in-email__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__pass">
+              <div class="sing-in-pass__tittle">
+                  <div class="sign-in-pass-tittle__text">
+                      Пароль
+                  </div>
+                  <div class="sign-in-pass-tittle__forgot-pass">
+                      Забыли пароль?
+                  </div>
+              </div>
+              <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+
+              <input class="sign-in__input" type="password" id="sign-in-input-pass">
+              <div class="sing-in-pass__error">
+              </div>
+          </div>
+          <button class="dialog-sing-in__btn-sign-in">Вход</button>
+          <div class="dialog-sing-in__create-acc">
+              <div class="sing-in-create__tittle">
+                  У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+              </div>                
+          </div>
+      </div>
+
+      <div class="dialog-sing-up__container">
+          <img class="close-sign" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-sing-in__tittle">
+              Регистрация
+          </div>
+          <div class="dialog-sing-in__email">
+              <div class="sing-in-email__tittle">
+                  E-mail
+              </div>
+              <input class="sign-in__input" type="email" id="sign-up-input-email">
+              <div class="sing-up-email__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__pass">
+              <div class="sing-in-pass__tittle">
+                  Пароль
+              </div>
+              <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
+              <div class="sing-up-pass__error">
+              </div>
+          </div>
+          <div class="dialog-sing-in__conf-pass">
+              <div class="sing-in-pass__tittle">
+                  Повторите пароль
+              </div>
+              <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+              <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+              <div class="sing-up-conf-pass__error">
+              </div>
+          </div>
+          <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
+          <div class="dialog-sing-in__create-acc">
+              <div class="sing-in-create__tittle">
+                  У вас есть аккаунт? <a class="sing-in__link">Войти</a>
+              </div>                
+          </div>
+      </div>
+    </dialog>   
+
+    <div class="content_container">
+      <header class="header">
+        <div class="logo">
+          <a href="/index.html" class="logo_inner">
+            <img src="/files/images/other/logo.png" alt="">
+            <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
+            <div class="header_tittle">Belavtoprostavki</div>
+          </a>
+        </div>
+        <nav class="header_nav ">
+          <ul>
+            <li class="header_nav_li link_contact "> 
+              <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
+              <div class="dialog_contacts">
+                <div class="dialog_contacts_tittle">
+                  Контакты
+                </div>
+                <h3 class="contacts_info_tittle">Интернет-магазин «Belavtoprostavki»</h3>
+                  <div class="contacts_info_desc">
+                    <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв<br> ул. Гришина 122, п. 1, кв. 133 </div>
+                    <div class="contacts_info_item"><img src="/files/images/other/mail.png" alt="">2info@1ak.by </div>
+                    <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно <br>8:00-22:00 (без обеда)</div>
+                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
+                  </div>
+                  <button class="open_dialog_btn dialog_contact_btn">
+                    <img src="/files/images/other/call.png" alt="">Заказать звонок
+                  </button>
+              </div>
+            </li>
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a href="/files/html/test.html" class="header_link">
+                <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
+              </a>
+            </li>
+            <li class="header_nav_li li_nav_authorized-only"> <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+
+            <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              </a>
+              <div class="nav-user-card">
+                <div class="user-card__info">
+                  <img src="/files/images/other/user.png" alt="">
+                  <div class="user-card__desc">
+                    <div class="user-card__name">Артём Каравацкий</div>
+                    <div class="user-card__phone">+375 (29) 134-21-71</div>
+                    <div class="user-card__exit">Выйти</div>
+                  </div>
+                </div>
+                <div class="user-card__list">
+                  <ul>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="main-content">
+            <div class="main-content__list-of-sections">
+                <div class="list-elem list-elem_selected list__profile">Профиль</div>
+                <div class="list-elem list-elem_selected list__cart">Корзина</div>
+                <div class="list-elem list__favourite">Избранное</div>
+                <div class="list-elem list__user-info">Личные данные</div>
+                <div class="list-elem list__history">История покупок</div>
+            </div>
+
+
+            <div class="main-content__sections profile_selected cart_selected favourite_selected user_selected history_selected">
+                <div class="main-content__section section-profile">
+
+                    <div class="section-profile__card section-card-profile__user-info">                            
+                        <div class="section-card-profile__info">
+                            <img class="user-pic" src="/files/images/other/user.png" alt="">
+                            <div class="section-card-profile__desc">
+                                <div class="section-card-profile__name">Артём Каравацкий</div>
+                                <div class="section-card-profile__phone">+375 (29) 134-21-71</div>
+                            </div>
+                        </div>
+                        <div class="section-card-profile__buttons">
+                            <p class="section-card-profile__button section-card-profile__button-exit">Выйти</p>
+                            <p class="section-card-profile__button section-card-profile__change-data">Изменить данные</p>
+                        </div>
+                    </div>
+
+
+                    <div class="section-profile__card section-card-profile__history">                            
+                        <div class="section-card-history__tittle">
+                            История покупок 
+                        </div>
+                        <div class="section-card-history__desc">5 товаров</div>
+                        <div class="section-card-history__items">
+                            <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a>
+                        </div>
+                    </div>
+
+                    <div class="section-profile__card section-card-profile__favourite">                            
+                        <div class="section-card-favourite__tittle">
+                            Избранные  
+                        </div>
+                        <div class="section-card-favourite__desc">Товары доступные к покупке</div>
+                        <div class="section-card-favourite__items">
+                            <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                            <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="main-content__section section-history">
+
+                    <h2 class="product_tittle section_tittle">История покупок</h2>
+                    <div class="product_list history-list">            
+                
+                    </div>
+
+                </div>
+
+                <div class="main-content__section section-favourite">
+                    <h2 class="product_tittle section_tittle">Избранные товары</h2>
+                    <div class="product_list favourite-list">            
+          
+                    </div>
+                </div>
+
+
+                
+                
+                <div class="main-content__section section-user-info">
+                    <h2 class="product_tittle section_tittle">Личные данные</h2>
+                
+                    <div class="section-user-info__user-img">
+                        <div class="user-info-img__img-cont">
+                            <img class="user-info-img__img" src="/files/images/other/user.png" alt="">
+                        </div>
+                        <div class="user-info-img__buttons">
+                            <label class="input-file">
+                                <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
+                                <div class="user-info-img__btn-load">Выберите фото</div>
+                            </label>
+                            <!-- <div class="user-info-img__btn-load">
+                                Загрузить своё фото
+                            </div> -->
+                            <div class="user-info-img__btn-delete">
+                                Удалить фото
+                            </div>
+                        </div>
+                
+                    </div>
+                
+                    <div class="section-user-info__personal-data">
+                        
+                      <div class="personal-data__input-block">
+                        <div class="personal-data__input-text">Имя</div>  
+                        <input class="personal-data__input" type="text" id="personal-data__name">
+                      </div>
+                      <div class="personal-data__input-block">
+                        <div class="personal-data__input-text">Фамилия</div>  
+                        <input class="personal-data__input" type="text" id="personal-data__surname">  
+                      </div>                      
+                      <div class="personal-data__input-block">
+                        <div class="personal-data__input-text">Отчество</div>  
+                        <input class="personal-data__input" type="text" id="personal-data__otch">  
+                      </div>                      
+                      <div class="personal-data__input-block">
+                        <div class="personal-data__input-text">Телефон</div>  
+                        <input class="personal-data__input" type="tel" id="personal-data__tel"> 
+                      </div>                       
+                      <div class="personal-data__input-block">
+                        <div class="personal-data__input-text">Почта</div>  
+                        <input disabled class="personal-data__input" type="email" id="personal-data__mail">   
+                      </div>
+                        
+                    </div>
+                    
+                    <div class="section-user-info__apply-changes">
+                        Сохранить изменения
+                    </div>
+                
+                
+                </div>
+              
+
+
+                <div class="main-content__section section-cart">
+
+                </div>
+
+            </div>
+        </section>
+
+
+        
+
+        
+
+      </main>
+      <footer class="footer">
+        <div class="footer_inner">
+          <div class="footer_item">
+            <p class="footer_customer">Покупателям</p>
+            <div class="footer_links_pages">          
+              <a href="/files/html/items.html" class="footer_customer_link">Каталог товаров</a>
+              <a href="#" class="footer_customer_link">О нас</a>
+              <a href="#" class="footer_customer_link">Отзывы</a>
+            </div>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              Онлайн-заказ: круглосуточно<br>
+              Время работы: 8:00-22:00<br>
+              Оператор: 8:00-22:00<br>
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              Тел.: +375 (22) 344-55-78 (МТС)<br>
+              +375 (22) 344-55-78 (A1) <br>
+              E-mail: 2info@1ak.by <br>
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Режим работы</p>
+            <p class="footer_item_info">
+              220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 
+            </p>
+          </div>
+          <div class="footer_item">
+            <p class="footer_customer">Социальные сети</p>
+            <div class="footer_links_social">              
+              <a href="#"><img src="/files/images/other/tg.png" alt=""></a>
+              <a href="#"><img src="/files/images/other/viber.png" alt=""></a>
+              <a href="#"><img src="/files/images/other/whatsapp.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <p class="Copyright"> Copyright © 2023 Artekok.inc. All Rights Reserved </p>
+      </footer>
+    </div>
+
+    <!------------------- Scripts ------------------->  
+
+    <!-------- Dialog call window -------->  
+    <script src="https://unpkg.com/imask"></script>
+    <script src="/files/js/dialog_call.js"></script>
+
+
+
+    <!-------- Firebase  -------->  
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+    
+
+
+
+    <script src="/files/js/checkUser.js" type="module"></script>
+    <script type="module">
+        import { updateAllInfoProfile } from "./getUserInfo.js";
+        updateAllInfoProfile();
+    </script>
+
+    <script src="/files/js/change-data.js" type="module"></script>
+
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
+
+
+    <!-- Покупки -->    
+    <script>
+      // Инициализация Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+        authDomain: "avtoprostavki-1337.firebaseapp.com",
+        databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+        projectId: "avtoprostavki-1337",
+        storageBucket: "avtoprostavki-1337.appspot.com",
+        messagingSenderId: "580863358064",
+        appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+        measurementId: "G-SL7W9G5G4E"
+      };
+    
+      firebase.initializeApp(firebaseConfig);
+    
+      // Ваш код дальше
+    
+      var database = firebase.database();
+      var prostavkiRef = database.ref('prostavki');
+    
+      // Ищем элемент с классом product_list внутри контейнера body
+      var productContainer = document.querySelector('.history-list');
+    
+      prostavkiRef.once('value')
+        .then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var prostavkaData = childSnapshot.val();
+            var description = prostavkaData.description;
+            var productId = childSnapshot.key; // Получаем ID продукта
+            var price = prostavkaData.price;
+            var imageUrl = prostavkaData.images["1"];
+    
+            // Создаем элемент карточки
+            var productItem = document.createElement('a');
+            productItem.href = "";
+            productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+            productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+    
+            // Создаем элемент для изображения
+            var productItemImg = document.createElement('div');
+            productItemImg.classList.add("product_item_img");
+    
+            // Создаем изображение товара
+            var productImg = document.createElement('img');
+            productImg.classList.add("product_item_img_cont");
+            productImg.src = imageUrl;
+            productImg.alt = "";
+    
+            // Добавляем изображения в элемент карточки
+            productItemImg.appendChild(productImg);
+    
+            // Создаем элемент описания
+            var productItemDesc = document.createElement('div');
+            productItemDesc.classList.add("product_item_desc");
+    
+            // Создаем параграф для описания
+            var descriptionParagraph = document.createElement('p');
+            descriptionParagraph.textContent = description;
+    
+            // Создаем элемент для цены
+            var productItemPrice = document.createElement('div');
+            productItemPrice.classList.add("product_item_price");
+    
+            // Добавляем цену
+            productItemPrice.textContent = price + " руб/компл.";
+    
+    
+            // Создаем изображение для кнопки
+            var buyImg = document.createElement('img');
+            buyImg.src = "/files/images/other/buy.png";
+            buyImg.alt = "";
+    
+            // Добавляем кнопку
+    
+            // Добавляем элементы описания в элемент карточки
+            productItemDesc.appendChild(descriptionParagraph);
+            productItemDesc.appendChild(productItemPrice);
+    
+            // Добавляем изображения и описание в элемент карточки
+            productItem.appendChild(productItemImg);
+            productItem.appendChild(productItemDesc);
+
+            productItem.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Получаем ID продукта из атрибута data-product-id
+                var selectedProductId = event.currentTarget.dataset.productId;
+                // Сохраняем ID продукта в локальное хранилище
+                localStorage.setItem('selectedProductId', selectedProductId);
+                // Переадресация на страницу товара
+                window.location.href = '/files/html/item.html';
+            });    
+            // Добавляем элемент карточки в найденный контейнер
+            productContainer.appendChild(productItem);
+          });
+        })
+        .catch(function(error) {
+          console.error("Error fetching data: ", error);
+        });       
+    </script> 
+
+    <!-- Избранные -->    
+    <script>
+    
+        // Ваш код дальше
+    
+        var database = firebase.database();
+        var prostavkiRef = database.ref('prostavki');
+        var currentUser = localStorage.getItem('currentUser');
+        var userFavoritesRef = currentUser ? database.ref('accounts/' + currentUser + '/favourites') : null;
+    
+        prostavkiRef.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var prostavkaData = childSnapshot.val();
+                    var description = prostavkaData.description;
+                    var productId = childSnapshot.key; // Получаем ID продукта
+                    var price = prostavkaData.price;
+                    var imageUrl = prostavkaData.images["1"];
+    
+                    // Создаем элемент карточки
+                    var productItem = document.createElement('a');
+                    productItem.href = "";
+                    productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+                    productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+    
+                    // Создаем элемент для изображения
+                    var productItemImg = document.createElement('div');
+                    productItemImg.classList.add("product_item_img");
+    
+                    // Создаем изображение для избранного
+                    var heartImg = document.createElement('img');
+                    heartImg.classList.add("product_item_img_tofavourite");
+                    heartImg.src = "/files/images/other/heart_notfill.png";
+                    heartImg.alt = "";
+    
+                    // Создаем изображение товара
+                    var productImg = document.createElement('img');
+                    productImg.classList.add("product_item_img_cont");
+                    productImg.src = imageUrl;
+                    productImg.alt = "";
+    
+                    // Добавляем изображения в элемент карточки
+                    productItemImg.appendChild(heartImg);
+                    productItemImg.appendChild(productImg);
+    
+                    // Создаем элемент описания
+                    var productItemDesc = document.createElement('div');
+                    productItemDesc.classList.add("product_item_desc");
+    
+                    // Создаем параграф для описания
+                    var descriptionParagraph = document.createElement('p');
+                    descriptionParagraph.textContent = description;
+    
+                    // Создаем элемент для цены
+                    var productItemPrice = document.createElement('div');
+                    productItemPrice.classList.add("product_item_price");
+    
+                    // Добавляем цену
+                    productItemPrice.textContent = price + " руб/ком.";
+    
+                    // Создаем элемент кнопки
+                    var productItemBtn = document.createElement('div');
+                    productItemBtn.classList.add("product_item_btn");
+    
+                    // Создаем изображение для кнопки
+                    var buyImg = document.createElement('img');
+                    buyImg.src = "/files/images/other/buy.png";
+                    buyImg.alt = "";
+    
+                    // Добавляем кнопку
+                    productItemBtn.appendChild(buyImg);
+                    productItemBtn.appendChild(document.createTextNode("Купить"));
+    
+                    // Добавляем элементы описания в элемент карточки
+                    productItemDesc.appendChild(descriptionParagraph);
+                    productItemDesc.appendChild(productItemPrice);
+                    productItemPrice.appendChild(productItemBtn);
+    
+                    // Добавляем изображения и описание в элемент карточки
+                    productItem.appendChild(productItemImg);
+                    productItem.appendChild(productItemDesc);
+    
+                    if (userFavoritesRef) {
+                        userFavoritesRef.child(productId).once('value')
+                            .then(function (snapshot) {
+                                if (snapshot.exists()) {
+                                    heartImg.src = '/files/images/other/heart_fill.png';
+                                    // Добавляем элемент карточки в блок избранных товаров
+                                    document.querySelector('.favourite-list').appendChild(productItem);
+                                }
+                            })
+                            .catch(function (error) {
+                                console.error("Error checking user favorites: ", error);
+                            });
+                    }
+    
+                    // Обработчик клика по карточке товара
+                    productItem.addEventListener('click', function (event) {
+                        if (!event.target.classList.contains('product_item_img_tofavourite')) {
+                            event.preventDefault();
+    
+                            // Получаем ID продукта из атрибута data-product-id
+                            var selectedProductId = event.currentTarget.dataset.productId;
+    
+                            // Сохраняем ID продукта в локальное хранилище
+                            localStorage.setItem('selectedProductId', selectedProductId);
+    
+                            // Переадресация на страницу товара
+                            window.location.href = '/files/html/item.html';
+                        } else {
+                            event.preventDefault(); // Предотвращаем переход по ссылке
+                            event.stopPropagation(); // Останавливаем всплытие события
+    
+                            // Меняем иконку сердечка
+                            var heartImg = event.target;
+    
+                            // Проверяем, вошел ли пользователь
+                            if (currentUser) {
+                                // Получаем ID продукта из атрибута data-product-id
+                                var selectedProductId = event.currentTarget.dataset.productId;
+    
+                                // Проверяем, есть ли уже такой товар в избранном
+                                userFavoritesRef.child(selectedProductId).once('value')
+                                    .then(function (snapshot) {
+                                        if (snapshot.exists()) {
+                                            // Товар уже в избранном, удаляем его
+                                            userFavoritesRef.child(selectedProductId).remove();
+                                            heartImg.src = '/files/images/other/heart_notfill.png';
+                                            // Удаляем карточку из избранных
+                                            productItem.remove();
+                                        } else {
+                                            // Товар не в избранном, добавляем его
+                                            userFavoritesRef.child(selectedProductId).set("1");
+                                            heartImg.src = '/files/images/other/heart_fill.png';
+                                            // Добавляем карточку в избранные
+                                            document.querySelector('.favourite-list').appendChild(productItem);
+                                        }
+                                    })
+                                    .catch(function (error) {
+                                        console.error("Error checking user favorites: ", error);
+                                    });
+                            } else {
+                                alert('Зайдите в аккаунт');
+                            }
+                        }
+                    });
+                });
+            })
+            .catch(function (error) {
+                console.error("Error fetching data: ", error);
+            });
+    </script>
+    
+
+
+<!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
+      <div class="product_item_img">
+        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_cont" src="https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F1.png?alt=media&amp;token=9f5db2b3-2d25-4ab7-826b-a16bb714bf19" alt="">
+      </div>
+      <div class="product_item_desc">
+        <p>Проставки из капролона для задней оси автомобилей Audi A8 (D2)</p>
+        <div class="product_item_price">23,49
+          <div class="product_item_btn">
+            <img src="/files/images/other/buy.png" alt=""> Купить
+          </div>
+        </div>
+      </div>
+    </a> -->
+    
+<!-- <a href="/files/html/item.html" class="product_item">
+      <div class="product_item_img">
+        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+      </div>
+      <div class="product_item_desc">
+        <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
+        <div class="product_item_price">
+          45.49 р.
+          <div class="product_item_btn">
+            <img src="/files/images/other/buy.png" alt=""> Купить
+          </div>
+        </div>
+      </div>
+    </a> -->
+
+
+
+
+
+    
+    <!-------------------- Links -------------------->  
+    
+    <!-- Smooth scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/files/js/scroll_anim.js"></script>
+
+    <script src="/files/js/dialog_set_photo.js" type="module"></script>
+    <script src="/files/js/getUserInfo.js" type="module"></script>
+
+
+
+    <script type="module">
+      // Получаем доступ к функции updateAllInfoProfile из другого модуля
+      import { updateAllInfoProfile } from "/files/js/getUserInfo.js";
+
+      // Ждем, когда вся страница будет загружена
+      document.addEventListener('DOMContentLoaded', function() {
+          updateAllInfoProfile();
+      });
+
+    </script>
+
+
+
+  </body>
+</html>

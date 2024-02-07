@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/files/css/common/general.css">
     <link rel="stylesheet" href="/files/css/common/sign.css">
 
+    <link rel="stylesheet" href="/files/css/elements/product_list.css">
     <link rel="stylesheet" href="/files/css/elements/brand_list.css">
     <link rel="stylesheet" href="/files/css/index.css">
 
@@ -193,7 +194,7 @@
               </div>
             </li>
             <li class="header_nav_li li_nav_authorized-only"> 
-              <a href="/files/html/test.html" class="header_link">
+              <a href="/files/test/test.html" class="header_link">
                 <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
               </a>
             </li>
@@ -214,11 +215,11 @@
                 </div>
                 <div class="user-card__list">
                   <ul>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -232,7 +233,7 @@
             <h1>Найди свою <br> сочную автопроставку</h1>
 
             <article class="banner_search">
-              <p class="banner_search_txt">Марка aвтомобиля</p>
+              <input placeholder="Введите марку" type="text" class="banner_search_field"></input>
               <div class="banner_btn">
                 <img src="/files/images/other/search.png" alt=""> Найти
               </div>
@@ -626,6 +627,10 @@
     <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
 
 
+
+    <script src="/files/js/checkUser.js"></script>
+
+
     <!-- Car brand -->
     <script>
       window.addEventListener('DOMContentLoaded', function() {
@@ -682,9 +687,7 @@
     </script>
 
 
-    <!-- Prostavki -->
-
-    
+    <!-- Prostavki -->    
     <script>
       // Инициализация Firebase
       const firebaseConfig = {
@@ -756,7 +759,7 @@
             productItemPrice.classList.add("product_item_price");
     
             // Добавляем цену
-            productItemPrice.textContent = price;
+            productItemPrice.textContent = price + " руб/ком.";
     
             // Создаем элемент кнопки
             var productItemBtn = document.createElement('div');
@@ -769,7 +772,7 @@
     
             // Добавляем кнопку
             productItemBtn.appendChild(buyImg);
-            productItemBtn.appendChild(document.createTextNode(" Купить"));
+            productItemBtn.appendChild(document.createTextNode("Купить"));
     
             // Добавляем элементы описания в элемент карточки
             productItemDesc.appendChild(descriptionParagraph);
@@ -810,7 +813,7 @@
 
                   if (currentUser) {
                       // Получаем ссылку на базу данных для избранного пользователя
-                      var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
+                      var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
 
                       // Проверяем, есть ли уже такой товар в избранном
                       userFavoritesRef.child(selectedProductId).once('value')
@@ -847,7 +850,7 @@
 
             var currentUser = localStorage.getItem('currentUser');
 if (currentUser) {
-    var userFavoritesRef = database.ref('Accounts/' + currentUser + '/favourites');
+    var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
     
     userFavoritesRef.child(productId).once('value')
         .then(function(snapshot) {
@@ -881,7 +884,7 @@ if (currentUser) {
     </script> 
  
 
-<!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
+    <!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
       <div class="product_item_img">
         <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
         <img class="product_item_img_cont" src="https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F1.png?alt=media&amp;token=9f5db2b3-2d25-4ab7-826b-a16bb714bf19" alt="">

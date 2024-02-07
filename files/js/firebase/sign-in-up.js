@@ -24,7 +24,7 @@ function testAlert() {
 }
 
 async function isUserExists(email) {
-    var userPath = `Accounts/${email.replace('.', ',').replace(/\s/g, '').toLowerCase()}/`;
+    var userPath = `accounts/${email.replace('.', ',').replace(/\s/g, '')}/`;
     var userSnapshot = await get(ref(db, userPath));
     return userSnapshot.exists();
 }
@@ -43,7 +43,7 @@ function validationSignUp() {
     if (password === ''){
         document.querySelector('.sing-up-pass__error').innerText = 'Введите пароль';
         return;
-    }else{
+    } else{
         document.querySelector('.sing-up-pass__error').innerText = '';
     }
     if (password < 8){
@@ -55,26 +55,24 @@ function validationSignUp() {
      if (password !== conf_password) {
         document.querySelector('.sing-up-conf-pass__error').innerText = 'Пароли не совпадают';
         return;
-    }else{
+    } else{
         document.querySelector('.sing-up-conf-pass__error').innerText = '';
     }
 
-    isUserExists(email)
-    .then((exists) => {
+    isUserExists(email).then((exists) => {
         if (exists) {
             document.querySelector('.sing-up-email__error').innerText = 'Пользователь с таким email уже существует';
         } else {
-            const userPath = `Accounts/${email.replace('.', ',').replace(/\s/g, '').toLowerCase()}/`;
+            const userPath = `accounts/${email.replace('.', ',').replace(/\s/g, '')}/`;
 
             set(ref(db, userPath + "/email"), email);
             set(ref(db, userPath + "/password"), password);
             alert("Пользователь успешно зарегистрирован!");
             
-            document.querySelector('.header_nav').classList.add('header_nav_authorized');
-            document.querySelector('.li_nav_sign').style.display = 'none';
+            // document.querySelector('.header_nav').classList.add('header_nav_authorized');
+            // document.querySelector('.li_nav_sign').style.display = 'none';
 
             saveCurrentUser(email);
-
 
             document.body.classList.remove('dialog-sign-opened');
             clearSignData()
@@ -90,7 +88,7 @@ function validationSignUp() {
 function validationSignIn() {
     var email = document.getElementById('sign-in-input-email').value;
     var password = document.getElementById('sign-in-input-pass').value;
-    const userPath = `Accounts/${email.replace('.', ',').replace(/\s/g, '').toLowerCase()}/`;
+    const userPath = `accounts/${email.replace('.', ',').replace(/\s/g, '')}/`;
 
     if (email === ''){
         document.querySelector('.sing-in-email__error').innerText = 'Введите E-mail';
@@ -105,8 +103,6 @@ function validationSignIn() {
         document.querySelector('.sing-in-pass__error').innerText = '';
     }
 
-
-
     get(ref(db, userPath))
         .then((userSnapshot) => {
             if (userSnapshot.exists()) {
@@ -118,8 +114,8 @@ function validationSignIn() {
 
                     // addCarRecord()
 
-                    document.querySelector('.header_nav').classList.add('header_nav_authorized');
-                    document.querySelector('.li_nav_sign').style.display = 'none';
+                    // document.querySelector('.header_nav').classList.add('header_nav_authorized');
+                    // document.querySelector('.li_nav_sign').style.display = 'none';
 
                     saveCurrentUser(email);
 
@@ -223,38 +219,20 @@ function saveCurrentUser(userLogin) {
     localStorage.setItem('currentUser', userLogin);
 }
 
-
-
-
-
-
-
-
-
-
 this.document.querySelector('.product_tittle').addEventListener('click', function(){
-
     alert(localStorage.getItem('currentUser'))
 })
 
-
-var isAutorised = localStorage.getItem('currentUser');
-if (isAutorised) {
-    document.querySelector('.header_nav').classList.add('header_nav_authorized');
-    document.querySelector('.li_nav_sign').style.display = 'none';
-} else {
-}
+// var isAutorised = localStorage.getItem('currentUser');
+// if (isAutorised) {
+//     document.querySelector('.header_nav').classList.add('header_nav_authorized');
+//     document.querySelector('.li_nav_sign').style.display = 'none';
+// } 
 
 this.document.querySelector('.user-card__exit').addEventListener('click', function(){
     localStorage.removeItem('currentUser');
-    location.reload();
-
+    window.location.href = '/index.html';
 })
-
-
-
-
-
 
 
 

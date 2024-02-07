@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/common/sign.css">
+    <link rel="stylesheet" href="../css/common/general.css">
+    <link rel="stylesheet" href="/files/css/common/fonts.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="/files/css/profile.css">
+
+
+    <script src="test.js"></script>
+</head>
+<body class = "">
+
+    <!-- <div class="burger-button">Бургер(блеск)</div>
+
+    <div class="test_button">Бургер(блеск) asddddddddddddddddddddddddddddddddddddddddddddd</div>
+
+    <div class="burger-panel ">
+        <div class="burger-panel__content">
+            <p class="burger-palel__element">
+                element 1
+            </p>
+            <p class="burger-palel__element">
+                element 2
+            </p>
+            <p class="burger-palel__element">
+                element 3
+            </p>
+        </div>
+        <div class="burger-panel__close-btn">
+            Картошка
+        </div>
+    </div>    
+
+
+    <dialog class="dialog-auth  dialog-auth_sign-up dialog-auth_sign-in">
+        <div class="dialog-sing-in__container">
+            <img id="close-sign-in" src="/files/images/other/close.png" alt="">
+
+            <div class="dialog-sing-in__tittle">
+                Вход в личный кабинет
+            </div>
+            <div class="dialog-sing-in__email">
+                <div class="sing-in-email__tittle">
+                    E-mail
+                </div>
+                <input class="sign-in__input" type="email" id="sign-in-input-email">
+                <div class="sing-in-email__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    <div class="sign-in-pass-tittle__text">
+                        Пароль
+                    </div>
+                    <div class="sign-in-pass-tittle__forgot-pass">
+                        Забыли пароль?
+                    </div>
+                </div>
+                <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+
+                <input class="sign-in__input" type="password" id="sign-in-input-pass">
+                <div class="sing-in-pass__error">
+                </div>
+            </div>
+            <button class="dialog-sing-in__btn-sign-in">Вход</button>
+            <div class="dialog-sing-in__create-acc">
+                <div class="sing-in-create__tittle">
+                    У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="dialog-sing-up__container">
+            <img id="close-sign-up" src="/files/images/other/close.png" alt="">
+
+            <div class="dialog-sing-in__tittle">
+                Регистрация
+            </div>
+            <div class="dialog-sing-in__email">
+                <div class="sing-in-email__tittle">
+                    E-mail
+                </div>
+                <input class="sign-in__input" type="email" id="sign-up-input-email">
+                <div class="sing-up-email__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    Пароль
+                </div>
+                <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
+                <div class="sing-up-pass__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__conf-pass">
+                <div class="sing-in-pass__tittle">
+                    Повторите пароль
+                </div>
+                <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+                <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+                <div class="sing-up-conf-pass__error">
+                </div>
+            </div>
+            <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
+            <div class="dialog-sing-in__create-acc">
+                <div class="sing-in-create__tittle">
+                    У вас есть аккаунт? <a class="sing-in__link">Войти</a>
+                </div>                
+            </div>
+        </div>
+    </dialog>
+
+    <button class="open_dialog_btn"><img src="files/images/other/call.png" alt="">Заказать звонок</button>
+    
+
+    <div class="dialog-sing-up">
+        
+    </div> -->
+
+
+    
+<!--This is for taking picture input form user -->
+<!-- <div class="row">
+    <div class="col-lg-12 col-md-12 text-center">
+        <h3>Image Cropper</h3>
+    </div>
+    <div class="col-lg-12">
+        <div class="jumbotron text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img id="uploaded-image" src="/files/images/content/backgrounds/about.png" height="300px" width="600px">
+                </div>
+                <div class="input-group mt-3">
+                    <div class="custom-file">
+                        <input type="file" accept="image/*" id="cover_image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="uploadimageModal">
+    <div class="modal-dialog" role="document" style="min-width: 700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div id="image_demo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary crop_image">Crop and Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="overlay"></div>
+
+<dialog class="dialog-photo"> 
+    <div class="dialog-photo-container">
+        <img class="close-sign-photo" src="/files/images/other/close.png" alt="">
+
+        <div class="dialog-photo__tittle">
+            Изменение фото
+        </div>
+        <div class="dialog-photo__desc">
+            Добавьте фотографию, это сделает профиль привлекательнее и интереснее.
+        </div>
+        <div id="image-preview"></div>
+        <button id="crop-btn">Сохранить</button>
+    </div>
+</dialog>
+
+<div class="main-content__section section-user-info">
+    <h2 class="product_tittle section_tittle">Личные данные</h2>
+
+    <div class="section-user-info__user-img">
+        <div class="user-info-img__img-cont">
+            <img class="user-info-img__img" src="/files/images/other/user.png" alt="">
+        </div>
+        <div class="user-info-img__buttons">
+            <label class="input-file">
+                <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
+                <div class="user-info-img__btn-load">Выберите фото</div>
+            </label>
+            <!-- <div class="user-info-img__btn-load">
+                Загрузить своё фото
+            </div> -->
+            <div class="user-info-img__btn-delete">
+                Удалить фото
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section-user-info__personal-data">
+        
+        <input class="personal-data__input" placeholder="Имя" type="text" id="personal-data__name">
+        <input class="personal-data__input" placeholder="Фамилия" type="text" id="personal-data__surname">
+        <input class="personal-data__input" placeholder="Отчество" type="text" id="personal-data__otch">
+        
+        <input class="personal-data__input" placeholder="Телефон" type="tel" id="personal-data__tel">
+        
+        <input class="personal-data__input" placeholder="E-mail" type="email" id="personal-data__mail">    
+        
+    </div>
+    
+    <div class="section-user-info__apply-changes">
+        Сохранить изменения
+    </div>
+
+
+</div>
+
+
+   
+
+
+
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script>
+
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
+    
+    
+    <script src="/files/js/dialog_set_photo.js" type="module"></script>
+    
+
+
+</body>
+</html>

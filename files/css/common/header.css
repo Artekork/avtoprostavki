@@ -129,9 +129,10 @@
 .user-card__exit:hover{
   color: #7866F0;
 }
-.user-card__li{  
+.user-card__li a{  
   display: flex;
   align-items: center;
+  color: black;
 }
 .user-card__li:not(:first-child){
   padding-top: 12px;

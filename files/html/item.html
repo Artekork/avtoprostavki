@@ -90,10 +90,9 @@
             <div class="header_tittle">Belavtoprostavki</div>
           </a>
         </div>
-        <nav class="header_nav">
+        <nav class="header_nav ">
           <ul>
-            <li><button class="open_dialog_btn"><img src="/files/images/other/call.svg" alt="">Заказать звонок</button></li>
-            <li class="link_contact"> 
+            <li class="header_nav_li link_contact "> 
               <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
               <div class="dialog_contacts">
                 <div class="dialog_contacts_tittle">
@@ -104,16 +103,44 @@
                     <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв<br> ул. Гришина 122, п. 1, кв. 133 </div>
                     <div class="contacts_info_item"><img src="/files/images/other/mail.png" alt="">2info@1ak.by </div>
                     <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно <br>8:00-22:00 (без обеда)</div>
-                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
+                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375 (22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
                   </div>
                   <button class="open_dialog_btn dialog_contact_btn">
                     <img src="/files/images/other/call.png" alt="">Заказать звонок
                   </button>
               </div>
             </li>
-            <!-- <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное</a></li>
-            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
-            <li> <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> -->
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a href="/files/html/test.html" class="header_link">
+                <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
+              </a>
+            </li>
+            <li class="header_nav_li li_nav_authorized-only"> <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+
+            <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
+            <li class="header_nav_li li_nav_authorized-only"> 
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              </a>
+              <div class="nav-user-card">
+                <div class="user-card__info">
+                  <img src="/files/images/other/user.png" alt="">
+                  <div class="user-card__desc">
+                    <div class="user-card__name">Артём Каравацкий</div>
+                    <div class="user-card__phone">+375 (29) 134-21-71</div>
+                    <div class="user-card__exit">Выйти</div>
+                  </div>
+                </div>
+                <div class="user-card__list">
+                  <ul>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></li>
+                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </nav>
       </header>
@@ -323,6 +350,14 @@
     <script src="https://unpkg.com/imask"></script>
     <script src="/files/js/dialog_call.js"></script>
     
+    <!-------- Firebase  -------->  
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+    
+    <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->

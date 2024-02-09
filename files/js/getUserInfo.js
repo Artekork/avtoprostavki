@@ -3,22 +3,22 @@ function updateAllInfoProfile() {
         if (userData) {
 
             if (userData.name) {
-                document.querySelector('#personal-data__name').placeholder = userData.name;
+                document.querySelectorAll('#personal-data__name').placeholder = userData.name;
             }
             if (userData.surname) {
-                document.querySelector('#personal-data__surname').placeholder = userData.surname;
+                document.querySelectorAll('#personal-data__surname').placeholder = userData.surname;
             }
             if (userData.otchestvo) {
-                document.querySelector('#personal-data__otch').placeholder = userData.otchestvo;
+                document.querySelectorAll('#personal-data__otch').placeholder = userData.otchestvo;
             }
             if (userData.mobile) {
-                document.querySelector('#personal-data__tel').placeholder = userData.mobile;
+                document.querySelectorAll('#personal-data__tel').placeholder = userData.mobile;
             }
             if (userData.email) {
-                document.querySelector('#personal-data__mail').placeholder = userData.email;
+                document.querySelectorAll('#personal-data__mail').placeholder = userData.email;
             }
             if (userData.img) {
-                document.querySelector('.user-info-img__img').src = userData.img;
+                document.querySelectorAll('.user-info-img__img').src = userData.img;
             }
 
         } else {

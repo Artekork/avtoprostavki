@@ -102,6 +102,7 @@ async function getMainInfo() {
             if (snapshot.exists()) {
                 var userData = snapshot.val();
                 return {
+                    
                     adres: userData.adres,
                     mobile: userData.mobile,
                     name: userData.name,

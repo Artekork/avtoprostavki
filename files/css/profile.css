@@ -43,7 +43,7 @@
     margin-top: 20px;
 }
 
-.user-pic, .section-card-history__items img, .section-card-favourite__items img{
+.user_pic_section, .section-card-history__items img, .section-card-favourite__items img{
     border-radius: 50%;
     width: 60px;
     object-fit: contain;

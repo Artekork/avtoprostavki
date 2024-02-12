@@ -208,7 +208,9 @@
                 <div class="user-card__info">
                   <img src="/files/images/other/user.png" alt="">
                   <div class="user-card__desc">
-                    <div class="user-card__name">Артём Каравацкий</div>
+                    <div class="user-card__name user-fullname">Пользователь</div>
+                    <div class="user-card__name user-fullname">Артём Каравацкий</div>
+
                     <div class="user-card__phone">+375 (29) 134-21-71</div>
                     <div class="user-card__exit">Выйти</div>
                   </div>
@@ -787,19 +789,8 @@
 
 
             productItem.addEventListener('click', function(event) {
-              if (!event.target.classList.contains('product_item_img_tofavourite')) {
-                  event.preventDefault();
-
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductId = event.currentTarget.dataset.productId;
-
-                  // Сохраняем ID продукта в локальное хранилище
-                  localStorage.setItem('selectedProductId', selectedProductId);
-
-                  // Переадресация на страницу товара
-                  window.location.href = '/files/html/item.html';
-              } else {
-                  event.preventDefault(); // Предотвращаем переход по ссылке
+              if (event.target.classList.contains('product_item_img_tofavourite')) {
+                event.preventDefault(); // Предотвращаем переход по ссылке
                   event.stopPropagation(); // Останавливаем всплытие события
 
                   // Меняем иконку сердечка
@@ -835,11 +826,51 @@
                   } else {
                       alert('Зайдите в аккаунт');
                   }
+              }               
+              else if (event.target.classList.contains('product_item_btn')) {
+                event.preventDefault(); // Предотвращаем переход по ссылке
+                  event.stopPropagation(); // Останавливаем всплытие события
+
+
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductIdCart = event.currentTarget.dataset.productId;
+
+                  // Проверяем, вошел ли пользователь
+                  var currentUser = localStorage.getItem('currentUser');
+
+                  if (currentUser) {
+                      // Получаем ссылку на базу данных для избранного пользователя
+                      var userCartRef = database.ref('accounts/' + currentUser + '/cart');
+
+                      // Проверяем, есть ли уже такой товар в избранном
+                      userCartRef.child(selectedProductIdCart).once('value')
+                          .then(function(snapshot) {
+                            userCartRef.child(selectedProductIdCart).set("1");
+                            alert("succsess")
+                          })
+                          .catch(function(error) {
+                              console.error("Error checking user favorites: ", error);
+                          });
+
+                  } else {
+                      alert('Зайдите в аккаунт');
+                  } 
+              }        
+              else {
+                event.preventDefault();
+
+                // Получаем ID продукта из атрибута data-product-id
+                var selectedProductId = event.currentTarget.dataset.productId;
+
+                // Сохраняем ID продукта в локальное хранилище
+                localStorage.setItem('selectedProductId', selectedProductId);
+
+                // Переадресация на страницу товара
+                window.location.href = '/files/html/item.html';
+
+                  
               }
-            });    
-
-
-            
+            });            
 
 
 
@@ -880,7 +911,43 @@ if (currentUser) {
         })
         .catch(function(error) {
           console.error("Error fetching data: ", error);
-        });       
+        });    
+        
+        
+
+        productItemBtn.addEventListener('click', function(event) {
+          event.preventDefault(); // Предотвращаем действие по умолчанию (переход по ссылке или отправку формы)
+
+          // Получаем ID продукта из атрибута data-product-id
+          var selectedProductId = event.currentTarget.parentElement.parentElement.dataset.productId;
+
+          // Получаем текущего пользователя из localStorage
+          var currentUser = localStorage.getItem('currentUser');
+
+          // Проверяем, есть ли текущий пользователь
+          if (currentUser) {
+              // Ссылка на корзину пользователя в базе данных
+              var userCartRef = database.ref('accounts/' + currentUser + '/cart');
+
+              // Добавляем товар в корзину пользователя
+              userCartRef.child(selectedProductId).transaction(function(currentValue) {
+                  // Если товар уже есть в корзине, увеличиваем количество
+                  // Иначе, добавляем новый товар со значением 1
+                  return (currentValue || 0) + 1;
+              }, function(error, committed, snapshot) {
+                  if (error) {
+                      console.error('Transaction failed abnormally!', error);
+                  } else if (!committed) {
+                      console.log('Transaction aborted, product may be out of stock.');
+                  } else {
+                      alert('Product added to cart successfully!');
+                  }
+              });
+          } else {
+              // Если пользователь не вошел в систему, выводим сообщение
+              alert('Пожалуйста, войдите в аккаунт, чтобы добавить товар в корзину.');
+          }
+        });
     </script> 
  
 

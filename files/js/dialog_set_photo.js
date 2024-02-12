@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
-import { getStorage, ref, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js";
-
+import { getDatabase, ref as databaseRef, set, remove } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+import { getStorage, ref, ref as storageRef, deleteObject, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js";
 document.addEventListener("DOMContentLoaded", function () {
     // Конфигурация Firebase для вашего веб-приложения
     const firebaseConfig = {
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Инициализация Firebase
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
+    const database = getDatabase(app);
 
     $(document).ready(function() {
         var preview = new Croppie($('#image-preview')[0], {
@@ -38,18 +39,19 @@ document.addEventListener("DOMContentLoaded", function () {
     
         $('#image-input').on('change', function(e) {
           var file = e.target.files[0];
-          var reader = new FileReader();
-    
-          reader.onload = function() {
-            var base64data = reader.result;
-    
-            preview.bind({
-              url: base64data
-            });
+          if (file) {
+              var reader = new FileReader();
+              reader.onload = function() {
+                  var base64data = reader.result;
+                  preview.bind({
+                      url: base64data
+                  });
+              }
+              reader.readAsDataURL(file);
+          } else {
+              console.error('Ошибка загрузки файла');
           }
-    
-          reader.readAsDataURL(file);
-        });
+      });
     
         $('#crop-btn').on('click', function() {
           preview.result('base64').then(function(result) {
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         });
     
-        // Функция для загрузки изображения в Firebase Storage
+        // Функция для загрузки изображения в Firebase Storage и сохранения URL в базе данных
         function uploadImageToStorage(imageData) {
           var currentUser = localStorage.getItem('currentUser');
           var storageRef = ref(storage, 'users-photos/' + currentUser + '/userImage.png');
@@ -67,20 +69,25 @@ document.addEventListener("DOMContentLoaded", function () {
     
           uploadString(storageRef, imageData, 'data_url', metadata)
             .then(function(snapshot) {
-                return getDownloadURL(snapshot.ref);
+              return getDownloadURL(snapshot.ref);
             })
             .then(function(downloadURL) {
-                // Выводим URL загруженного изображения в alert
-                
+              // Сохраняем downloadURL в базе данных
+              const dbReference = databaseRef(database, 'accounts/' + currentUser + '/profileImg');
+              set(dbReference, downloadURL)
+                .then(() => {
+                  // Успешно записали URL в базу данных
+                  console.log('URL успешно записан в базу данных');
+                  dialog.close();
+                  body.classList.remove('dialog-photo_opened');
 
-                //alert("URL загруженного изображения: " + downloadURL);
-                dialog.close();
-                body.classList.remove('dialog-photo_opened');
-                
-                
-                document.querySelector('.user-info-img__img').src = downloadURL;
-
-
+                  document.querySelectorAll('.user_pic').forEach(function(elem) {
+                    elem.src = downloadURL;
+                  });
+                })
+                .catch(error => {
+                  console.error('Ошибка записи в базу данных:', error);
+                });
             })
             .catch(function(error) {
               console.error('Ошибка загрузки изображения:', error);
@@ -94,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var body = document.body;
     var fileInput = document.getElementById('image-input');
 
-
     // Открываем окно после выбора файла
     fileInput.addEventListener('change', function () {
         if (fileInput.files.length > 0) {
@@ -103,13 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }); 
 
-
     // Скрываем окно
     closeButton.addEventListener('click', function () {
         dialog.close();
         body.classList.remove('dialog-photo_opened');
     });    
-
 
     dialog.addEventListener('click', function (event) {
         // Проверяем, был ли клик вне диалогового окна
@@ -118,4 +122,36 @@ document.addEventListener("DOMContentLoaded", function () {
             body.classList.remove('dialog-photo_opened');
         }
     });
+
+
+    document.querySelector(".user-info-img__btn-delete").addEventListener("click", function(){
+      document.querySelectorAll('.user_pic').forEach(function(elem) {
+        elem.src = "/files/images/other/user.png";
+      });
+      var currentUser = localStorage.getItem('currentUser');
+
+      // Удаляем изображение из хранилища Firebase Storage
+      var storageReference = storageRef(storage, 'users-photos/' + currentUser + '/userImage.png');
+      deleteObject(storageReference)
+          .then(() => {
+              console.log('Изображение успешно удалено из хранилища');
+          })
+          .catch((error) => {
+              console.error('Ошибка при удалении изображения из хранилища:', error);
+          });
+
+      // Удаляем ссылку на изображение из базы данных Firebase Realtime Database
+      const dbRef = databaseRef(database, 'accounts/' + currentUser + '/profileImg');
+      remove(dbRef)
+          .then(() => {
+              console.log('Ссылка на изображение успешно удалена из базы данных');
+          })
+          .catch((error) => {
+              console.error('Ошибка при удалении ссылки на изображение из базы данных:', error);
+          });
+  });
+
+
+
 });
+

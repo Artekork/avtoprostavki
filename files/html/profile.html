@@ -913,6 +913,20 @@
   
       document.querySelector('.section-cart__confirm-total-cost').textContent = totalPrice.toFixed(2) + ' руб';
   }
+
+  function updateMainCheckbox() {
+    var productCheckboxes = document.querySelectorAll('.cart-checkbox');
+    var mainCheckbox = document.getElementById('main-checkbox');
+    var allChecked = true;
+
+    productCheckboxes.forEach(function(checkbox) {
+        if (!checkbox.checked) {
+            allChecked = false;
+        }
+    });
+
+    mainCheckbox.checked = allChecked;
+}
   
   // Обновление итоговой цены при загрузке страницы
   updateTotalPrice();
@@ -920,11 +934,11 @@
   // Обработчик для главного чекбокса
   var mainCheckbox = document.getElementById('main-checkbox');
   mainCheckbox.addEventListener('change', function() {
-      var checkboxes = document.querySelectorAll('.cart-checkbox');
-      checkboxes.forEach(function(checkbox) {
+      var productCheckboxes = document.querySelectorAll('.cart-checkbox');
+      productCheckboxes.forEach(function(checkbox) {
           checkbox.checked = mainCheckbox.checked;
       });
-      updateTotalPrice();
+      updateTotalPrice(); // Обновляем итоговую цену
   });
   
   if (userCartRef) {
@@ -1060,18 +1074,12 @@
           });
   }
   
-  </script>
-  
-  <script>
-  // Обработчики для чекбоксов товаров
-  var productCheckboxes = document.querySelectorAll('.cart-checkbox');
-  console.log("Количество найденных чекбоксов товаров:", productCheckboxes.length);
-  productCheckboxes.forEach(function(productCheckbox) {
-      productCheckbox.addEventListener('change', function() {
-          alert("Состояние чекбокса товара изменилось");
-          updateTotalPrice();
-      });
-  });
+  document.addEventListener('change', function(event) {
+    if (event.target.classList.contains('cart-checkbox')) {
+        updateTotalPrice(); // Обновляем итоговую цену
+        updateMainCheckbox(); // Обновляем состояние главного чекбокса
+    }
+});
   </script>
 
 <!-- <a href="" class="product_item product-item" data-product-id="prostavka228">

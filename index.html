@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="/files/css/index.css">
 
 
+    <!-- Cookies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+
+
   </head>
   <body>
     <script>
@@ -822,9 +827,28 @@
                           .catch(function(error) {
                               console.error("Error checking user favorites: ", error);
                           });
+                  } 
+                  else {
+                    
+                    // Получаем текущее значение объекта из куки
+                    var myObject = Cookies.getJSON('userInfo') || {};
 
-                  } else {
-                      alert('Зайдите в аккаунт');
+                    if (myObject.favourite && myObject.favourite[selectedProductId]) {
+                        // Товар уже в избранном, удаляем его
+                        delete myObject.favourite[selectedProductId];
+                        heartImg.src = '/files/images/other/heart_notfill.png';
+                    } else {
+                        // Товар не в избранном, добавляем его
+                        if (!myObject.favourite) {
+                            myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
+                        }
+                        myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
+                        heartImg.src = '/files/images/other/heart_fill.png';
+                    }
+
+                    // Записываем обновленный объект обратно в куки
+                    Cookies.set('userInfo', myObject);
+
                   }
               }               
               else if (event.target.classList.contains('product_item_btn')) {
@@ -846,14 +870,30 @@
                       userCartRef.child(selectedProductIdCart).once('value')
                           .then(function(snapshot) {
                             userCartRef.child(selectedProductIdCart).set("1");
-                            alert("succsess")
                           })
                           .catch(function(error) {
                               console.error("Error checking user favorites: ", error);
                           });
 
                   } else {
-                      alert('Зайдите в аккаунт');
+                      // Получаем текущее значение объекта из куки
+                      var myObject = Cookies.getJSON('userInfo');
+                      
+                      // Проверяем, есть ли уже объект в куки
+                      if (!myObject) {
+                          myObject = {}; // Если объекта нет, создаем пустой объект
+                      }
+                      
+                      // Проверяем, есть ли уже объект "cart" в объекте myObject
+                      if (!myObject.cart) {
+                          myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
+                      }
+                       // Добавляем товар в корзину
+                      var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
+                      myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
+
+                      Cookies.set('userInfo', myObject);
+
                   } 
               }        
               else {
@@ -878,31 +918,33 @@
 
 
             var currentUser = localStorage.getItem('currentUser');
-if (currentUser) {
-    var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
-    
-    userFavoritesRef.child(productId).once('value')
-        .then(function(snapshot) {
-            if (snapshot.exists()) {
-                heartImg.src = '/files/images/other/heart_fill.png';
+            // Проверяем, залогинен ли пользователь
+            if (currentUser) {
+                var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+                
+                userFavoritesRef.child(productId).once('value')
+                    .then(function(snapshot) {
+                        if (snapshot.exists()) {
+                            heartImg.src = '/files/images/other/heart_fill.png';
+                        } else {
+                            heartImg.src = '/files/images/other/heart_notfill.png';
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error("Error checking user favorites: ", error);
+                    });
             } else {
-                heartImg.src = '/files/images/other/heart_notfill.png';
+                // Получаем текущее значение объекта из куки
+                var myObject = Cookies.getJSON('userInfo') || {};
+                
+                if (myObject.favourite && myObject.favourite[productId]) {
+                    // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
+                    heartImg.src = '/files/images/other/heart_fill.png';
+                } else {
+                    // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
+                    heartImg.src = '/files/images/other/heart_notfill.png';
+                }
             }
-        })
-        .catch(function(error) {
-            console.error("Error checking user favorites: ", error);
-        });
-} else {
-    heartImg.src = '/files/images/other/heart_notfill.png';
-}
-
-
-
-
-
-
-
-
             // Добавляем элемент карточки в найденный контейнер
             productContainer.appendChild(productItem);
           });
@@ -913,39 +955,7 @@ if (currentUser) {
         
         
 
-        productItemBtn.addEventListener('click', function(event) {
-          event.preventDefault(); // Предотвращаем действие по умолчанию (переход по ссылке или отправку формы)
-
-          // Получаем ID продукта из атрибута data-product-id
-          var selectedProductId = event.currentTarget.parentElement.parentElement.dataset.productId;
-
-          // Получаем текущего пользователя из localStorage
-          var currentUser = localStorage.getItem('currentUser');
-
-          // Проверяем, есть ли текущий пользователь
-          if (currentUser) {
-              // Ссылка на корзину пользователя в базе данных
-              var userCartRef = database.ref('accounts/' + currentUser + '/cart');
-
-              // Добавляем товар в корзину пользователя
-              userCartRef.child(selectedProductId).transaction(function(currentValue) {
-                  // Если товар уже есть в корзине, увеличиваем количество
-                  // Иначе, добавляем новый товар со значением 1
-                  return (currentValue || 0) + 1;
-              }, function(error, committed, snapshot) {
-                  if (error) {
-                      console.error('Transaction failed abnormally!', error);
-                  } else if (!committed) {
-                      console.log('Transaction aborted, product may be out of stock.');
-                  } else {
-                      alert('Product added to cart successfully!');
-                  }
-              });
-          } else {
-              // Если пользователь не вошел в систему, выводим сообщение
-              alert('Пожалуйста, войдите в аккаунт, чтобы добавить товар в корзину.');
-          }
-        });
+        
     </script> 
  
 
@@ -989,7 +999,7 @@ if (currentUser) {
     
     <!-- Smooth scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!--Подключается в head <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/files/js/scroll_anim.js"></script>
   </body>

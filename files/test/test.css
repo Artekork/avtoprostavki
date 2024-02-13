@@ -1,3 +1,6 @@
+body {
+    background: white;
+}
 .open_dialog_btn{
     display: flex;
     align-items: center;
@@ -195,4 +198,19 @@
     font-family: 'ProximaNova_Regular';
     
     max-width: 330px;
+}
+
+
+
+
+
+
+.button{
+    width: 200px;
+    border-radius: 15px;
+    background-color: #7866F0;
+    color: white;
+    padding: 15px 22px;
+    text-align: center;
+    margin-top: 30px;
 }

@@ -65,7 +65,6 @@ function updateCartInfoProfile() {
     });
 }
 
-
 function getUserInform() {
     var currentUser = localStorage.getItem('currentUser');
     if (currentUser) {       
@@ -90,6 +89,142 @@ function getUserInform() {
     }      
 }
 
+function getHistory() {
+    return new Promise((resolve, reject) => {
+        var currentUser = localStorage.getItem('currentUser');
+        var historyRef = database.ref('accounts/' + currentUser + '/history');
+
+        // Создаем объект, в котором будем хранить первые изображения для каждого товара
+        var firstImages = {};
+
+        // Получаем список купленных товаров пользователя
+        historyRef.once('value')
+            .then(function(snapshot) {
+                var promises = []; // Массив для хранения промисов получения первых изображений
+                snapshot.forEach(function(childSnapshot) {
+                    var productId = childSnapshot.key; // Получаем ID продукта из истории
+
+                    // Получаем ссылку на изображения товара
+                    var imagesRef = database.ref('prostavki/' + productId + '/images');
+
+                    // Добавляем промис получения первого изображения в массив
+                    var promise = imagesRef.once('value')
+                        .then(function(imagesSnapshot) {
+                            var firstImage = null;
+
+                            // Ищем первое изображение
+                            imagesSnapshot.forEach(function(imageChildSnapshot) {
+                                if (!firstImage) {
+                                    firstImage = imageChildSnapshot.val();
+                                }
+                            });
+
+                            // Если первое изображение найдено, добавляем его в список
+                            if (firstImage) {
+                                firstImages[productId] = firstImage;
+                            }
+                        })
+                        .catch(function(error) {
+                            console.error("Error fetching first image for product " + productId + ": ", error);
+                        });
+
+                    promises.push(promise);
+                });
+
+                // Ждем завершения всех промисов и разрешаем промис getHistory()
+                Promise.all(promises)
+                    .then(() => resolve(firstImages))
+                    .catch(error => reject(error));
+            })
+            .catch(function(error) {
+                console.error("Error fetching purchase history: ", error);
+                reject(error);
+            });
+    });
+}
+
+function getFavorites() {
+    return new Promise((resolve, reject) => {
+        var currentUser = localStorage.getItem('currentUser');
+
+        // Проверяем, вошел ли пользователь на сайт
+        if (currentUser) {
+            // Если пользователь вошел, используем данные из Firebase
+            var favoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+            fetchFavorites(favoritesRef, resolve, reject);
+        } else {
+            // Если пользователь не вошел, используем данные из куки
+            var cookieData = Cookies.getJSON('userInfo');
+            if (cookieData && cookieData.favourite) {
+                // Если в куки есть данные об избранных товарах, создаем объект сразу
+                var firstImages = {};
+                var promises = [];
+                for (const productId in cookieData.favourite) {
+                    if (cookieData.favourite.hasOwnProperty(productId)) {
+                        var imagesRef = database.ref('prostavki/' + productId + '/images');
+                        var promise = imagesRef.once('value')
+                            .then(function(imagesSnapshot) {
+                                var firstImage = null;
+                                imagesSnapshot.forEach(function(imageChildSnapshot) {
+                                    if (!firstImage) {
+                                        firstImage = imageChildSnapshot.val();
+                                    }
+                                });
+                                if (firstImage) {
+                                    firstImages[productId] = firstImage;
+                                }
+                            })
+                            .catch(function(error) {
+                                console.error("Error fetching first image for product " + productId + ": ", error);
+                            });
+                        promises.push(promise);
+                    }
+                }
+                // Ждем завершения всех промисов и разрешаем промис getFavorites()
+                Promise.all(promises)
+                    .then(() => resolve(firstImages))
+                    .catch(error => reject(error));
+            } else {
+                reject("User data not found");
+            }
+        }
+    });
+}
+
+function fetchFavorites(favoritesRef, resolve, reject) {
+    var firstImages = {};
+    favoritesRef.once('value')
+        .then(function(snapshot) {
+            var promises = [];
+            snapshot.forEach(function(childSnapshot) {
+                var productId = childSnapshot.key;
+                var imagesRef = database.ref('prostavki/' + productId + '/images');
+                var promise = imagesRef.once('value')
+                    .then(function(imagesSnapshot) {
+                        var firstImage = null;
+                        imagesSnapshot.forEach(function(imageChildSnapshot) {
+                            if (!firstImage) {
+                                firstImage = imageChildSnapshot.val();
+                            }
+                        });
+                        if (firstImage) {
+                            firstImages[productId] = firstImage;
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error("Error fetching first image for product " + productId + ": ", error);
+                    });
+                promises.push(promise);
+            });
+            Promise.all(promises)
+                .then(() => resolve(firstImages))
+                .catch(error => reject(error));
+        })
+        .catch(function(error) {
+            console.error("Error fetching favorites: ", error);
+            reject(error);
+        });
+}
 
 async function getMainInfo() {
     try {
@@ -101,8 +236,7 @@ async function getMainInfo() {
             var snapshot = await prostavkiRef.once('value');
             if (snapshot.exists()) {
                 var userData = snapshot.val();
-                return {
-                    
+                return {                    
                     adres: userData.adres,
                     mobile: userData.mobile,
                     name: userData.name,
@@ -124,4 +258,4 @@ async function getMainInfo() {
     }
 }
 
-export { updateAllInfoProfile, updateCartInfoProfile, getUserInform, getMainInfo };
+export { updateAllInfoProfile, updateCartInfoProfile, getUserInform, getMainInfo, getHistory, getFavorites };

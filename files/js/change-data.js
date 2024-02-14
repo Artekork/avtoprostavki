@@ -94,6 +94,8 @@ function addOrder(){
             let quantity = parseInt(checkbox.closest('.section-cart__product').querySelector('.section-cart_product-counter').textContent);
             selectedProducts[productId] = quantity;
         });
+
+        let price = document.querySelector('.section-cart__confirm-total-cost').textContent
     
         // Подготавливаем информацию о заказе
         let orderData = {
@@ -101,6 +103,7 @@ function addOrder(){
             userId: currentUser,
             payMethod: "cash", // Предполагаемый способ оплаты, можно изменить по вашему усмотрению
             list: selectedProducts, // Выбранные товары и их количество
+            price: price,
             userData: userData // Данные пользователя
         };
         
@@ -111,13 +114,75 @@ function addOrder(){
         firebase.database().ref(pathToOrder).set(orderData)
             .then(function() {
                 console.log("Заказ успешно добавлен в базу данных.");
+                
+                // Добавляем информацию о заказе в историю пользователя
+                let historyRef = firebase.database().ref('accounts/' + currentUser + '/history');
+
+                // Добавляем каждый купленный товар по его идентификатору в историю пользователя
+                for (const productId in selectedProducts) {
+                    if (selectedProducts.hasOwnProperty(productId)) {
+                        historyRef.child(productId).set(selectedProducts[productId])
+                            .then(function() {
+                                console.log("Информация о товаре добавлена в историю пользователя.");
+                            })
+                            .catch(function(error) {
+                                console.error("Ошибка при добавлении информации о товаре в историю пользователя:", error);
+                            });
+                    }
+                }
+
+
+
             })
             .catch(function(error) {
                 console.error("Ошибка при добавлении заказа в базу данных:", error);
             });
-    }).catch(error => {
-        console.error("Ошибка при получении информации о пользователе: ", error);
-    });
+        }).catch(error => {
+            console.error("Ошибка при получении информации о пользователе: ", error);
+        });
 }
 
-export { updateUserData, addOrder };
+function addOrderUnlogin() {
+    const uniqueId = () => {
+        const dateString = Date.now().toString(36);
+        const randomness = Math.random().toString(36).substr(2);
+        return dateString + randomness;
+    };
+
+    // Получаем информацию о пользователе из куки
+    var userData = Cookies.getJSON('userInfo');
+
+    // Собираем выбранные товары и их количество из куки
+    let selectedProducts = {};
+        document.querySelectorAll('.cart-checkbox:checked').forEach(function(checkbox) {
+            let productId = checkbox.id;
+            let quantity = parseInt(checkbox.closest('.section-cart__product').querySelector('.section-cart_product-counter').textContent);
+            selectedProducts[productId] = quantity;
+        });
+        
+    // Подготавливаем информацию о заказе
+    let price = document.querySelector('.section-cart__confirm-total-cost').textContent
+
+    let orderData = {
+        date: new Date().toLocaleDateString('ru-RU'), // Дата заказа в формате дд.мм.гггг
+        payMethod: "cash", // Предполагаемый способ оплаты, можно изменить по вашему усмотрению
+        list: selectedProducts, // Выбранные товары и их количество
+        price: price,
+        userData: userData // Данные пользователя из куки
+    };
+    
+    // Путь к новому заказу
+    let pathToOrder = '/orders/' + uniqueId();
+
+    // Добавляем информацию о заказе в базу данных
+    firebase.database().ref(pathToOrder).set(orderData)
+        .then(function() {
+            console.log("Заказ успешно добавлен в базу данных.");
+        })
+        .catch(function(error) {
+            console.error("Ошибка при добавлении заказа в базу данных:", error);
+        });
+}
+
+
+export { updateUserData, addOrder, addOrderUnlogin};

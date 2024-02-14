@@ -248,10 +248,10 @@
                 <div class="user-card__list">
                   <ul>
                     <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_cart.svg" alt=""><span>Корзина</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_heartsvg.svg" alt=""><span>Избранное</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_data.svg" alt=""><span>Личные данные</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_history.svg" alt=""><span>История покупок</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -282,7 +282,7 @@
                           </div>
                       </div>
                       <div class="section-card-profile__buttons">
-                          <p class="section-card-profile__button section-card-profile__button-exit">Выйти</p>
+                          <p class="section-card-profile__button section-card-profile__button-exit user-card__exit">Выйти</p>
                           <p class="section-card-profile__button section-card-profile__change-data">Изменить данные</p>
                       </div>
                   </div>
@@ -292,13 +292,15 @@
                       <div class="section-card-history__tittle">
                           История покупок 
                       </div>
-                      <div class="section-card-history__desc">5 товаров</div>
+
+
+                      <div class="section-card-history__desc">aboba</div>
                       <div class="section-card-history__items">
-                          <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                          <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
                           <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
                           <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
                           <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a>
+                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
                       </div>
                   </div>
 
@@ -308,9 +310,9 @@
                       </div>
                       <div class="section-card-favourite__desc">Товары доступные к покупке</div>
                       <div class="section-card-favourite__items">
-                          <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                          <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
                           <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a>
+                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
                       </div>
                   </div>
               </div>
@@ -654,84 +656,100 @@
       var database = firebase.database();
       var prostavkiRef = database.ref('prostavki');
     
-      // Ищем элемент с классом product_list внутри контейнера body
-      var productContainer = document.querySelector('.history-list');
-    
-      prostavkiRef.once('value')
-        .then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var prostavkaData = childSnapshot.val();
-            var description = prostavkaData.description;
-            var productId = childSnapshot.key; // Получаем ID продукта
-            var price = prostavkaData.price;
-            var imageUrl = prostavkaData.images["1"];
-    
-            // Создаем элемент карточки
-            var productItem = document.createElement('a');
-            productItem.href = "";
-            productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
-            productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
-    
-            // Создаем элемент для изображения
-            var productItemImg = document.createElement('div');
-            productItemImg.classList.add("product_item_img");
-    
-            // Создаем изображение товара
-            var productImg = document.createElement('img');
-            productImg.classList.add("product_item_img_cont");
-            productImg.src = imageUrl;
-            productImg.alt = "";
-    
-            // Добавляем изображения в элемент карточки
-            productItemImg.appendChild(productImg);
-    
-            // Создаем элемент описания
-            var productItemDesc = document.createElement('div');
-            productItemDesc.classList.add("product_item_desc");
-    
-            // Создаем параграф для описания
-            var descriptionParagraph = document.createElement('p');
-            descriptionParagraph.textContent = description;
-    
-            // Создаем элемент для цены
-            var productItemPrice = document.createElement('div');
-            productItemPrice.classList.add("product_item_price");
-    
-            // Добавляем цену
-            productItemPrice.textContent = price + " руб/компл.";
-    
-    
-            // Создаем изображение для кнопки
-            var buyImg = document.createElement('img');
-            buyImg.src = "/files/images/other/buy.png";
-            buyImg.alt = "";
-    
-            // Добавляем кнопку
-    
-            // Добавляем элементы описания в элемент карточки
-            productItemDesc.appendChild(descriptionParagraph);
-            productItemDesc.appendChild(productItemPrice);
-    
-            // Добавляем изображения и описание в элемент карточки
-            productItem.appendChild(productItemImg);
-            productItem.appendChild(productItemDesc);
+      // Функция для получения списка товаров из истории покупок пользователя
+function getHistoryProducts() {
+    return new Promise((resolve, reject) => {
+        var currentUser = localStorage.getItem('currentUser');
+        var historyRef = database.ref('accounts/' + currentUser + '/history');
 
-            productItem.addEventListener('click', function(event) {
-                event.preventDefault();
-                // Получаем ID продукта из атрибута data-product-id
-                var selectedProductId = event.currentTarget.dataset.productId;
-                // Сохраняем ID продукта в локальное хранилище
-                localStorage.setItem('selectedProductId', selectedProductId);
-                // Переадресация на страницу товара
-                window.location.href = '/files/html/item.html';
-            });    
-            // Добавляем элемент карточки в найденный контейнер
-            productContainer.appendChild(productItem);
-          });
-        })
-        .catch(function(error) {
-          console.error("Error fetching data: ", error);
-        });       
+        historyRef.once('value')
+            .then(function(snapshot) {
+                var productIds = []; // Массив для хранения ID продуктов из истории покупок
+                snapshot.forEach(function(childSnapshot) {
+                    var productId = childSnapshot.key; // Получаем ID продукта из истории
+                    productIds.push(productId);
+                });
+                resolve(productIds);
+            })
+            .catch(function(error) {
+                console.error("Error fetching purchase history: ", error);
+                reject(error);
+            });
+    });
+}
+
+// Функция для отображения карточек товаров из истории покупок пользователя
+function showHistoryProducts() {
+    getHistoryProducts().then(function(historyProductIds) {
+        var productContainer = document.querySelector('.history-list');
+
+        prostavkiRef.once('value')
+            .then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    var prostavkaData = childSnapshot.val();
+                    var productId = childSnapshot.key; // Получаем ID продукта
+                    if (historyProductIds.includes(productId)) {
+                        // Товар находится в списке истории покупок пользователя
+                        var description = prostavkaData.description;
+                        var price = prostavkaData.price;
+                        var imageUrl = prostavkaData.images["1"];
+
+                        var productItem = document.createElement('a');
+                        productItem.href = "";
+                        productItem.classList.add("product_item", "product-item");
+                        productItem.dataset.productId = productId;
+
+                        var productItemImg = document.createElement('div');
+                        productItemImg.classList.add("product_item_img");
+
+                        var productImg = document.createElement('img');
+                        productImg.classList.add("product_item_img_cont");
+                        productImg.src = imageUrl;
+                        productImg.alt = "";
+
+                        productItemImg.appendChild(productImg);
+
+                        var productItemDesc = document.createElement('div');
+                        productItemDesc.classList.add("product_item_desc");
+
+                        var descriptionParagraph = document.createElement('p');
+                        descriptionParagraph.textContent = description;
+
+                        var productItemPrice = document.createElement('div');
+                        productItemPrice.classList.add("product_item_price");
+                        productItemPrice.textContent = price + " руб/компл.";
+
+                        var buyImg = document.createElement('img');
+                        buyImg.src = "/files/images/other/buy.png";
+                        buyImg.alt = "";
+
+                        productItemDesc.appendChild(descriptionParagraph);
+                        productItemDesc.appendChild(productItemPrice);
+
+                        productItem.appendChild(productItemImg);
+                        productItem.appendChild(productItemDesc);
+
+                        productItem.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            var selectedProductId = event.currentTarget.dataset.productId;
+                            localStorage.setItem('selectedProductId', selectedProductId);
+                            window.location.href = '/files/html/item.html';
+                        });
+
+                        productContainer.appendChild(productItem);
+                    }
+                });
+            })
+            .catch(function(error) {
+                console.error("Error fetching data: ", error);
+            });
+    }).catch(function(error) {
+        console.error("Error fetching history products: ", error);
+    });
+}
+
+// Вызываем функцию для отображения карточек товаров из истории покупок пользователя
+showHistoryProducts();     
     </script> 
 
     <!-- Избранные -->   
@@ -995,7 +1013,7 @@
                   console.error("Error fetching data: ", error);
               });
       }
-  </script>
+    </script>
 
 
 
@@ -1010,7 +1028,7 @@
 
     <!-- Корзина -->    
   <script type = "module">
-    import { updateUserData, addOrder } from "../js/change-data.js";
+    import { updateUserData, addOrder, addOrderUnlogin } from "../js/change-data.js";
       
     var currentUser = localStorage.getItem('currentUser');
     var database = firebase.database();
@@ -1074,6 +1092,7 @@
       }
       else{
         var myObject = Cookies.getJSON('userInfo') || {};
+        myObject.favourite = myObject.favourite || {}; // Инициализируем favourite как объект, если он не существует
         myObject.favourite[productId] = 1; // Устанавливаем товар в избранное
         Cookies.set('userInfo', myObject);
       }     
@@ -1122,8 +1141,6 @@
     }
 }
 
-
-
     function getCartFromCookies() {
       var userInfoCookie = Cookies.get('userInfo');
       if (userInfoCookie) {
@@ -1157,11 +1174,8 @@
       }
     }
 
-
-
     function displayCart(cartData) {
     // Очищаем контейнер корзины перед добавлением товаров
-    cartListContainer.innerHTML = '';
 
     // Перебираем каждый элемент корзины
     Object.keys(cartData).forEach(function(productId) {
@@ -1318,9 +1332,6 @@
     });
 }
 
-
-
-    
     // Обновление итоговой цены при загрузке страницы
     updateTotalPrice();
     
@@ -1351,15 +1362,40 @@
       let mobile_cart = document.querySelector("#personal-data__tel_cart").value;
       let mail_cart = document.querySelector("#personal-data__mail_cart").value;
 
-      if(adres_cart != "" && name_cart != "" && mobile_cart != ""){
-        updateUserData();
-        addOrder()
-        alert("заказ оформлен");
+      let currentUser = localStorage.getItem('currentUser')
 
-      } else{
-        alert("Заполните необходимые поля для ввода")
-      }
-    
+      if (currentUser){
+        if(adres_cart != "" && name_cart != "" && mobile_cart != ""){
+          updateUserData();
+          addOrder()
+          alert("заказ оформлен");
+        } else{
+          alert("Заполните необходимые поля для ввода")
+        }
+      } 
+      else{
+        if(adres_cart != "" && name_cart != "" && mobile_cart != ""){          
+          // Получаем текущие данные о пользователе из куки
+          var existingUserData = Cookies.getJSON('userInfo') || {};
+          // Объединяем текущие данные с новыми данными
+          var userData = Object.assign(existingUserData, {
+              adres: adres_cart,
+              name: name_cart,
+              surname: surname_cart,
+              otch: otch_cart,
+              mobile: mobile_cart,
+              mail: mail_cart
+          });
+
+          // Сохраняем обновленные данные о пользователе в куки
+          Cookies.set('userInfo', userData);
+
+          // Добавляем заказ для незалогиненного пользователя
+          addOrderUnlogin();
+        } else{
+          alert("Заполните необходимые поля для ввода")
+        }
+      }    
     })
   </script>
 
@@ -1412,13 +1448,103 @@
 
 
     <script type="module">
+      
       // Получаем доступ к функции updateAllInfoProfile из другого модуля
-      import { updateAllInfoProfile, updateCartInfoProfile } from "../js/getUserInfo.js";
-      // Ждем, когда вся страница будет загружена
+      import { updateAllInfoProfile, updateCartInfoProfile, getHistory, getFavorites  } from "../js/getUserInfo.js";
+      
+      
       document.addEventListener('DOMContentLoaded', function() {
-        updateAllInfoProfile();
-        updateCartInfoProfile();
+        let currentUser = localStorage.getItem('currentUser')
+      if (currentUser){
+          updateAllInfoProfile();
+          updateCartInfoProfile();
+          
+          showHistory();
+          showFavorites();
+
+      } else {
+          document.querySelector(".section-card-history__desc").textContent = "Для доступа к истории покупок войдите в аккаунт";
+          showFavorites();
+        }
       });
+
+
+      function showHistory(){
+        // alert(getHistory())
+        getHistory().then(function(firstImages) {
+          var historyItemsContainer = document.querySelector(".section-card-history__items");
+          if (Object.keys(firstImages).length === 0) {
+              document.querySelector(".section-card-history__desc").textContent = "Вы ещё ничего не купили";
+          } else {
+            var totalPurchases = Object.keys(firstImages).length;
+
+              document.querySelector(".section-card-history__desc").innerHTML = "Было куплено <b>" + totalPurchases+"</b> товара/ов";
+              // Создаем элементы <a> с изображениями
+              for (var productId in firstImages) {
+                var imageSrc = firstImages[productId];
+                var imageLink = document.createElement("a");
+                imageLink.classList.add("section-card-history__item");
+                //imageLink.href = ""; // Здесь можно добавить ссылку на страницу товара
+                var imageElement = document.createElement("img");
+                imageElement.src = imageSrc;
+                imageElement.classList.add("section-card-history__img-item")
+                imageElement.alt = ""; // Здесь можно добавить альтернативный текст для изображения
+                imageLink.appendChild(imageElement);
+                historyItemsContainer.appendChild(imageLink);
+              }
+          }
+          }).catch(function(error) {
+            console.error("Error fetching purchase history: ", error);
+          }
+        );
+      }
+
+      function showFavorites(){
+          getFavorites().then(function(firstImages) {
+              var favoritesItemsContainer = document.querySelector(".section-card-favourite__items");
+              if (Object.keys(firstImages).length === 0) {
+                  document.querySelector(".section-card-favourite__desc").textContent = "Вы ещё не добавили товары в избранное";
+              } else {
+                  // Очищаем контейнер избранных товаров перед добавлением новых
+                  favoritesItemsContainer.innerHTML = "";
+
+                  var totalFavorites = Object.keys(firstImages).length;
+
+                  document.querySelector(".section-card-favourite__desc").innerHTML = "Избрано <b>" + totalFavorites + "</b> товара/ов";
+                  
+                  // Создаем элементы <a> с изображениями
+                  for (var productId in firstImages) {
+                      var imageSrc = firstImages[productId];
+                      var imageLink = document.createElement("a");
+                      imageLink.classList.add("section-card-product__item");
+                      //imageLink.href = ""; // Здесь можно добавить ссылку на страницу товара
+                      var imageElement = document.createElement("img");
+                      imageElement.src = imageSrc;
+                      imageElement.classList.add("section-card-product__img-item")
+                      imageElement.alt = ""; // Здесь можно добавить альтернативный текст для изображения
+                      imageLink.appendChild(imageElement);
+                      favoritesItemsContainer.appendChild(imageLink);
+                  }
+              }
+          }).catch(function(error) {
+              console.error("Error fetching favorites: ", error);
+          });
+      }
+      
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
     </script>
 
 

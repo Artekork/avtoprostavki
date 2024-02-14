@@ -41,6 +41,7 @@
 .section-card-history__items, .section-card-favourite__items{
     text-wrap: nowrap;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 .user_pic_section, .section-card-history__items img, .section-card-favourite__items img{
@@ -50,6 +51,14 @@
 }   
 
 .section-card-product__item:not(:first-child){
+    /* margin-left: -20px; */
+}
+.section-card-history__items img, .section-card-favourite__items img{
+    max-width: 60px;
+    max-height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    object-fit: cover;
     margin-left: -20px;
 }
 

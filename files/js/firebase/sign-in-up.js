@@ -229,10 +229,13 @@ this.document.querySelector('.product_tittle').addEventListener('click', functio
 //     document.querySelector('.li_nav_sign').style.display = 'none';
 // } 
 
-this.document.querySelector('.user-card__exit').addEventListener('click', function(){
-    localStorage.removeItem('currentUser');
-    window.location.href = '/index.html';
-})
+this.document.querySelectorAll('.user-card__exit').forEach(element => {
+    element.addEventListener('click', function(){
+        localStorage.removeItem('currentUser');
+        window.location.href = '/index.html';
+    })
+});
+
 
 
 

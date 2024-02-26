@@ -51,8 +51,6 @@ document.querySelector(".button3").addEventListener("click", function(){
     Cookies.set('example', myObject);
 })
 
-
-
 document.querySelector(".button4").addEventListener("click", function(){
     // Получаем текущее значение объекта из куки
     var myObject = Cookies.getJSON('example');
@@ -76,8 +74,6 @@ document.querySelector(".button4").addEventListener("click", function(){
     Cookies.set('example', myObject);
 })
 
-
-
 document.querySelector(".button5").addEventListener("click", function(){
     // Получаем текущее значение объекта из куки
     var myObject = Cookies.getJSON('example');
@@ -92,6 +88,44 @@ document.querySelector(".button5").addEventListener("click", function(){
     Cookies.set('example', myObject);
     
 })
+
+
+
+//test.js
+document.querySelector(".button6").addEventListener("click", function() {
+    let userMail = "vseparoli2228@gmail.com"; // Адрес электронной почты для отправки
+    let userPass = "testPassword123"; // Пароль для отправки
+
+    // Отправляем POST-запрос на сервер
+    fetch('http://localhost:3000/send-verification-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: userMail, password: userPass }) // Передаем адрес электронной почты и пароль в теле запроса
+    })
+    .then(response => {
+        if (response.ok) {
+            // Если запрос выполнен успешно, вы можете обновить интерфейс или вывести сообщение об успехе
+            console.log('Письмо с подтверждением отправлено');
+        } else {
+            console.error('Ошибка при отправке письма с подтверждением');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка при отправке запроса:', error);
+    });
+});
+
+
+fetch('http://localhost:3000/verify/' + token)
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error('Ошибка при подтверждении почты:', error);
+    });
 
 function updateText(){
     for (var key in retrievedObject) {

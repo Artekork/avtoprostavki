@@ -92,7 +92,7 @@
               <div class="checkmark"></div>
             </label>
 
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            <p class="dialog_checkbox_text">Отправляя форму, Вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
             <!-- <p class="checkbox_error">Примите соглашение</p> -->
           </div>
 
@@ -102,7 +102,7 @@
             <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
           </div> -->
 
-          <p class="dialog_chose">Как вы хотите получить ответ?</p>
+          <p class="dialog_chose">Как Вы хотите получить ответ?</p>
 
           <div class="dialog_buttons">
             <button id="call" class="dialog_btn">
@@ -225,12 +225,12 @@
                   </button>
               </div>
             </li>
-            <li class="header_nav_li li_nav_authorized-only"> 
-              <a href="/files/html/test.html" class="header_link">
+            <li class="header_nav_li header_nav_li__favourite "> 
+              <a href="/files/html/profile.html?section=favourite" class="header_link">
                 <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
               </a>
             </li>
-            <li class="header_nav_li li_nav_authorized-only"> <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+            <li class="header_nav_li header_nav_li__cart"> <a href="/files/html/profile.html?section=cart" class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
 
             <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
             <li class="header_nav_li li_nav_authorized-only"> 
@@ -246,12 +246,14 @@
                   </div>
                 </div>
                 <div class="user-card__list">
-                  <ul>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_cart.svg" alt=""><span>Корзина</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_heartsvg.svg" alt=""><span>Избранное</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_data.svg" alt=""><span>Личные данные</span></a></li>
-                    <li class="user-card__li"><a href="/files/html/profile.html"><img class="user-car__list-img" src="/files/images/other/profile_history.svg" alt=""><span>История покупок</span></a></li>
+                  <ul>                  
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=profile"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=history"><img class="user-car__list-img" src="/files/images/other/profile_cart.svg" alt=""><span>История покупок</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=favourite"><img class="user-car__list-img" src="/files/images/other/profile_heartsvg.svg" alt=""><span>Избранное</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=user-info"><img class="user-car__list-img" src="/files/images/other/profile_data.svg" alt=""><span>Личные данные</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=cart"><img class="user-car__list-img" src="/files/images/other/profile_history.svg" alt=""><span>Корзина</span></a></li>
+
+                  
                   </ul>
                 </div>
               </div>
@@ -260,303 +262,416 @@
         </nav>
       </header>
       <main>
-        <section class="main-content">
-            <div class="main-content__list-of-sections">
-                <div class="list-elem list-elem_selected list__profile">Профиль</div>
-                <div class="list-elem list-elem_selected list__cart">Корзина</div>
-                <div class="list-elem list__favourite">Избранное</div>
-                <div class="list-elem list__user-info">Личные данные</div>
-                <div class="list-elem list__history">История покупок</div>
+        <section class="main-content">            
+          <div class="top-bar__navigation">
+            <ul>
+                <li class="list-elem section-profile selected" ><a href="#">Профиль</a></li>
+                <li class="list-elem section-history"><a href="#">Покупки</a></li>
+                <li class="list-elem section-favourite"><a href="#">Избранное</a></li>
+                <li class="list-elem section-user-info"><a href="#">Личные данные</a></li>
+                <li class="list-elem section-cart" ><a href="#">Корзина</a></li>
+                <span class="slider"></span>
+            </ul>
+          </div>
+
+          <div class="main-content__sections">
+            <div id="section-profile-content" style="display: flex;" class="profile-content main-content__section section-menu-profile">
+
+                <div class="section-profile__card section-card-profile__user-info">                            
+                    <div class="section-card-profile__info">
+                        <img class="user_pic user_pic_section" src="/files/images/other/user.png" alt="">
+                        <div class="section-card-profile__desc">
+                            <div class="section-card-profile__name user-fullname">Пользователь</div>
+                            <div class="section-card-profile__phone user-phone"> Для доступа к личным данным войдите в аккаунт</div>
+                        </div>
+                    </div>
+                    <div class="section-card-profile__buttons">
+                        <p class="section-card-profile__button section-card-profile__button-login">Войти</p>
+                        <p class="section-card-profile__button section-card-profile__button-exit user-card__exit">Выйти</p>
+                        <p class="section-card-profile__button section-card-profile__change-data ">Изменить данные</p>
+                    </div>
+                </div>
+
+
+                <div class="section-profile__card section-card-profile__history">                            
+                  <div class="section-card-history__tittle">
+                      История покупок 
+                  </div>
+
+
+                  <div class="section-card-history__desc">aboba</div>
+                  <div class="section-card-history__items">
+                      <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                      <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
+                      <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
+                      <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                      <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
+                  </div>
+                  
+                  <div class="section-card-profile__buttons">
+                    <p class="section-card-profile__button section-card-profile__button-login">Войти</p>
+                  </div>
+                    
+                </div>
+
+                <div class="section-profile__card section-card-profile__favourite">                            
+                    <div class="section-card-favourite__tittle">
+                        Избранные  
+                    </div>
+                    <div class="section-card-favourite__desc">Товары доступные к покупке</div>
+                    <div class="section-card-favourite__items">
+                        <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                        <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                        <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
+                    </div>
+                </div>
+            </div>    
+            
+
+            <div id="section-history-content" style="display: none;" class="profile-content main-content__section section-menu-history">
+
+                <h2 class="history-product_tittle section_tittle ">История покупок</h2>
+                <div class="section-card-history__message section-card__message">
+                  <div class="section-message__tittle">
+                    В истории пусто :(
+                  </div>
+                  <div class="section-message__desc">
+                    Сделайте свою первую покупку
+                  </div>
+                  <div class="section-message__btn">
+                    За покупками
+                  </div>
+                </div>
+                <div class="section-card-history__message_alternative section-card__message">
+                  <div class="section-message__tittle">
+                    Упс :(
+                  </div>
+                  <div class="section-message__desc">
+                    Для просмотра истории покупок войдите в аккаунт
+                  </div>
+                  <div class="section-message__btn">
+                    Войти
+                  </div>
+                </div>
+                <div class="product_list history-list"></div>
             </div>
 
+            <div id="section-favourite-content" style="display: none;" class="profile-content main-content__section section-menu-favourite">
+                <h2 class="favourite-product_tittle section_tittle test">Избранные товары</h2>
+                <div class="section-card-favourite__message section-card__message">
+                  <div class="section-message__tittle">
+                    В избранном пусто :(
+                  </div>
+                  <div class="section-message__desc">
+                    Добавьте свой первый товар
+                  </div>
+                  <div class="section-message__btn">
+                    За покупками
+                  </div>
+                </div>
+                <div class="product_list favourite-list">            
 
-            <div class="main-content__sections profile_selected cart_selected favourite_selected user_selected history_selected">
-              <div class="main-content__section section-profile">
+                </div>
+            </div>
+            
+            <div id="section-user-info-content" style="display: none;" class="profile-content main-content__section section-menu-user-info">
+              <div class="user-info__container">
+                <h2 class="product_tittle section_tittle">Личные данные</h2>
+            
+                <div class="section-user-info__user-img">
+                    <div class="user-info-img__img-cont">
+                        <img class="user_pic user-info-img__img" src="/files/images/other/user.png" alt="">
+                    </div>
+                    <div class="user-info-img__buttons">
+                        <label class="input-file">
+                            <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
+                            <div class="user-info-img__btn-load">Выберите фото</div>
+                        </label>
+                        <!-- <div class="user-info-img__btn-load">
+                            Загрузить своё фото
+                        </div> -->
+                        <div class="user-info-img__btn-delete">
+                            Удалить фото
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <div class="section-user-info__personal-data">
+                    
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">Имя</div>  
+                    <input class="personal-data__input" type="text" id="personal-data__name">
+                  </div>
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">Фамилия</div>  
+                    <input class="personal-data__input" type="text" id="personal-data__surname">  
+                  </div>                      
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">Отчество</div>  
+                    <input class="personal-data__input" type="text" id="personal-data__otch">  
+                  </div>                      
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">Телефон</div>  
+                    <input class="personal-data__input personal-data__input-number" type="tel" id="personal-data__tel"> 
+                  </div>                       
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">Почта</div>  
+                    <input disabled class="personal-data__input" type="email" id="personal-data__mail">   
+                  </div>
+                    
+                </div>
+                
+                <div class="section-user-info__apply-changes">
+                    Сохранить изменения
+                </div>
+              </div>
+              <div class="section-card-user-data__message section-card__message">
+                <div class="section-message__tittle">
+                  Упс :(
+                </div>
+                <div class="section-message__desc">
+                  Для редактирования личных данных Вам необходимо авторизироваться.
+                </div>
+                <div class="section-message__btn">
+                  Авторизироваться
+                </div>
+              </div>
+            
+            
+            </div>
 
-                  <div class="section-profile__card section-card-profile__user-info">                            
-                      <div class="section-card-profile__info">
-                          <img class="user_pic user_pic_section" src="/files/images/other/user.png" alt="">
-                          <div class="section-card-profile__desc">
-                              <div class="section-card-profile__name user-fullname">Пользователь</div>
-                              <div class="section-card-profile__phone user-phone"> </div>
+            <div id="section-cart-content" style="display: none;" class="profile-content main-content__section section-menu-cart">
+              <div class="section-cart__container">
+
+                <div class="section-cart__take-order">
+                  <div class="section-cart__order">
+                    <div class="section_tittle section-cart__tittle">
+                      Оформление заказа
+                    </div>
+
+                    <div class="section-cart__list">  
+                      <div class="section-cart__check-all">
+                        <label class="checkbox-container">
+                          <input type="checkbox" id="main-checkbox">
+                          <div class="checkmark"></div>
+                        </label>  
+                        Выбрать всё 
+                      </div> 
+                      <!--Это код оставь, выводи товары в класс "section-cart__product"  -->
+
+                      <!-- <div class="section-cart__product">
+                        <label class="checkbox-container">
+                          <input type="checkbox" id="brand-1Volkswagen">
+                          <div class="checkmark"></div>
+                        </label>  
+                        <div class="section-cart_product-card">
+                          <div class="section-cart_product-card-desc">
+                            <div class="section-cart_product-image">
+                              <img src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+                            </div>
+                            <div class="section-cart_product-desc">                                
+                              <div class="section-cart_product-desc-top">
+                                Проставки для увеличения дорожного просвета автомобиля
+                              </div>
+                              <div class="section-cart_product-desc-down">
+                                <div class="section-cart_product-desc-code">
+                                  Код товара: 732
+                                </div>
+                                <div class="section-cart_product-desc-buttons">
+                                  <div class="section-cart_product-desc-to-fav">
+                                    В избранное
+                                  </div>
+                                  <div class="section-cart_product-desc-delete">
+                                    Удалить
+                                  </div>
+                                </div>                               
+                              </div>
+                            </div>
                           </div>
-                      </div>
-                      <div class="section-card-profile__buttons">
-                          <p class="section-card-profile__button section-card-profile__button-exit user-card__exit">Выйти</p>
-                          <p class="section-card-profile__button section-card-profile__change-data">Изменить данные</p>
-                      </div>
-                  </div>
-
-
-                  <div class="section-profile__card section-card-profile__history">                            
-                      <div class="section-card-history__tittle">
-                          История покупок 
-                      </div>
-
-
-                      <div class="section-card-history__desc">aboba</div>
-                      <div class="section-card-history__items">
-                          <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
-                      </div>
-                  </div>
-
-                  <div class="section-profile__card section-card-profile__favourite">                            
-                      <div class="section-card-favourite__tittle">
-                          Избранные  
-                      </div>
-                      <div class="section-card-favourite__desc">Товары доступные к покупке</div>
-                      <div class="section-card-favourite__items">
-                          <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                          <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
-                      </div>
-                  </div>
-              </div>
-              
-
-              <div class="main-content__section section-history">
-
-                  <h2 class="product_tittle section_tittle">История покупок</h2>
-                  <div class="product_list history-list">            
-              
-                  </div>
-
-              </div>
-
-              <div class="main-content__section section-favourite">
-                  <h2 class="product_tittle section_tittle">Избранные товары</h2>
-                  <div class="product_list favourite-list">            
-        
-                  </div>
-              </div>
-
-
-              
-              
-              <div class="main-content__section section-user-info">
-                  <h2 class="product_tittle section_tittle">Личные данные</h2>
-              
-                  <div class="section-user-info__user-img">
-                      <div class="user-info-img__img-cont">
-                          <img class="user_pic user-info-img__img" src="/files/images/other/user.png" alt="">
-                      </div>
-                      <div class="user-info-img__buttons">
-                          <label class="input-file">
-                              <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
-                              <div class="user-info-img__btn-load">Выберите фото</div>
-                          </label>
-                          <!-- <div class="user-info-img__btn-load">
-                              Загрузить своё фото
-                          </div> -->
-                          <div class="user-info-img__btn-delete">
-                              Удалить фото
+                          <div class="section-cart_product-count">
+                            <img class="section-cart__btn-decrease" src="/files/images/other/-.png" alt="">
+                            <span class="section-cart_product-counter">3</span>
+                            <img class="section-cart__btn-increase" src="/files/images/other/+.png" alt="">
                           </div>
-                      </div>
-              
+                          <div class="section-cart_product-price">
+                            48,71 руб
+                          </div>
+                        </div>                        
+                      </div>    -->
+
+                      
+                      
+                    </div>
+
                   </div>
+                  <div class="section-cart__confirm-order">                        
+                    <div class="section-cart__confirm-total">                                                 
+                      <div class="section-cart__confirm-total-tittle">
+                        Итого
+                      </div>                       
+                      <div class="section-cart__confirm-total-cost">
+                        48,71 руб
+                      </div>
+                    </div>
+
+                                          
+                    <div class="section-cart__confirm-order-adres">
+
+                      <div class="order-adres__tittle">
+                        Адрес
+                      </div>  
+                      <div class="order-adres__location">
+                        г. Минск, ул. Авроровская, д. 4
+                      </div>  
+                    </div>           
+                    <div class="section-cart__confirm-order-payment">
+                      <div class="order-payment__tittle">
+                        Способ оплаты
+                      </div>  
+                      <div class="order-payment__method">
+                        Наличными при получении
+                      </div> 
+                    </div>
+                    <div class="section-cart__confirm-btn">     
+                      Заказ подтверждаю                                            
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-cart__adres">
+                  <h2 class="section-cart__adres-tittle section_tittle section-cart__tittle">Адрес доставки</h2>            
               
+                  <div class="personal-data__input-block">
+                    <div class="personal-data__input-text">
+                      <div class="personal-data-input-text__tittle">
+                        Адрес*
+                      </div>
+                      <div class="personal-data-input-text__alert" id = "cart-adres-alert">
+                        <span><img src="/files/images/other/alert.png" alt=""></span>Введите адрес
+                      </div>
+                    </div>  
+                    <input class="personal-data__input personal-data__input-adres" type="email" id="personal-data__adres">   
+                  </div> 
+                </div>
+
+                <div class="section-cart__contact-data">
+                  <h2 class="product_tittle section_tittle section-cart__tittle">Персональная информация</h2>
+
                   <div class="section-user-info__personal-data">
                       
                     <div class="personal-data__input-block">
-                      <div class="personal-data__input-text">Имя</div>  
-                      <input class="personal-data__input" type="text" id="personal-data__name">
+                      <div class="personal-data__input-text">
+                        <div class="personal-data-input-text__tittle">
+                          Имя*
+                        </div>
+                        <div class="personal-data-input-text__alert" id = "cart-name-alert">
+                          <span><img src="/files/images/other/alert.png" alt=""></span>Введите Имя
+                        </div>
+                      </div>  
+                      <input class="personal-data__input" type="text" id="personal-data__name_cart">
                     </div>
                     <div class="personal-data__input-block">
-                      <div class="personal-data__input-text">Фамилия</div>  
-                      <input class="personal-data__input" type="text" id="personal-data__surname">  
+                      <div class="personal-data__input-text">
+                        <div class="personal-data-input-text__tittle">
+                          Фамилия*
+                        </div>
+                        <div class="personal-data-input-text__alert" id = "cart-surname-alert">
+                          <span><img src="/files/images/other/alert.png" alt=""></span>Введите фамилию
+                        </div>
+                      </div>  
+                      <input class="personal-data__input" type="text" id="personal-data__surname_cart">  
                     </div>                      
                     <div class="personal-data__input-block">
                       <div class="personal-data__input-text">Отчество</div>  
-                      <input class="personal-data__input" type="text" id="personal-data__otch">  
+                      <input class="personal-data__input" type="text" id="personal-data__otch_cart">  
                     </div>                      
                     <div class="personal-data__input-block">
-                      <div class="personal-data__input-text">Телефон</div>  
-                      <input class="personal-data__input" type="tel" id="personal-data__tel"> 
+                      <div class="personal-data__input-text">
+                        <div class="personal-data-input-text__tittle">
+                          Телефон*
+                        </div>
+                        <div class="personal-data-input-text__alert" id = "cart-phone-alert">
+                          <span><img src="/files/images/other/alert.png" alt=""></span>Введите телефон
+                        </div>
+                      </div>  
+                      <input class="personal-data__input personal-data__input-number" type="tel" id="personal-data__tel_cart"> 
                     </div>                       
                     <div class="personal-data__input-block">
                       <div class="personal-data__input-text">Почта</div>  
-                      <input disabled class="personal-data__input" type="email" id="personal-data__mail">   
+                      <input disabled class="personal-data__input" placeholder="-"  type="email" id="personal-data__mail_cart">   
                     </div>
                       
                   </div>
-                  
-                  <div class="section-user-info__apply-changes">
-                      Сохранить изменения
-                  </div>
               
               
-              </div>
-            
-
-
-              <div class="main-content__section section-cart">
-                <div class="section-cart__container">
-
-                  <div class="section-cart__take-order">
-                    <div class="section-cart__order">
-                      <div class="section_tittle section-cart__tittle">
-                        Оформление заказа
-                      </div>
-
-                      <div class="section-cart__list">  
-                        <div class="section-cart__check-all">
-                          <label class="checkbox-container">
-                            <input type="checkbox" id="main-checkbox">
-                            <div class="checkmark"></div>
-                          </label>  
-                          Выбрать всё 
-                         </div> <!--Это код оставь, выводи товары в класс "section-cart__product"  -->
-
-                        <!-- <div class="section-cart__product">
-                          <label class="checkbox-container">
-                            <input type="checkbox" id="brand-1Volkswagen">
-                            <div class="checkmark"></div>
-                          </label>  
-                          <div class="section-cart_product-card">
-                            <div class="section-cart_product-card-desc">
-                              <div class="section-cart_product-image">
-                                <img src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                              </div>
-                              <div class="section-cart_product-desc">                                
-                                <div class="section-cart_product-desc-top">
-                                  Проставки для увеличения дорожного просвета автомобиля
-                                </div>
-                                <div class="section-cart_product-desc-down">
-                                  <div class="section-cart_product-desc-code">
-                                    Код товара: 732
-                                  </div>
-                                  <div class="section-cart_product-desc-buttons">
-                                    <div class="section-cart_product-desc-to-fav">
-                                      В избранное
-                                    </div>
-                                    <div class="section-cart_product-desc-delete">
-                                      Удалить
-                                    </div>
-                                  </div>                               
-                                </div>
-                              </div>
-                            </div>
-                            <div class="section-cart_product-count">
-                              <img class="section-cart__btn-decrease" src="/files/images/other/-.png" alt="">
-                              <span class="section-cart_product-counter">3</span>
-                              <img class="section-cart__btn-increase" src="/files/images/other/+.png" alt="">
-                            </div>
-                            <div class="section-cart_product-price">
-                              48,71 руб
-                            </div>
-                          </div>                        
-                        </div>    -->
-
-                        
-                        
-                      </div>
-
-                    </div>
-                    <div class="section-cart__confirm-order">                        
-                      <div class="section-cart__confirm-total">                                                 
-                        <div class="section-cart__confirm-total-tittle">
-                          Итого
-                        </div>                       
-                        <div class="section-cart__confirm-total-cost">
-                          48,71 руб
-                        </div>
-                      </div>
-
-                                            
-                      <div class="section-cart__confirm-order-adres">
-            
-                        <div class="order-adres__tittle">
-                          Адрес
-                        </div>  
-                        <div class="order-adres__location">
-                          г. Минск, ул. Авроровская, д. 4
-                        </div>  
-                      </div>           
-                      <div class="section-cart__confirm-order-payment">
-                        <div class="order-payment__tittle">
-                          Способ оплаты
-                        </div>  
-                        <div class="order-payment__method">
-                          Наличными при получении
-                        </div> 
-                      </div>
-                      <div class="section-cart__confirm-btn">     
-                        Заказ подтверждаю                                            
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="section-cart__adres">
-                    <h2 class="product_tittle section_tittle section-cart__tittle">Адрес доставки</h2>            
-                
-                    <div class="personal-data__input-block">
-                      <div class="personal-data__input-text">Адрес*</div>  
-                      <input class="personal-data__input personal-data__input-adres" type="email" id="personal-data__adres">   
-                    </div> 
-                  </div>
-
-                  <div class="section-cart__contact-data">
-                    <h2 class="product_tittle section_tittle section-cart__tittle">Персональная информация</h2>
-            
-                    <div class="section-user-info__personal-data">
-                        
-                      <div class="personal-data__input-block">
-                        <div class="personal-data__input-text">Имя*</div>  
-                        <input class="personal-data__input" type="text" id="personal-data__name_cart">
-                      </div>
-                      <div class="personal-data__input-block">
-                        <div class="personal-data__input-text">Фамилия</div>  
-                        <input class="personal-data__input" type="text" id="personal-data__surname_cart">  
-                      </div>                      
-                      <div class="personal-data__input-block">
-                        <div class="personal-data__input-text">Отчество</div>  
-                        <input class="personal-data__input" type="text" id="personal-data__otch_cart">  
-                      </div>                      
-                      <div class="personal-data__input-block">
-                        <div class="personal-data__input-text">Телефон*</div>  
-                        <input class="personal-data__input" type="tel" id="personal-data__tel_cart"> 
-                      </div>                       
-                      <div class="personal-data__input-block">
-                        <div class="personal-data__input-text">Почта</div>  
-                        <input disabled class="personal-data__input" type="email" id="personal-data__mail_cart">   
-                      </div>
-                        
-                    </div>
-                
-                
-                  </div>
-
-                  <div class="section-cart__contact-data">
-                    <h2 class="product_tittle section_tittle">Комментарий</h2>
-                  
-                    <div class="container222">
-                      <ul class="list">
-                        <li class="list__item">
-                          <input checked type="radio" class="radio-btn" name="choice" id="a-opt" />
-                          <label for="a-opt" class="cart-call-method">Обработать без звонка. Мы отправим вам подтверждение заказа с указанием даты и времени на ваш номер через Viber/SMS</label>
-                        </li>
-                        
-                        <li class="list__item">
-                          <input type="radio" class="radio-btn" name="choice" id="b-opt" />
-                          <label for="b-opt" class="cart-call-method">Нужен звонок специалиста для уточнения деталей заказа</label>
-                        </li>
-                      </ul>
-
-                      <textarea class="comment-cart" type="text" name="Comment"></textarea>
-
-                    </div>
-
-
-                  </div>
-                  
                 </div>
+
+                <div class="section-cart__contact-data">
+                  <h2 class="product_tittle section_tittle">Комментарий</h2>
+                
+                  <div class="container222">
+                    <ul class="list">
+                      <li class="list__item">
+                        <input checked type="radio" class="radio-btn" name="choice" id="a-opt" />
+                        <label for="a-opt" class="cart-call-method">Обработать без звонка. Мы отправим Вам подтверждение заказа с указанием даты и времени на ваш номер через Viber/SMS</label>
+                      </li>
+                      
+                      <li class="list__item">
+                        <input type="radio" class="radio-btn" name="choice" id="b-opt" />
+                        <label for="b-opt" class="cart-call-method">Нужен звонок специалиста для уточнения деталей заказа</label>
+                      </li>
+                    </ul>
+
+                    <textarea class="comment-cart" type="text" name="Comment"></textarea>
+
+                  </div>
+
+
+                </div>
+                
+              </div>
+            </div>
+
+
+
+
+
+
+            <!-- 
+            <section class="main-content">            
+              <div class="top-bar__navigation">
+                <ul>
+                    <li class="list-elem section-profile selected" ><a href="#">Профиль</a></li>
+                    <li class="list-elem section-history"><a href="#">Покупки</a></li>
+                    <li class="list-elem section-favourite"><a href="#">Избранное</a></li>
+                    <li class="list-elem section-user-info"><a href="#">Личные данные</a></li>
+                    <li class="list-elem section-cart" ><a href="#">Корзина</a></li>
+                    <span class="slider"></span>
+                </ul>
+              </div>
+              <div class="main-content__sections">              
+                <div id="section-profile-content" style="display: flex;" class="profile-content main-content__section section-menu-profile">...</div>
+                <div id="section-history-content" style="display: none;" class="profile-content main-content__section section-menu-history">...</div>
+                <div id="section-favourite-content" style="display: none;" class="profile-content main-content__section section-menu-favourite">...</div>
+                <div id="section-user-info-content" style="display: none;" class="profile-content main-content__section section-menu-user-info">...</div>
+                <div id="section-cart-content" style="display: none;" class="profile-content main-content__section section-menu-cart">...</div>               
               </div>
 
-            </div>
+            </section>
+            -->
+
+
+
+
+
+
+
+
+
+            
+          </div>
+
         </section>
 
 
@@ -651,753 +766,164 @@
     
       firebase.initializeApp(firebaseConfig);
     
-      // Ваш код дальше
-    
       var database = firebase.database();
       var prostavkiRef = database.ref('prostavki');
     
       // Функция для получения списка товаров из истории покупок пользователя
-function getHistoryProducts() {
-    return new Promise((resolve, reject) => {
-        var currentUser = localStorage.getItem('currentUser');
-        var historyRef = database.ref('accounts/' + currentUser + '/history');
+      function getHistoryProducts() {
+          return new Promise((resolve, reject) => {
+              var currentUser = localStorage.getItem('currentUser');
+              var historyRef = database.ref('accounts/' + currentUser + '/history');
 
-        historyRef.once('value')
-            .then(function(snapshot) {
-                var productIds = []; // Массив для хранения ID продуктов из истории покупок
-                snapshot.forEach(function(childSnapshot) {
-                    var productId = childSnapshot.key; // Получаем ID продукта из истории
-                    productIds.push(productId);
+              historyRef.once('value')
+                .then(function(snapshot) {
+                    var productIds = []; // Массив для хранения ID продуктов из истории покупок
+                    snapshot.forEach(function(childSnapshot) {
+                        var productId = childSnapshot.key; // Получаем ID продукта из истории
+                        productIds.push(productId);
+                    });
+                    resolve(productIds);
+                })
+                .catch(function(error) {
+                    console.error("Error fetching purchase history: ", error);
+                    reject(error);
                 });
-                resolve(productIds);
-            })
-            .catch(function(error) {
-                console.error("Error fetching purchase history: ", error);
-                reject(error);
-            });
-    });
-}
-
-// Функция для отображения карточек товаров из истории покупок пользователя
-function showHistoryProducts() {
-    getHistoryProducts().then(function(historyProductIds) {
-        var productContainer = document.querySelector('.history-list');
-
-        prostavkiRef.once('value')
-            .then(function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                    var prostavkaData = childSnapshot.val();
-                    var productId = childSnapshot.key; // Получаем ID продукта
-                    if (historyProductIds.includes(productId)) {
-                        // Товар находится в списке истории покупок пользователя
-                        var description = prostavkaData.description;
-                        var price = prostavkaData.price;
-                        var imageUrl = prostavkaData.images["1"];
-
-                        var productItem = document.createElement('a');
-                        productItem.href = "";
-                        productItem.classList.add("product_item", "product-item");
-                        productItem.dataset.productId = productId;
-
-                        var productItemImg = document.createElement('div');
-                        productItemImg.classList.add("product_item_img");
-
-                        var productImg = document.createElement('img');
-                        productImg.classList.add("product_item_img_cont");
-                        productImg.src = imageUrl;
-                        productImg.alt = "";
-
-                        productItemImg.appendChild(productImg);
-
-                        var productItemDesc = document.createElement('div');
-                        productItemDesc.classList.add("product_item_desc");
-
-                        var descriptionParagraph = document.createElement('p');
-                        descriptionParagraph.textContent = description;
-
-                        var productItemPrice = document.createElement('div');
-                        productItemPrice.classList.add("product_item_price");
-                        productItemPrice.textContent = price + " руб/компл.";
-
-                        var buyImg = document.createElement('img');
-                        buyImg.src = "/files/images/other/buy.png";
-                        buyImg.alt = "";
-
-                        productItemDesc.appendChild(descriptionParagraph);
-                        productItemDesc.appendChild(productItemPrice);
-
-                        productItem.appendChild(productItemImg);
-                        productItem.appendChild(productItemDesc);
-
-                        productItem.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            var selectedProductId = event.currentTarget.dataset.productId;
-                            localStorage.setItem('selectedProductId', selectedProductId);
-                            window.location.href = '/files/html/item.html';
-                        });
-
-                        productContainer.appendChild(productItem);
-                    }
-                });
-            })
-            .catch(function(error) {
-                console.error("Error fetching data: ", error);
-            });
-    }).catch(function(error) {
-        console.error("Error fetching history products: ", error);
-    });
-}
-
-// Вызываем функцию для отображения карточек товаров из истории покупок пользователя
-showHistoryProducts();     
-    </script> 
-
-    <!-- Избранные -->   
-    <script>  
-      var database = firebase.database();
-      var prostavkiRef = database.ref('prostavki');
-      var currentUser = localStorage.getItem('currentUser');
-      var userFavoritesRef = currentUser ? database.ref('accounts/' + currentUser + '/favourites') : null;
-  
-      // Функция для получения избранных товаров из куки
-      function getFavoritesFromCookie() {
-          var userInfoCookie = Cookies.get('userInfo');
-          if (userInfoCookie) {
-              var userInfo = JSON.parse(userInfoCookie);
-              return userInfo.favourite;
-          }
-          return {};
-      }
-  
-      var favoriteProducts;
-      if (!currentUser) {
-          favoriteProducts = getFavoritesFromCookie();
+          });
       }
 
-      // Функция для получения избранных товаров из куки
-      function getFavoritesFromCookie() {
-          var userInfoCookie = Cookies.get('userInfo');
-          if (userInfoCookie) {
-              var userInfo = JSON.parse(userInfoCookie);
-              return userInfo.favourite;
-          }
-          return {};
-      }
-  
-      // Функция для создания карточки товара
-      function createProductCard(productId, description, price, imageUrl) {
-          // Создаем элемент карточки
-          var productItem = document.createElement('a');
-          productItem.href = "";
-          productItem.classList.add("product_item", "product-item");
-          productItem.dataset.productId = productId;
-  
-          // Создаем элемент для изображения
-          var productItemImg = document.createElement('div');
-          productItemImg.classList.add("product_item_img");
-  
-          // Создаем изображение для избранного
-          var heartImg = document.createElement('img');
-          heartImg.classList.add("product_item_img_tofavourite");
-          heartImg.src = "/files/images/other/heart_fill.png"; // Изменено на заполненное сердце, так как товар находится в избранном
-          heartImg.alt = "";
-  
-          // Создаем изображение товара
-          var productImg = document.createElement('img');
-          productImg.classList.add("product_item_img_cont");
-          productImg.src = imageUrl;
-          productImg.alt = "";
-  
-          // Добавляем изображения в элемент карточки
-          productItemImg.appendChild(heartImg);
-          productItemImg.appendChild(productImg);
-  
-          // Создаем элемент описания
-          var productItemDesc = document.createElement('div');
-          productItemDesc.classList.add("product_item_desc");
-  
-          // Создаем параграф для описания
-          var descriptionParagraph = document.createElement('p');
-          descriptionParagraph.textContent = description;
-  
-          // Создаем элемент для цены
-          var productItemPrice = document.createElement('div');
-          productItemPrice.classList.add("product_item_price");
-          productItemPrice.textContent = price + " руб/ком.";
-  
-          // Создаем элемент кнопки
-          var productItemBtn = document.createElement('div');
-          productItemBtn.classList.add("product_item_btn");
-  
-          // Создаем изображение для кнопки
-          var buyImg = document.createElement('img');
-          buyImg.src = "/files/images/other/buy.png";
-          buyImg.alt = "";
-  
-          // Добавляем кнопку
-          productItemBtn.appendChild(buyImg);
-          productItemBtn.appendChild(document.createTextNode("Купить"));
-  
-          // Добавляем элементы описания в элемент карточки
-          productItemDesc.appendChild(descriptionParagraph);
-          productItemDesc.appendChild(productItemPrice);
-          productItemPrice.appendChild(productItemBtn);
-  
-          // Добавляем изображения и описание в элемент карточки
-          productItem.appendChild(productItemImg);
-          productItem.appendChild(productItemDesc);
-  
-          // Добавляем обработчик клика по карточке товара
-          
+      // Функция для отображения карточек товаров из истории покупок пользователя
+      function showHistoryProducts() {
+        document.querySelector('.history-list').innerHTML = '';
+          getHistoryProducts().then(function(historyProductIds) {
+              var productContainer = document.querySelector('.history-list');
 
-          productItem.addEventListener('click', function(event) {
-              if (event.target.classList.contains('product_item_img_tofavourite')) {
-                event.preventDefault(); // Предотвращаем переход по ссылке
-                  event.stopPropagation(); // Останавливаем всплытие события
-
-                  // Меняем иконку сердечка
-                  var heartImg = event.target;
-
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductId = event.currentTarget.dataset.productId;
-
-                  // Проверяем, вошел ли пользователь
-                  var currentUser = localStorage.getItem('currentUser');
-
-                  if (currentUser) {
-                      // Получаем ссылку на базу данных для избранного пользователя
-                      var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
-
-                      // Проверяем, есть ли уже такой товар в избранном
-                      userFavoritesRef.child(selectedProductId).once('value')
-                          .then(function(snapshot) {
-                              if (snapshot.exists()) {
-                                  // Товар уже в избранном, удаляем его
-                                  userFavoritesRef.child(selectedProductId).remove();
-                                  heartImg.src = '/files/images/other/heart_notfill.png';
-                              } else {
-                                  // Товар не в избранном, добавляем его
-                                  userFavoritesRef.child(selectedProductId).set("1");
-                                  heartImg.src = '/files/images/other/heart_fill.png';
-                              }
-                          })
-                          .catch(function(error) {
-                              console.error("Error checking user favorites: ", error);
-                          });
-                  } 
-                  else {
-                    
-                    // Получаем текущее значение объекта из куки
-                    var myObject = Cookies.getJSON('userInfo') || {};
-
-                    if (myObject.favourite && myObject.favourite[selectedProductId]) {
-                        // Товар уже в избранном, удаляем его
-                        delete myObject.favourite[selectedProductId];
-                        heartImg.src = '/files/images/other/heart_notfill.png';
-
-                        var productItem = event.target.closest('.product_item');
-                        productItem.remove();
-                    } else {
-                        // Товар не в избранном, добавляем его
-                        if (!myObject.favourite) {
-                            myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
-                        }
-                        myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
-                        heartImg.src = '/files/images/other/heart_fill.png';
-                    }
-
-                    // Записываем обновленный объект обратно в куки
-                    Cookies.set('userInfo', myObject);
-
-                  }
-              }               
-              else if (event.target.classList.contains('product_item_btn')) {
-                event.preventDefault(); // Предотвращаем переход по ссылке
-                  event.stopPropagation(); // Останавливаем всплытие события
-
-
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductIdCart = event.currentTarget.dataset.productId;
-
-                  // Проверяем, вошел ли пользователь
-                  var currentUser = localStorage.getItem('currentUser');
-
-                  if (currentUser) {
-                      // Получаем ссылку на базу данных для избранного пользователя
-                      var userCartRef = database.ref('accounts/' + currentUser + '/cart');
-
-                      // Проверяем, есть ли уже такой товар в избранном
-                      userCartRef.child(selectedProductIdCart).once('value')
-                          .then(function(snapshot) {
-                            userCartRef.child(selectedProductIdCart).set("1");
-                          })
-                          .catch(function(error) {
-                              console.error("Error checking user favorites: ", error);
-                          });
-
-                  } else {
-                      // Получаем текущее значение объекта из куки
-                      var myObject = Cookies.getJSON('userInfo');
-                      
-                      // Проверяем, есть ли уже объект в куки
-                      if (!myObject) {
-                          myObject = {}; // Если объекта нет, создаем пустой объект
-                      }
-                      
-                      // Проверяем, есть ли уже объект "cart" в объекте myObject
-                      if (!myObject.cart) {
-                          myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
-                      }
-                       // Добавляем товар в корзину
-                      var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
-                      myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
-
-                      Cookies.set('userInfo', myObject);
-
-                  } 
-              }        
-              else {
-                event.preventDefault();
-
-                // Получаем ID продукта из атрибута data-product-id
-                var selectedProductId = event.currentTarget.dataset.productId;
-
-                // Сохраняем ID продукта в локальное хранилище
-                localStorage.setItem('selectedProductId', selectedProductId);
-
-                // Переадресация на страницу товара
-                window.location.href = '/files/html/item.html';                  
-              }
-            });            
-
-
-          // Добавляем карточку товара в блок избранных
-          document.querySelector('.favourite-list').appendChild(productItem);
-      }
-  
-      // Если пользователь вошел в систему, получаем список избранных товаров из базы данных
-      if (currentUser) {
-          userFavoritesRef.once('value')
-              .then(function (snapshot) {
-                  var favoriteProductIds = [];
-                  snapshot.forEach(function (childSnapshot) {
-                      favoriteProductIds.push(childSnapshot.key);
-                  });
-                  loadFavoriteProductsFromDatabase(favoriteProductIds);
-              })
-              .catch(function (error) {
-                  console.error("Error fetching user favorites: ", error);
-              });
-      } else {
-          // Если пользователь не вошел в систему, загружаем избранные товары из куки
-          var favoriteProductIds = Object.keys(favoriteProducts);
-          loadFavoriteProductsFromDatabase(favoriteProductIds);
-      }
-  
-      // Функция для загрузки данных избранных товаров из базы данных и создания карточек
-      function loadFavoriteProductsFromDatabase(productIds) {
-          prostavkiRef.once('value')
-              .then(function (snapshot) {
-                  snapshot.forEach(function (childSnapshot) {
-                      var productId = childSnapshot.key;
-                      if (productIds.includes(productId)) {
+              prostavkiRef.once('value')
+                  .then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
                           var prostavkaData = childSnapshot.val();
-                          var description = prostavkaData.description;
-                          var price = prostavkaData.price;
-                          var imageUrl = prostavkaData.images["1"];
-                          createProductCard(productId, description, price, imageUrl);
-                      }
+                          var productId = childSnapshot.key; // Получаем ID продукта
+                          if (historyProductIds.includes(productId)) {
+                              // Товар находится в списке истории покупок пользователя
+                              var description = prostavkaData.description;
+                              var price = prostavkaData.price;
+                              var imageUrl = prostavkaData.images["1"];
+
+                              var productItem = document.createElement('a');
+                              productItem.href = "";
+                              productItem.classList.add("product_item", "product-item-history");
+                              productItem.dataset.productId = productId;
+
+                              var productItemImg = document.createElement('div');
+                              productItemImg.classList.add("product_item_img");
+
+                              var productImg = document.createElement('img');
+                              productImg.classList.add("product_item_img_cont");
+                              productImg.src = imageUrl;
+                              productImg.alt = "";
+
+                              productItemImg.appendChild(productImg);
+
+                              var productItemDesc = document.createElement('div');
+                              productItemDesc.classList.add("product_item_desc");
+
+                              var descriptionParagraph = document.createElement('p');
+                              descriptionParagraph.textContent = description;
+
+                              var productItemPrice = document.createElement('div');
+                              productItemPrice.classList.add("product_item_price");
+                              productItemPrice.textContent = price + " руб/компл.";
+
+                              var buyImg = document.createElement('img');
+                              buyImg.src = "/files/images/other/buy.png";
+                              buyImg.alt = "";
+
+                              productItemDesc.appendChild(descriptionParagraph);
+                              productItemDesc.appendChild(productItemPrice);
+
+                              productItem.appendChild(productItemImg);
+                              productItem.appendChild(productItemDesc);
+
+                              productItem.addEventListener('click', function(event) {
+                                  event.preventDefault();
+                                  var selectedProductId = event.currentTarget.dataset.productId;
+                                  localStorage.setItem('selectedProductId', selectedProductId);
+                                  window.location.href = '/files/html/item.html';
+                              });
+
+                              productContainer.appendChild(productItem);
+                          }
+                      });
+                  })
+                  .catch(function(error) {
+                      console.error("Error fetching data: ", error);
                   });
-              })
-              .catch(function (error) {
-                  console.error("Error fetching data: ", error);
-              });
-      }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Корзина -->    
-  <script type = "module">
-    import { updateUserData, addOrder, addOrderUnlogin } from "../js/change-data.js";
-      
-    var currentUser = localStorage.getItem('currentUser');
-    var database = firebase.database();
-    var userCartRef = currentUser ? database.ref('accounts/' + currentUser + '/cart') : null;
-    var cartListContainer = document.querySelector('.section-cart__list');
-    
-    // Функция для обновления итоговой цены
-    function updateTotalPrice() {
-        var totalPrice = 0;
-        var productItems = document.querySelectorAll('.section-cart__product');
-    
-        productItems.forEach(function(productItem) {
-            var checkbox = productItem.querySelector('.cart-checkbox');
-            var quantity = parseInt(productItem.querySelector('.section-cart_product-counter').textContent);
-            var priceText = productItem.querySelector('.section-cart_product-price').textContent;
-            var price = parseFloat(priceText.replace(/[^\d.]/g, '')); // Извлекаем число из текста цены
-            price /= 100; // Преобразуем цену из копеек в рубли
-    
-            if (checkbox.checked) {
-                totalPrice += quantity * price;
-            }
-        });
-    
-        document.querySelector('.section-cart__confirm-total-cost').textContent = totalPrice.toFixed(2) + ' руб';
-    }
-
-    function updateMainCheckbox() {
-      var productCheckboxes = document.querySelectorAll('.cart-checkbox');
-      var mainCheckbox = document.getElementById('main-checkbox');
-      var allChecked = true;
-
-      productCheckboxes.forEach(function(checkbox) {
-          if (!checkbox.checked) {
-              allChecked = false;
-          }
-      });
-
-      mainCheckbox.checked = allChecked;
-    }
-
-    function addToFavorites(productId) {
-      if (currentUser) {
-        // Получаем ссылку на раздел избранного текущего пользователя
-        var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
-
-        // Проверяем, есть ли уже такой товар в избранном
-        userFavoritesRef.child(productId).once('value', function(snapshot) {
-          if (snapshot.exists()) {
-              alert("Этот товар уже добавлен в избранное.");
-          } else {
-              // Добавляем товар в избранное
-              userFavoritesRef.child(productId).set("1", function(error) {
-                  if (error) {
-                      console.error("Error adding to favorites: ", error);
-                  } else {
-                      alert("Товар успешно добавлен в избранное.");
-                  }
-              });
-          }
-        });
-      }
-      else{
-        var myObject = Cookies.getJSON('userInfo') || {};
-        myObject.favourite = myObject.favourite || {}; // Инициализируем favourite как объект, если он не существует
-        myObject.favourite[productId] = 1; // Устанавливаем товар в избранное
-        Cookies.set('userInfo', myObject);
-      }     
-    
-    }
-
-    function removeFromCart(productId) {
-    if (currentUser) {
-        // Получаем ссылку на раздел корзины текущего пользователя
-        var userCartRef = database.ref('accounts/' + currentUser + '/cart');
-
-        // Получаем элемент корзины по ID продукта
-        var cartProduct = document.querySelector('#' + productId).closest('.section-cart__product');
-
-        // Удаляем товар из корзины
-        userCartRef.child(productId).remove()
-            .then(function() {
-                alert("Товар успешно удален из корзины.");
-                // Удаление элемента из DOM
-                cartProduct.remove();
-                updateTotalPrice(); // Обновляем итоговую цену
-                updateMainCheckbox(); // Обновляем состояние главного чекбокса
-            })
-            .catch(function(error) {
-                console.error("Error removing from cart: ", error);
-            });
-    } else {
-        // Получаем текущее значение объекта из куки
-        var myObject = Cookies.getJSON('userInfo') || {};
-        
-        // Проверяем, есть ли товар в корзине в куки
-        if (myObject.cart && myObject.cart[productId]) {
-            delete myObject.cart[productId]; // Удаляем товар из корзины в куки
-            Cookies.set('userInfo', myObject); // Обновляем куки
-            alert("Товар успешно удален из корзины.");
-            // Удаление элемента из DOM (если нужно)
-            var cartProduct = document.querySelector('#' + productId).closest('.section-cart__product');
-            if (cartProduct) {
-                cartProduct.remove();
-                updateTotalPrice(); // Обновляем итоговую цену
-                updateMainCheckbox(); // Обновляем состояние главного чекбокса
-            }
-        } else {
-            alert("Такого товара нет в корзине.");
-        }
-    }
-}
-
-    function getCartFromCookies() {
-      var userInfoCookie = Cookies.get('userInfo');
-      if (userInfoCookie) {
-          var userInfo = JSON.parse(userInfoCookie);
-          return userInfo.cart;
-      }
-      return {};
-    }
-
-    function loadCart(){
-      var cartData;
-      
-      if (currentUser) {
-          cartData = {}; // Если пользователь вошел в систему, начальные данные корзины будут пустыми
-          userCartRef.once('value')
-              .then(function(snapshot) {
-                  snapshot.forEach(function(childSnapshot) {
-                      var productId = childSnapshot.key;
-                      var quantity = childSnapshot.val();
-                      cartData[productId] = quantity;
-                  });
-                  displayCart(cartData); // Отображаем корзину на странице
-              })
-              .catch(function(error) {
-                  console.error("Error fetching cart data: ", error);
-              });
-      } else {
-          // Если пользователь не вошел в систему, загружаем корзину из куков
-          cartData = getCartFromCookies();
-          displayCart(cartData); // Отображаем корзину на странице
-      }
-    }
-
-    function displayCart(cartData) {
-    // Очищаем контейнер корзины перед добавлением товаров
-
-    // Перебираем каждый элемент корзины
-    Object.keys(cartData).forEach(function(productId) {
-        var quantity = cartData[productId]; // Получаем количество товара
-
-        // Получаем данные о продукте из базы данных
-        var productRef = database.ref('prostavki/' + productId);
-        productRef.once('value')
-            .then(function(productSnapshot) {
-                var productData = productSnapshot.val();
-                var productID = productData.id; // Получаем значение поля id из данных узла продукта
-
-                // Создаем элемент корзины
-                var cartProduct = document.createElement('div');
-                cartProduct.classList.add('section-cart__product');
-
-                // Создаем чекбокс для товара
-                var checkboxContainer = document.createElement('label');
-                checkboxContainer.classList.add('checkbox-container');
-                var checkboxInput = document.createElement('input');
-                checkboxInput.type = 'checkbox';
-                checkboxInput.id = productId; // Используем ID продукта как ID чекбокса
-                checkboxInput.classList.add('cart-checkbox'); // Добавляем класс для чекбокса
-                var checkboxMark = document.createElement('div');
-                checkboxMark.classList.add('checkmark');
-                checkboxContainer.appendChild(checkboxInput);
-                checkboxContainer.appendChild(checkboxMark);
-                cartProduct.appendChild(checkboxContainer);
-
-                // Создаем контейнер для карточки товара
-                var productCardContainer = document.createElement('div');
-                productCardContainer.classList.add('section-cart_product-card');
-                cartProduct.appendChild(productCardContainer);
-
-                // Создаем контейнер для изображения товара
-                var productDescContainer = document.createElement('div');
-                productDescContainer.classList.add('section-cart_product-card-desc');
-                var productImageContainer = document.createElement('div');
-                productImageContainer.classList.add('section-cart_product-image');
-                var productImage = document.createElement('img');
-                productImage.src = productData.images["1"]; // Здесь будет URL изображения товара
-                productImage.alt = ''; // Здесь можно добавить альтернативный текст для изображения
-                productImageContainer.appendChild(productImage);
-                productDescContainer.appendChild(productImageContainer);
-
-                // Создаем контейнер для описания товара
-                var productDesc = document.createElement('div');
-                productDesc.classList.add('section-cart_product-desc');
-                var productDescTop = document.createElement('div');
-                productDescTop.classList.add('section-cart_product-desc-top');
-                productDescTop.textContent = productData.description; // Здесь будет описание товара
-                var productDescDown = document.createElement('div');
-                productDescDown.classList.add('section-cart_product-desc-down');
-                var productDescCode = document.createElement('div');
-                productDescCode.classList.add('section-cart_product-desc-code');
-                productDescCode.textContent = 'Код товара: ' + productID; // Здесь будет код товара из данных узла продукта
-                var productDescButtons = document.createElement('div');
-                productDescButtons.classList.add('section-cart_product-desc-buttons');
-                var productDescToFav = document.createElement('div');
-                productDescToFav.classList.add('section-cart_product-desc-to-fav');
-                productDescToFav.textContent = 'В избранное';
-                var productDescDelete = document.createElement('div');
-                productDescDelete.classList.add('section-cart_product-desc-delete');
-                productDescDelete.textContent = 'Удалить';
-                productDescButtons.appendChild(productDescToFav);
-                productDescButtons.appendChild(productDescDelete);
-                productDescDown.appendChild(productDescCode);
-                productDescDown.appendChild(productDescButtons);
-                productDesc.appendChild(productDescTop);
-                productDesc.appendChild(productDescDown);
-                productDescContainer.appendChild(productDesc);
-
-                // Добавляем обработчик события для кнопки "В избранное"
-                productDescToFav.addEventListener('click', function() {
-                    addToFavorites(productId); // Вызываем функцию добавления в избранное с идентификатором товара
-                });
-
-                productDescDelete.addEventListener('click', function() {
-                    removeFromCart(productId);
-                });
-
-                // Добавляем контейнер описания товара в контейнер карточки товара
-                productCardContainer.appendChild(productDescContainer);
-
-                // Создаем контейнер для счетчика товара
-                var productCountContainer = document.createElement('div');
-                productCountContainer.classList.add('section-cart_product-count');
-                var decreaseButton = document.createElement('img');
-                decreaseButton.classList.add('section-cart__btn-decrease'); // Добавляем класс для кнопки уменьшения
-                decreaseButton.src = '/files/images/other/-.png';
-                decreaseButton.alt = '';
-                var productCounter = document.createElement('span');
-                productCounter.classList.add('section-cart_product-counter');
-                productCounter.textContent = quantity; // Здесь будет количество товара
-                var increaseButton = document.createElement('img');
-                increaseButton.classList.add('section-cart__btn-increase'); // Добавляем класс для кнопки увеличения
-                increaseButton.src = '/files/images/other/+.png';
-                increaseButton.alt = '';
-                productCountContainer.appendChild(decreaseButton);
-                productCountContainer.appendChild(productCounter);
-                productCountContainer.appendChild(increaseButton);
-                productCardContainer.appendChild(productCountContainer);
-
-                // Обработчик для кнопки уменьшения счётчика товара
-                decreaseButton.addEventListener('click', function() {
-                    if (quantity > 0) {
-                        quantity--; // Уменьшаем количество товара
-                        productCounter.textContent = quantity; // Обновляем отображение количества товара на странице
-
-                        if (currentUser) {
-                            // Если пользователь авторизирован, обновляем количество товара в базе данных
-                            userCartRef.child(productId).set(quantity);
-                        } else {
-                            // Если пользователь не авторизирован, обновляем количество товара в куки
-                            var myObject = Cookies.getJSON('userInfo') || {};
-                            myObject.cart[productId] = quantity;
-                            Cookies.set('userInfo', myObject);
-                        }
-
-                        updateTotalPrice(); // Обновляем итоговую цену
-                    }
-                });
-
-                // Обработчик для кнопки увеличения счётчика товара
-                increaseButton.addEventListener('click', function() {
-                    quantity++; // Увеличиваем количество товара
-                    productCounter.textContent = quantity; // Обновляем отображение количества товара на странице
-
-                    if (currentUser) {
-                        // Если пользователь авторизирован, обновляем количество товара в базе данных
-                        userCartRef.child(productId).set(quantity);
-                    } else {
-                        // Если пользователь не авторизирован, обновляем количество товара в куки
-                        var myObject = Cookies.getJSON('userInfo') || {};
-                        myObject.cart[productId] = quantity;
-                        Cookies.set('userInfo', myObject);
-                    }
-
-                    updateTotalPrice(); // Обновляем итоговую цену
-                });
-
-                // Создаем контейнер для цены товара
-                var productPriceContainer = document.createElement('div');
-                productPriceContainer.classList.add('section-cart_product-price');
-                productPriceContainer.textContent = productData.price + " руб"; // Здесь будет цена товара
-                productCardContainer.appendChild(productPriceContainer);
-
-                // Добавляем товар в контейнер корзины
-                cartListContainer.appendChild(cartProduct);
-            })
-            .catch(function(error) {
-                console.error("Error fetching product data: ", error);
-            });
-    });
-}
-
-    // Обновление итоговой цены при загрузке страницы
-    updateTotalPrice();
-    
-    // Обработчик для главного чекбокса
-    var mainCheckbox = document.getElementById('main-checkbox');
-    mainCheckbox.addEventListener('change', function() {
-      var productCheckboxes = document.querySelectorAll('.cart-checkbox');
-      productCheckboxes.forEach(function(checkbox) {
-          checkbox.checked = mainCheckbox.checked;
-      });
-      updateTotalPrice(); // Обновляем итоговую цену
-    });  
-      
-    loadCart();
-    
-    document.addEventListener('change', function(event) {
-      if (event.target.classList.contains('cart-checkbox')) {
-          updateTotalPrice(); // Обновляем итоговую цену
-          updateMainCheckbox(); // Обновляем состояние главного чекбокса
-      }
-    });
-
-    document.querySelector(".section-cart__confirm-btn").addEventListener("click", function(){
-      let adres_cart = document.querySelector("#personal-data__adres").value;
-      let name_cart = document.querySelector("#personal-data__name_cart").value;
-      let surname_cart = document.querySelector("#personal-data__surname_cart").value;
-      let otch_cart = document.querySelector("#personal-data__otch_cart").value;
-      let mobile_cart = document.querySelector("#personal-data__tel_cart").value;
-      let mail_cart = document.querySelector("#personal-data__mail_cart").value;
-
-      let currentUser = localStorage.getItem('currentUser')
-
-      if (currentUser){
-        if(adres_cart != "" && name_cart != "" && mobile_cart != ""){
-          updateUserData();
-          addOrder()
-          alert("заказ оформлен");
-        } else{
-          alert("Заполните необходимые поля для ввода")
-        }
-      } 
-      else{
-        if(adres_cart != "" && name_cart != "" && mobile_cart != ""){          
-          // Получаем текущие данные о пользователе из куки
-          var existingUserData = Cookies.getJSON('userInfo') || {};
-          // Объединяем текущие данные с новыми данными
-          var userData = Object.assign(existingUserData, {
-              adres: adres_cart,
-              name: name_cart,
-              surname: surname_cart,
-              otch: otch_cart,
-              mobile: mobile_cart,
-              mail: mail_cart
+          }).catch(function(error) {
+              console.error("Error fetching history products: ", error);
           });
 
-          // Сохраняем обновленные данные о пользователе в куки
-          Cookies.set('userInfo', userData);
+          setRightElementsHistory();          
+      }
+    
+      async function setRightElementsHistory() {
+        try {
+          const dataListHist = await getHistoryProducts();
+          
+          let currentUser = localStorage.getItem('currentUser')
+          let histMessage = document.querySelector('.section-card-history__message');
+          let histMessageAlt = document.querySelector('.section-card-history__message_alternative');
+          let elementHist = document.querySelector('.product-item-history');
 
-          // Добавляем заказ для незалогиненного пользователя
-          addOrderUnlogin();
-        } else{
-          alert("Заполните необходимые поля для ввода")
+          if(currentUser){
+            if (dataListHist.length > 0) {
+              histMessageAlt.style.display = 'none'; 
+              histMessage.style.display = 'none'; 
+            } else {
+              document.querySelector('.history-product_tittle').style.display = 'none';
+              histMessage.style.display = 'flex';
+              histMessageAlt.style.display = "none";
+            }
+          } else {
+            histMessage.style.display = 'none'; 
+            histMessageAlt.style.display = "flex";
+            document.querySelector('.history-product_tittle').style.display = 'none';        
+          }          
+        } catch (error) {
+          console.error('Произошла ошибка:', error);
         }
-      }    
-    })
-  </script>
+      }
+
+
+
+
+
+
+
+
+      let isLoading = false;
+
+      showHistoryProducts();  
+      document.querySelector(".section-history").addEventListener("click", async function(){
+        if (!isLoading){
+          isLoading = true
+          showHistoryProducts();     
+          await new Promise(function(resolve){
+            setTimeout(resolve, 1000)
+          })
+          isLoading = false;
+        }
+        
+      })
+      
+    </script>
+
+    <!-- Избранные -->   
+    <script src="/files/js/favourite-list.js" type="module"></script>
+
+    <!-- Корзина -->    
+    <script src="/files/js/cart-list.js" type="module"></script>
+
+
+
 
 <!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
       <div class="product_item_img">
@@ -1445,107 +971,52 @@ showHistoryProducts();
 
     <script src="/files/js/dialog_set_photo.js" type="module"></script>
     <script src="/files/js/getUserInfo.js" type="module"></script>
+    <script src="/files/js/navbar-menu.js" type="module"></script>
 
 
     <script type="module">
       
-      // Получаем доступ к функции updateAllInfoProfile из другого модуля
-      import { updateAllInfoProfile, updateCartInfoProfile, getHistory, getFavorites  } from "../js/getUserInfo.js";
+      import { updateAllInfoProfile, getUserInform, updateCartInfoProfile, getHistory, getFavorites  } from "../js/getUserInfo.js";
+      import { showHistory, showFavorites, showInfoCard } from "../js/navbar-menu.js";
       
       
       document.addEventListener('DOMContentLoaded', function() {
+
+        var myObject = Cookies.getJSON('userInfo') || {};
+        myObject.favourite = myObject.favourite || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        Cookies.set('userInfo', myObject);
+
+
+
         let currentUser = localStorage.getItem('currentUser')
-      if (currentUser){
+        if (currentUser){
           updateAllInfoProfile();
           updateCartInfoProfile();
           
           showHistory();
           showFavorites();
+          showInfoCard();
 
-      } else {
+
+          document.querySelector('.user-info__container').style.display = 'flex';
+          document.querySelector('.section-card-user-data__message').style.display = 'none'; 
+        }
+        else {
           document.querySelector(".section-card-history__desc").textContent = "Для доступа к истории покупок войдите в аккаунт";
           showFavorites();
+
+
+          document.querySelector('.user-info__container').style.display = 'none';
+          document.querySelector('.section-card-user-data__message').style.display = 'flex'; 
         }
+
+
+        
       });
-
-
-      function showHistory(){
-        // alert(getHistory())
-        getHistory().then(function(firstImages) {
-          var historyItemsContainer = document.querySelector(".section-card-history__items");
-          if (Object.keys(firstImages).length === 0) {
-              document.querySelector(".section-card-history__desc").textContent = "Вы ещё ничего не купили";
-          } else {
-            var totalPurchases = Object.keys(firstImages).length;
-
-              document.querySelector(".section-card-history__desc").innerHTML = "Было куплено <b>" + totalPurchases+"</b> товара/ов";
-              // Создаем элементы <a> с изображениями
-              for (var productId in firstImages) {
-                var imageSrc = firstImages[productId];
-                var imageLink = document.createElement("a");
-                imageLink.classList.add("section-card-history__item");
-                //imageLink.href = ""; // Здесь можно добавить ссылку на страницу товара
-                var imageElement = document.createElement("img");
-                imageElement.src = imageSrc;
-                imageElement.classList.add("section-card-history__img-item")
-                imageElement.alt = ""; // Здесь можно добавить альтернативный текст для изображения
-                imageLink.appendChild(imageElement);
-                historyItemsContainer.appendChild(imageLink);
-              }
-          }
-          }).catch(function(error) {
-            console.error("Error fetching purchase history: ", error);
-          }
-        );
-      }
-
-      function showFavorites(){
-          getFavorites().then(function(firstImages) {
-              var favoritesItemsContainer = document.querySelector(".section-card-favourite__items");
-              if (Object.keys(firstImages).length === 0) {
-                  document.querySelector(".section-card-favourite__desc").textContent = "Вы ещё не добавили товары в избранное";
-              } else {
-                  // Очищаем контейнер избранных товаров перед добавлением новых
-                  favoritesItemsContainer.innerHTML = "";
-
-                  var totalFavorites = Object.keys(firstImages).length;
-
-                  document.querySelector(".section-card-favourite__desc").innerHTML = "Избрано <b>" + totalFavorites + "</b> товара/ов";
-                  
-                  // Создаем элементы <a> с изображениями
-                  for (var productId in firstImages) {
-                      var imageSrc = firstImages[productId];
-                      var imageLink = document.createElement("a");
-                      imageLink.classList.add("section-card-product__item");
-                      //imageLink.href = ""; // Здесь можно добавить ссылку на страницу товара
-                      var imageElement = document.createElement("img");
-                      imageElement.src = imageSrc;
-                      imageElement.classList.add("section-card-product__img-item")
-                      imageElement.alt = ""; // Здесь можно добавить альтернативный текст для изображения
-                      imageLink.appendChild(imageElement);
-                      favoritesItemsContainer.appendChild(imageLink);
-                  }
-              }
-          }).catch(function(error) {
-              console.error("Error fetching favorites: ", error);
-          });
-      }
-      
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
     </script>
+
 
 
 

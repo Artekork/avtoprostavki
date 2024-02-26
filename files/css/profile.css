@@ -1,25 +1,23 @@
 .main-content{
     padding-top: 35px;
-    max-width: 76%;
+    max-width: 77%;
     margin: 0 auto;
 }
 .main-content__list-of-sections{
     display: flex;
 }
 .list-elem{
-    background-color: #fff;
     padding: 5px 10px;
     text-align: center;
     border-radius: 10px;
-  font-family: 'ProximaNova_Regular';
+    font-family: 'ProximaNova_Regular';
+    text-wrap: nowrap;
+    transition: 0.5s ease;
 
 }
-.list-elem:not(:last-child){
-    margin-right: 10px;
-}
-.list-elem_selected{
-    background: linear-gradient(90deg, #8270f7 0%, #5B4ACE 100%);
-    color: white;
+.list-elem:hover{
+    /* background: linear-gradient(90deg, #8270f70c 0%, #5c4ace15 100%); */
+    background-color: #8270f71a;
 }
 
 .main-content__sections{
@@ -50,6 +48,72 @@
     object-fit: contain;
 }   
 
+
+
+.section-card-profile__button-exit, .section-card-profile__change-data{
+    display: none;
+}
+
+
+
+
+
+/* slider */
+.top-bar__navigation{
+    max-width: max-content;    
+}
+.top-bar__navigation ul{
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+}
+.top-bar__navigation ul li{
+    text-align: center;
+    list-style: none;
+    z-index: 2;    
+}
+.top-bar__navigation ul li.selected a {
+    color: #fff;
+}
+.top-bar__navigation ul li a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+    padding: 15px 0px;
+    display: block;
+    transition: .75s;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'ProximaNova_Regular';
+}
+
+.slider{
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    left: 0px;
+    background: linear-gradient(90deg, #8270f7 0%, #5B4ACE 100%);
+
+    border-radius: 10px;
+    z-index: 1;
+    transition: 0.5s ease;
+}
+.profile-content{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
 .section-card-product__item:not(:first-child){
     /* margin-left: -20px; */
 }
@@ -65,12 +129,14 @@
 .section-card-profile__info{
     display: flex;
     justify-content: left;
+    align-items: flex-start;
 }
 .section-card-profile__desc{
     margin-left: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 }
 .section-card-profile__user-info{
     display: flex;
@@ -107,9 +173,10 @@
     display: block;
 }
 
-.section-user-info{
+.user-info__container{
     display: flex;
     flex-direction: column;
+    gap: 30px;
 }
 .section-user-info__user-img{
     display: flex;
@@ -154,6 +221,7 @@
     margin-top: 10px;
     padding-left: 10px;
     border-radius: 15px;
+    
 }
 .section-user-info__apply-changes{
     width: 200px;
@@ -282,7 +350,7 @@
     margin-top: 15px;
 }
 
-.section-cart__product:not(:nth-child(2)){
+.section-cart__product:not(:nth-child(1)){
     margin-top: 30px;
 }
 .section-cart_product-card{
@@ -363,6 +431,7 @@
     border-radius: 17px;
     background: linear-gradient(224deg, #ECF2FF 0%, #F5F6F8 100%);
     padding: 10px 28px;
+    text-align: center
 }
 .order-adres__tittle, .order-payment__tittle{
     font-size: 24px;
@@ -403,26 +472,23 @@
 .section-cart__tittle{
     margin-bottom: 50px;
 }
+
+.personal-data__input-block{
+    width: max-content;
+}
+.personal-data__input-text{
+    display: flex;
+    justify-content: space-between;
+}
+.personal-data-input-text__alert{
+    display: none;
+    gap: 5px;
+    color: #FF2424;
+}
+
 .personal-data__input-adres{
     width: 600px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .radio-btn {
 	opacity: 0;
 	visibility: hidden;
@@ -477,4 +543,36 @@
   height: 170px;
   max-height: 500px;
   font-size: 16px;
+}
+
+.section-card__message{
+    display: flex;
+    flex-direction: column;
+}
+.section-card-history__message{
+    display: flex;
+}
+.section-card-history__message_alternative{
+    display: none;
+}
+.section-message__tittle{
+    font-family: 'ProximaNova_SemiBold';
+    font-size: 48px;
+    margin-top: 50px;
+}
+.section-message__desc{
+    font-family: 'ProximaNova_Regular';
+    margin-top: 10px;
+    font-size: 20px;
+}
+.section-message__btn{
+    font-family: 'ProximaNova_SemiBold';
+    font-size: 16px;
+    background: linear-gradient(90deg, #8270f7 0%, #5B4ACE 100%);
+    padding: 15px 75px;
+    text-align: center;
+    max-width: fit-content;
+    border-radius: 15px;
+    color: white;
+    margin-top: 15px;
 }

@@ -7,6 +7,8 @@ document.querySelector('.section-user-info__apply-changes').addEventListener('cl
     updateUserData();
 });
 
+
+
 function getUserDataFromInput(){
     let name = document.querySelector('#personal-data__name').value.trim();
     let surname = document.querySelector('#personal-data__surname').value.trim();
@@ -14,6 +16,10 @@ function getUserDataFromInput(){
     let tel = document.querySelector('#personal-data__tel').value.trim();
     let email = document.querySelector('#personal-data__mail').value.trim();
     let adres = document.querySelector('#personal-data__adres').value.trim();
+
+
+
+
 
     let userData = {};
 
@@ -29,10 +35,10 @@ function getUserDataFromInput(){
         userData.otchestvo = otch;
     }
 
-    if (tel !== "") {
+    if (tel.replace(/\D/g, '').length == 12) {
         userData.mobile = tel;
-    }
-
+    } 
+    
     if (email !== "") {
         userData.email = email;
     }
@@ -48,7 +54,33 @@ function getUserDataFromInput(){
     return userData
 }
 
+
+
+
+
+document.getElementById('personal-data__tel').addEventListener('focus', function(){
+    // Маска для ввода телефона
+    var element = document.getElementById('personal-data__tel');
+    var maskOptions = {
+        mask: '+375 (00) 000-00-00',
+        lazy: false,
+        overwrite: true,
+        oncomplete: function () {
+            element.setCustomValidity('');
+        },
+        onincomplete: function () {
+            element.setCustomValidity('Введите корректный телефон');
+        },
+        oncleared: function () {
+            element.setCustomValidity('');
+        }
+    };
+    var mask = new IMask(element, maskOptions);
+}) 
+
 function updateUserData(){
+
+
     let userData = getUserDataFromInput();
 
     let currentUser = localStorage.getItem('currentUser')

@@ -250,9 +250,301 @@
 <div class="button6 button">
     Кнопка6
 </div>
-   <div class="text_block">
-    asd
-   </div>
+<div class="text_block">
+asd
+</div>
+
+<div class="navigation">
+    <ul>
+        <li class="list-elem section-profile selected" ><a href="#">Профиль</a></li>
+        <li class="list-elem section-history"><a href="#">Покупки</a></li>
+        <li class="list-elem section-favourite"><a href="#">Избранное</a></li>
+        <li class="list-elem section-user-info"><a href="#">Личные данные</a></li>
+        <li class="list-elem section-cart"><a href="#">Корзина</a></li>
+        <span class="slider"></span>
+    </ul>
+</div>
+
+<div class="main-content__sections profile_selected cart_selected favourite_selected user_selected history_selected">
+    <div id="section-profile-content" class="profile-content main-content__section section-profile">
+
+        <div class="section-profile__card section-card-profile__user-info">                            
+            <div class="section-card-profile__info">
+                <img class="user_pic user_pic_section" src="/files/images/other/user.png" alt="">
+                <div class="section-card-profile__desc">
+                    <div class="section-card-profile__name user-fullname">Пользователь</div>
+                    <div class="section-card-profile__phone user-phone"> Для доступа к личным данным войдите в аккаунт</div>
+                </div>
+            </div>
+            <div class="section-card-profile__buttons">
+                <p class="section-card-profile__button section-card-profile__button-exit user-card__exit">Выйти</p>
+                <p class="section-card-profile__button section-card-profile__change-data">Изменить данные</p>
+            </div>
+        </div>
+
+
+        <div class="section-profile__card section-card-profile__history">                            
+            <div class="section-card-history__tittle">
+                История покупок 
+            </div>
+
+
+            <div class="section-card-history__desc">aboba</div>
+            <div class="section-card-history__items">
+                <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
+            </div>
+        </div>
+
+        <div class="section-profile__card section-card-profile__favourite">                            
+            <div class="section-card-favourite__tittle">
+                Избранные  
+            </div>
+            <div class="section-card-favourite__desc">Товары доступные к покупке</div>
+            <div class="section-card-favourite__items">
+                <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
+                <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
+            </div>
+        </div>
+    </div>    
+
+    <div id="section-history-content" class="profile-content main-content__section section-history">
+
+        <h2 class="product_tittle section_tittle">История покупок</h2>
+        <div class="product_list history-list">            
+    
+        </div>
+
+    </div>
+
+    <div id="section-favourite-content" class="profile-content main-content__section section-favourite">
+        <h2 class="product_tittle section_tittle">Избранные товары</h2>
+        <div class="product_list favourite-list">            
+
+        </div>
+    </div>
+    
+    <div id="section-user-info-content" class="profile-content main-content__section section-user-info">
+        <h2 class="product_tittle section_tittle">Личные данные</h2>
+    
+        <div class="section-user-info__user-img">
+            <div class="user-info-img__img-cont">
+                <img class="user_pic user-info-img__img" src="/files/images/other/user.png" alt="">
+            </div>
+            <div class="user-info-img__buttons">
+                <label class="input-file">
+                    <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
+                    <div class="user-info-img__btn-load">Выберите фото</div>
+                </label>
+                <!-- <div class="user-info-img__btn-load">
+                    Загрузить своё фото
+                </div> -->
+                <div class="user-info-img__btn-delete">
+                    Удалить фото
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="section-user-info__personal-data">
+            
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Имя</div>  
+            <input class="personal-data__input" type="text" id="personal-data__name">
+          </div>
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Фамилия</div>  
+            <input class="personal-data__input" type="text" id="personal-data__surname">  
+          </div>                      
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Отчество</div>  
+            <input class="personal-data__input" type="text" id="personal-data__otch">  
+          </div>                      
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Телефон</div>  
+            <input class="personal-data__input" type="tel" id="personal-data__tel"> 
+          </div>                       
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Почта</div>  
+            <input disabled class="personal-data__input" type="email" id="personal-data__mail">   
+          </div>
+            
+        </div>
+        
+        <div class="section-user-info__apply-changes">
+            Сохранить изменения
+        </div>
+    
+    
+    </div>
+
+    <div id="section-cart-content" class="profile-content main-content__section section-cart">
+      <div class="section-cart__container">
+
+        <div class="section-cart__take-order">
+          <div class="section-cart__order">
+            <div class="section_tittle section-cart__tittle">
+              Оформление заказа
+            </div>
+
+            <div class="section-cart__list">  
+              <div class="section-cart__check-all">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="main-checkbox">
+                  <div class="checkmark"></div>
+                </label>  
+                Выбрать всё 
+               </div> <!--Это код оставь, выводи товары в класс "section-cart__product"  -->
+
+              <!-- <div class="section-cart__product">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="brand-1Volkswagen">
+                  <div class="checkmark"></div>
+                </label>  
+                <div class="section-cart_product-card">
+                  <div class="section-cart_product-card-desc">
+                    <div class="section-cart_product-image">
+                      <img src="/files/images/content/product-brand/product-bmw/1.png" alt="">
+                    </div>
+                    <div class="section-cart_product-desc">                                
+                      <div class="section-cart_product-desc-top">
+                        Проставки для увеличения дорожного просвета автомобиля
+                      </div>
+                      <div class="section-cart_product-desc-down">
+                        <div class="section-cart_product-desc-code">
+                          Код товара: 732
+                        </div>
+                        <div class="section-cart_product-desc-buttons">
+                          <div class="section-cart_product-desc-to-fav">
+                            В избранное
+                          </div>
+                          <div class="section-cart_product-desc-delete">
+                            Удалить
+                          </div>
+                        </div>                               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section-cart_product-count">
+                    <img class="section-cart__btn-decrease" src="/files/images/other/-.png" alt="">
+                    <span class="section-cart_product-counter">3</span>
+                    <img class="section-cart__btn-increase" src="/files/images/other/+.png" alt="">
+                  </div>
+                  <div class="section-cart_product-price">
+                    48,71 руб
+                  </div>
+                </div>                        
+              </div>    -->
+
+              
+              
+            </div>
+
+          </div>
+          <div class="section-cart__confirm-order">                        
+            <div class="section-cart__confirm-total">                                                 
+              <div class="section-cart__confirm-total-tittle">
+                Итого
+              </div>                       
+              <div class="section-cart__confirm-total-cost">
+                48,71 руб
+              </div>
+            </div>
+
+                                  
+            <div class="section-cart__confirm-order-adres">
+  
+              <div class="order-adres__tittle">
+                Адрес
+              </div>  
+              <div class="order-adres__location">
+                г. Минск, ул. Авроровская, д. 4
+              </div>  
+            </div>           
+            <div class="section-cart__confirm-order-payment">
+              <div class="order-payment__tittle">
+                Способ оплаты
+              </div>  
+              <div class="order-payment__method">
+                Наличными при получении
+              </div> 
+            </div>
+            <div class="section-cart__confirm-btn">     
+              Заказ подтверждаю                                            
+            </div>
+          </div>
+        </div>
+
+        <div class="section-cart__adres">
+          <h2 class="product_tittle section_tittle section-cart__tittle">Адрес доставки</h2>            
+      
+          <div class="personal-data__input-block">
+            <div class="personal-data__input-text">Адрес*</div>  
+            <input class="personal-data__input personal-data__input-adres" type="email" id="personal-data__adres">   
+          </div> 
+        </div>
+
+        <div class="section-cart__contact-data">
+          <h2 class="product_tittle section_tittle section-cart__tittle">Персональная информация</h2>
+  
+          <div class="section-user-info__personal-data">
+              
+            <div class="personal-data__input-block">
+              <div class="personal-data__input-text">Имя*</div>  
+              <input class="personal-data__input" type="text" id="personal-data__name_cart">
+            </div>
+            <div class="personal-data__input-block">
+              <div class="personal-data__input-text">Фамилия</div>  
+              <input class="personal-data__input" type="text" id="personal-data__surname_cart">  
+            </div>                      
+            <div class="personal-data__input-block">
+              <div class="personal-data__input-text">Отчество</div>  
+              <input class="personal-data__input" type="text" id="personal-data__otch_cart">  
+            </div>                      
+            <div class="personal-data__input-block">
+              <div class="personal-data__input-text">Телефон*</div>  
+              <input class="personal-data__input" type="tel" id="personal-data__tel_cart"> 
+            </div>                       
+            <div class="personal-data__input-block">
+              <div class="personal-data__input-text">Почта</div>  
+              <input disabled class="personal-data__input" type="email" id="personal-data__mail_cart">   
+            </div>
+              
+          </div>
+      
+      
+        </div>
+
+        <div class="section-cart__contact-data">
+          <h2 class="product_tittle section_tittle">Комментарий</h2>
+        
+          <div class="container222">
+            <ul class="list">
+              <li class="list__item">
+                <input checked type="radio" class="radio-btn" name="choice" id="a-opt" />
+                <label for="a-opt" class="cart-call-method">Обработать без звонка. Мы отправим вам подтверждение заказа с указанием даты и времени на ваш номер через Viber/SMS</label>
+              </li>
+              
+              <li class="list__item">
+                <input type="radio" class="radio-btn" name="choice" id="b-opt" />
+                <label for="b-opt" class="cart-call-method">Нужен звонок специалиста для уточнения деталей заказа</label>
+              </li>
+            </ul>
+
+            <textarea class="comment-cart" type="text" name="Comment"></textarea>
+
+          </div>
+
+
+        </div>
+        
+      </div>
+    </div>
+</div>
 
 
 
@@ -267,7 +559,6 @@
     <!-- <script src="/files/js/dialog_set_photo.js" type="module"></script> -->
     
     <script src="test.js"></script>
-
 
 </body>
 </html>

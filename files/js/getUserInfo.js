@@ -1,68 +1,76 @@
 function updateAllInfoProfile() {
 
-    getUserInform().then(userData => {
-        if (userData) {
-
-            if (userData.name) {
-                document.querySelector('#personal-data__name').placeholder = userData.name;
-                document.querySelectorAll('.user-fullname').forEach(function(elem) {
-                    elem.textContent  = userData.name;
-                });
+    if (getUserInform() != null){
+        getUserInform().then(userData => {
+            if (userData) {
+    
+                if (userData.name) {
+                    document.querySelector('#personal-data__name').placeholder = userData.name;
+                    document.querySelectorAll('.user-fullname').forEach(function(elem) {
+                        elem.textContent  = userData.name;
+                    });
+                }
+                if (userData.surname) {
+                    document.querySelector('#personal-data__surname').placeholder = userData.surname;
+                    document.querySelectorAll('.user-fullname').forEach(function(elem) {
+                        elem.textContent  += " "+userData.surname;
+                    });
+                }
+                if (userData.otchestvo) {
+                    document.querySelector('#personal-data__otch').placeholder = userData.otchestvo;
+                }
+                if (userData.mobile) {
+                    document.querySelector('#personal-data__tel').placeholder = userData.mobile;
+                    document.querySelectorAll('.user-phone').forEach(function(elem) {
+                        elem.textContent  = userData.mobile;
+                    });
+                }
+                if (userData.email) {
+                    document.querySelector('#personal-data__mail').placeholder = userData.email;
+                }
+                if (userData.profileImg) {
+                    document.querySelectorAll('.user_pic').forEach(function(elem) {
+                        elem.src = userData.profileImg;
+                    });
+                }
+    
+            } else {
+                console.log("Ошибка получения данных пользователя");
             }
-            if (userData.surname) {
-                document.querySelector('#personal-data__surname').placeholder = userData.surname;
-                document.querySelectorAll('.user-fullname').forEach(function(elem) {
-                    elem.textContent  += " "+userData.surname;
-                });
-            }
-            if (userData.otchestvo) {
-                document.querySelector('#personal-data__otch').placeholder = userData.otchestvo;
-            }
-            if (userData.mobile) {
-                document.querySelector('#personal-data__tel').placeholder = userData.mobile;
-                document.querySelectorAll('.user-phone').forEach(function(elem) {
-                    elem.textContent  = userData.mobile;
-                });
-            }
-            if (userData.email) {
-                document.querySelector('#personal-data__mail').placeholder = userData.email;
-            }
-            if (userData.profileImg) {
-                document.querySelectorAll('.user_pic').forEach(function(elem) {
-                    elem.src = userData.profileImg;
-                });
-            }
-
-        } else {
-            console.log("Ошибка получения данных пользователя");
-        }
-    });
+        });
+    } else {
+        console.log("getUserInform = null")
+    }
 }
 function updateCartInfoProfile() {
 
-    getUserInform().then(userData => {
-        if (userData) {
-
-            if (userData.name) {
-                document.querySelector('#personal-data__name_cart').value = userData.name;
+    if(getUserInform() != null){
+        getUserInform().then(userData => {
+            if (userData) {
+    
+                if (userData.name) {
+                    document.querySelector('#personal-data__name_cart').value = userData.name;
+                }
+                if (userData.surname) {
+                    document.querySelector('#personal-data__surname_cart').value = userData.surname;
+                }
+                if (userData.otchestvo) {
+                    document.querySelector('#personal-data__otch_cart').value = userData.otchestvo;
+                }
+                if (userData.mobile) {
+                    document.querySelector('#personal-data__tel_cart').value = userData.mobile;
+                }
+                if (userData.email) {
+                    document.querySelector('#personal-data__mail_cart').value = userData.email;
+                }
+    
+            } else {
+                console.log("Ошибка получения данных пользователя");
             }
-            if (userData.surname) {
-                document.querySelector('#personal-data__surname_cart').value = userData.surname;
-            }
-            if (userData.otchestvo) {
-                document.querySelector('#personal-data__otch_cart').value = userData.otchestvo;
-            }
-            if (userData.mobile) {
-                document.querySelector('#personal-data__tel_cart').value = userData.mobile;
-            }
-            if (userData.email) {
-                document.querySelector('#personal-data__mail_cart').value = userData.email;
-            }
-
-        } else {
-            console.log("Ошибка получения данных пользователя");
-        }
-    });
+        });
+    } else {
+        
+    }
 }
 
 function getUserInform() {
@@ -88,6 +96,8 @@ function getUserInform() {
         return null;
     }      
 }
+
+
 
 function getHistory() {
     return new Promise((resolve, reject) => {
@@ -155,6 +165,11 @@ function getFavorites() {
         } else {
             // Если пользователь не вошел, используем данные из куки
             var cookieData = Cookies.getJSON('userInfo');
+            if (!cookieData || !cookieData.favourite) {
+                // Если в куки нет данных об избранных товарах, создаем пустой объект и сохраняем его в куки
+                cookieData = { favourite: {} };
+                Cookies.set('userInfo', cookieData);
+            }
             if (cookieData && cookieData.favourite) {
                 // Если в куки есть данные об избранных товарах, создаем объект сразу
                 var firstImages = {};

@@ -1,5 +1,5 @@
 import { updateFavouritesList  } from "../js/favourite-list.js";
-import { updateCartList  } from "../js/cart-list.js";
+import { updateCartList, updateMainCheckbox  } from "../js/cart-list.js";
 // import { showHistoryProducts  } from "../js/purchase-history.js";
 import { updateAllInfoProfile, getUserInform, updateCartInfoProfile, getHistory, getFavorites  } from "../js/getUserInfo.js";
 
@@ -241,6 +241,23 @@ function showInfoCard(){
     }
 }
 
+function changeURL(URL){
+    let url = window.location.href;
+        let newUrl;
+
+        // Проверяем, содержит ли URL уже параметр запроса
+        if (url.indexOf('?') !== -1) {
+            // Если есть параметр запроса, заменяем значение раздела на "cart"
+            newUrl = url.replace(/section=[^&]+/, `section=${URL}`);
+        } else {
+            // Если параметра запроса еще нет, добавляем его
+            newUrl = url + `?section=${URL}`;
+        }
+
+        // Обновляем URL без перенаправления на новую страницу
+        window.history.replaceState({}, '', newUrl);
+}
+
 let isLoading = false;
 
 document.querySelector(".section-profile").addEventListener("click", async function(){
@@ -249,15 +266,21 @@ document.querySelector(".section-profile").addEventListener("click", async funct
         showFavorites();
         showInfoCard();
         showHistory();
+        changeURL('profile')
         await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
         isLoading = false;
     }
+})
+
+document.querySelector(".section-history").addEventListener("click", async function(){
+    changeURL('history');    
 })
 
 document.querySelector(".section-favourite").addEventListener("click", async function(){
     if (!isLoading) {
         isLoading = true;
         updateFavouritesList();
+        changeURL('favourite')
         await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
         isLoading = false;
     }
@@ -268,6 +291,7 @@ document.querySelector(".section-user-info").addEventListener("click", async fun
         isLoading = true;
         updateAllInfoProfile();
         updateCartInfoProfile();
+        changeURL('user-info')
         await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
         isLoading = false;
     }
@@ -277,6 +301,8 @@ document.querySelector(".section-cart").addEventListener("click", async function
     if (!isLoading) {
         isLoading = true;
         updateCartList();
+        updateMainCheckbox();
+        changeURL('cart')
         await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
         isLoading = false;
     }

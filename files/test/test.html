@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="../css/common/sign.css">
     <link rel="stylesheet" href="../css/common/general.css">
     <link rel="stylesheet" href="/files/css/common/fonts.css">
+
+    
+    <link rel="stylesheet" href="/files/css/elements/product_list.css">
+    <link rel="stylesheet" href="/files/css/index.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -17,7 +22,12 @@
     <link rel="stylesheet" href="test.css">
     <link rel="stylesheet" href="/files/css/profile.css">
 
+
+    
+    <!-- Cookies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+
 </head>
 <body class = "">
 
@@ -232,7 +242,7 @@
 
 </div> -->
 
-<div class="button1 button">
+<!-- <div class="button1 button">
     Записать
 </div>
 <div class="button2 button">
@@ -263,8 +273,8 @@ asd
         <li class="list-elem section-cart"><a href="#">Корзина</a></li>
         <span class="slider"></span>
     </ul>
-</div>
-
+</div> -->
+<!-- 
 <div class="main-content__sections profile_selected cart_selected favourite_selected user_selected history_selected">
     <div id="section-profile-content" class="profile-content main-content__section section-profile">
 
@@ -291,11 +301,6 @@ asd
 
             <div class="section-card-history__desc">aboba</div>
             <div class="section-card-history__items">
-                <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/jarin.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/leha.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
             </div>
         </div>
 
@@ -305,9 +310,6 @@ asd
             </div>
             <div class="section-card-favourite__desc">Товары доступные к покупке</div>
             <div class="section-card-favourite__items">
-                <!-- <a class="section-card-product__item"><img src="/files/images/test/danya.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/nova.png" alt=""></a>
-                <a class="section-card-product__item"><img src="/files/images/test/senya.png" alt=""></a> -->
             </div>
         </div>
     </div>    
@@ -340,9 +342,6 @@ asd
                     <input type="file" style="display:none;" name="image" id="image-input" accept="image/*">	
                     <div class="user-info-img__btn-load">Выберите фото</div>
                 </label>
-                <!-- <div class="user-info-img__btn-load">
-                    Загрузить своё фото
-                </div> -->
                 <div class="user-info-img__btn-delete">
                     Удалить фото
                 </div>
@@ -398,49 +397,7 @@ asd
                   <div class="checkmark"></div>
                 </label>  
                 Выбрать всё 
-               </div> <!--Это код оставь, выводи товары в класс "section-cart__product"  -->
-
-              <!-- <div class="section-cart__product">
-                <label class="checkbox-container">
-                  <input type="checkbox" id="brand-1Volkswagen">
-                  <div class="checkmark"></div>
-                </label>  
-                <div class="section-cart_product-card">
-                  <div class="section-cart_product-card-desc">
-                    <div class="section-cart_product-image">
-                      <img src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                    </div>
-                    <div class="section-cart_product-desc">                                
-                      <div class="section-cart_product-desc-top">
-                        Проставки для увеличения дорожного просвета автомобиля
-                      </div>
-                      <div class="section-cart_product-desc-down">
-                        <div class="section-cart_product-desc-code">
-                          Код товара: 732
-                        </div>
-                        <div class="section-cart_product-desc-buttons">
-                          <div class="section-cart_product-desc-to-fav">
-                            В избранное
-                          </div>
-                          <div class="section-cart_product-desc-delete">
-                            Удалить
-                          </div>
-                        </div>                               
-                      </div>
-                    </div>
-                  </div>
-                  <div class="section-cart_product-count">
-                    <img class="section-cart__btn-decrease" src="/files/images/other/-.png" alt="">
-                    <span class="section-cart_product-counter">3</span>
-                    <img class="section-cart__btn-increase" src="/files/images/other/+.png" alt="">
-                  </div>
-                  <div class="section-cart_product-price">
-                    48,71 руб
-                  </div>
-                </div>                        
-              </div>    -->
-
-              
+               </div> 
               
             </div>
 
@@ -544,21 +501,61 @@ asd
         
       </div>
     </div>
-</div>
+</div> -->
+
+
+
+
 
 
 
 
 
     
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js"></script>
 
     <!-- <script src="/files/js/firebase/sign-in-up.js" type="module"></script> -->
     
     
     <!-- <script src="/files/js/dialog_set_photo.js" type="module"></script> -->
     
-    <script src="test.js"></script>
+    <script src="test.js" type="module"></script>
+
+    <div class="filter__fields">
+        <select name="Brands" id="brand-select">
+            <option value="0">--Выберите марку автомобиля--</option>
+          </select>
+      
+          
+          <select name="Cars" id="car-select">
+            <option value="0">--Выберите модель автомобиля--</option>
+          </select>
+      
+          
+          <select name="Year" id="year-select">
+            <option value="0">--Выберите год авто--</option>
+          </select>
+    </div>
+
+
+    <section class="product">
+        <h2 class="product_tittle section_tittle">Автопроставки</h2>
+        <div class="product_list">
+        </div>
+        <a href="/files/html/items.html" class="product_note section_note">
+          Список всех товаров <img src="/files/images/other/shortarrow.png" alt="">
+        </a>
+    </section>
+ 
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+    
+    <!-- Prostavki -->    
+    <script>
+           
+    </script> 
+    
 
 </body>
 </html>

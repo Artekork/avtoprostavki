@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="/files/css/common/general.css">
 
     <link rel="stylesheet" href="/files/css/items.css">
+
+     <!-- Cookies -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+ 
   </head>
   <body>
     <div class="overlay"></div>
@@ -119,10 +124,28 @@
           Автопроставки
         </section>
 
+        
+
         <div class="product-list">
 
           <div class="product-list__tittle">
-            <p class="product-list__tittle-text">Автопроставки</p>
+            <!-- <p class="product-list__tittle-text">Автопроставки</p> -->
+
+            <div class="filter__fields">
+
+              <select name="Brands" id="brand-select" class="drop_list_filter">
+                <option value="0">--Выберите марку автомобиля--</option>
+              </select>      
+              
+              <select name="Cars" id="car-select" class="drop_list_filter">
+                <option value="0">--Выберите модель автомобиля--</option>
+              </select>      
+              
+              <select name="Year" id="year-select" class="drop_list_filter">
+                <option value="0">--Выберите год авто--</option>
+              </select>
+    
+            </div>  
 
             <div class="product-list__tittle-sort">
               <div class="tittle-sort__text">
@@ -138,7 +161,7 @@
           </div>
 
           <section class="product-list__list">
-            <div class="product-list__filter">
+            <!-- <div class="product-list__filter">    productFilter/js - 746
               <div class="filter__tittle">
                 Производитель
               </div>
@@ -354,14 +377,14 @@
               <button class="apply-filter">Применить</button>
 
               
-            </div>
+            </div> -->
 
 
             <div class="product-list__container">
 
               <div class="product_list">
                 
-                <a href="/files/html/item.html" class="product_item">
+                <!-- <a href="/files/html/item.html" class="product_item">
                   <div class="product_item_img">
                     <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
                     <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
@@ -375,190 +398,19 @@
                       </div>
                     </div>
                   </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял ляf.,j dflkg fdgjldfj gdf gjldfgj лялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 руб
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                
-                <a href="/files/html/item.html" class="product_item">
-                  <div class="product_item_img">
-                    <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
-                    <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
-                  </div>
-                  <div class="product_item_desc">
-                    <p>Проставки для увеличения дорожного просвета автомобилялял ялялял лялялялялялялялял</p>
-                    <div class="product_item_price">
-                      45.49 р.
-                      <div class="product_item_btn">
-                        <img src="/files/images/other/buy.png" alt=""> В корзину
-                      </div>
-                    </div>
-                  </div>
-                </a>           
-              
+                </a> -->
                 
                 
               </div>   
               
               
               <section class="switch-pages">
+                <div class="switch-pages__btn">
+                  Показать ещё <img src="/files/images/other/arrow.svg" alt="">
+                </div>
+              </section>
+              
+              <!-- <section class="switch-pages">
                 <div class="switch-pages__btn">
                   Следующая страница <img src="/files/images/other/arrow.svg" alt="">
                 </div>
@@ -576,7 +428,7 @@
                     Перейти
                   </div>
                 </div>
-              </section>
+              </section> -->
             </div>
           </section>
 
@@ -630,13 +482,16 @@
     </div>
 
     <!------------------- Scripts ------------------->  
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
 
     <!-------- Dialog call window -------->  
     <script src="https://unpkg.com/imask"></script>
     <script src="/files/js/dialog_call.js"></script>
 
     <!-------- Filter -------->  
-    <script src="/files/js/filter.js"></script>
+    <script src="/files/js/productFilter.js" type = "module"></script>
 
 
     

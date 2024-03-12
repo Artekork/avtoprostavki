@@ -246,7 +246,7 @@ function loadFavoriteProductsFromDatabase(productIds) {
                         createProductCard(productId, description, price, imageUrl);
                     }
                 });
-                setRightElementsFavouriter(productIds);
+                setRightElementsFavourite(productIds);
                 resolve(); // Успешное завершение промиса
             })
             .catch(function(error) {
@@ -255,7 +255,7 @@ function loadFavoriteProductsFromDatabase(productIds) {
     });
 }
 
-function setRightElementsFavouriter(productIds) {
+function setRightElementsFavourite(productIds) {
     try {
         let favMessage = document.querySelector('.section-card-favourite__message');
         if (productIds.length > 0) {
@@ -268,7 +268,7 @@ function setRightElementsFavouriter(productIds) {
     } catch (error) {
       console.error('Произошла ошибка:', error);
     }
-  }
+}
 
 
 function updateFavouritesList(){

@@ -328,3 +328,45 @@
   width: 40px;
   height: 40px;
 }
+
+
+
+
+/* Стилизация общего вида выпадающего списка */
+.drop_list_filter {
+  padding: 10px; /* Добавляет внутренний отступ */
+  border: 0px solid #ccc; /* Добавляет границу */
+  border-radius: 10px; /* Добавляет скругленные углы */
+  background-color: #EAEAEA; /* Устанавливает цвет фона */
+  color: #000; /* Устанавливает цвет текста */
+  font-size: 16px; /* Устанавливает размер шрифта */
+
+}
+
+/* Стилизация опций списка */
+.drop_list_filter option {
+  background-color: #fff; /* Устанавливает цвет фона опций */
+  color: #333; /* Устанавливает цвет текста опций */
+  font-size: 16px; /* Устанавливает размер шрифта опций */
+  padding-top: 10px;
+  padding: 30px; 
+}
+
+/* Стилизация при наведении курсора на опции списка */
+.drop_list_filter option:hover {
+  background-color: #e0e0e0; /* Изменяет цвет фона при наведении */
+}
+.drop_list_filter option:hover {
+  background-color: #e0e0e0; /* Изменяет цвет фона при наведении */
+  color: #fff; /* Изменяет цвет текста при наведении */
+}
+
+/* Стилизация выбранной опции списка */
+.drop_list_filter option:checked {
+  font-weight: bold; /* Делает текст выбранной опции жирным */
+}
+
+.option_test{
+  color: red;
+  opacity: 0.5;
+}

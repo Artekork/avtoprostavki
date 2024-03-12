@@ -1,136 +1,3 @@
-// window.addEventListener('DOMContentLoaded', function() {
-    // this.document.querySelector('.burger-button').addEventListener('click', function(){
-    //     document.querySelector('.burger-panel').classList.toggle('burger-panel_is-active')
-    // })
-
-    // this.document.querySelector('.burger-panel__close-btn').addEventListener('click', function(){
-    //     document.querySelector('.burger-panel').classList.toggle('burger-panel_is-active')
-    //     consol.log('asd');
-    // })
-    // function testAlert() {
-    //     alert("Hello world!");  
-    // }
-// })
-
-// document.querySelector(".button1").addEventListener("click", function(){
-//     var myObject = { 
-//         name: "John", 
-//         age: 30 
-//     };
-//     Cookies.set('example', myObject);
-    
-// })
-
-// document.querySelector(".button2").addEventListener("click", function(){
-//     document.querySelector(".text_block").textContent = ""
-//     updateText();
-//     var retrievedObject = Cookies.getJSON('example');
-    
-// })
-
-// function updateText(){
-//     for (var key in retrievedObject) {
-//         if (retrievedObject.hasOwnProperty(key)) {
-//             document.querySelector(".text_block").innerHTML += key + ': ' + retrievedObject[key] + "<br>";
-//         }
-//       }
-// }
-
-
-// document.querySelector(".button3").addEventListener("click", function(){
-//     // Получаем текущее значение объекта из куки
-//     let myObject = Cookies.getJSON('example');
-        
-//     // Проверяем, есть ли уже объект в куки
-//     if (!myObject) {
-//         myObject = {}; // Если объекта нет, создаем пустой объект
-//     }
-
-//     // Добавляем новые данные к объекту
-//     myObject = {
-//         surname: "Karavay"
-//     };
-
-//     // Записываем обновленный объект обратно в куки
-//     Cookies.set('example', myObject);
-// })
-
-// document.querySelector(".button4").addEventListener("click", function(){
-//     // Получаем текущее значение объекта из куки
-//     var myObject = Cookies.getJSON('example');
-    
-//     // Проверяем, есть ли уже объект в куки
-//     if (!myObject) {
-//         myObject = {}; // Если объекта нет, создаем пустой объект
-//     }
-    
-//     // Проверяем, есть ли уже объект "cart" в объекте myObject
-//     if (!myObject.cart) {
-//         myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
-//     }
-    
-//     // Добавляем товар в корзину
-//     var productId = "prostavka117228"; // Замените "your_product_id" на реальный id товара
-//     myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
-//     myObject.test = "test"; // Если товара нет в корзине, устанавливаем его количество равным 1
-
-//     // Записываем обновленный объект обратно в куки
-//     Cookies.set('example', myObject);
-// })
-
-// document.querySelector(".button5").addEventListener("click", function(){
-//     // Получаем текущее значение объекта из куки
-//     var myObject = Cookies.getJSON('example');
-    
-//     // Проверяем, есть ли уже объект в куки
-//     if (!myObject || !myObject.cart) {
-//         return; // Если объекта или корзины нет, выходим из функции
-//     }    
-//     var productId = "prostavka117228"; // Замените "your_product_id" на реальный id товара
-    
-//     delete myObject.cart[productId];
-//     Cookies.set('example', myObject);
-    
-// })
-
-
-
-//test.js
-// document.querySelector(".button6").addEventListener("click", function() {
-//     let userMail = "vseparoli2228@gmail.com"; // Адрес электронной почты для отправки
-//     let userPass = "testPassword123"; // Пароль для отправки
-
-//     // Отправляем POST-запрос на сервер
-//     fetch('http://localhost:3000/send-verification-email', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ email: userMail, password: userPass }) // Передаем адрес электронной почты и пароль в теле запроса
-//     })
-//     .then(response => {
-//         if (response.ok) {
-//             // Если запрос выполнен успешно, вы можете обновить интерфейс или вывести сообщение об успехе
-//             console.log('Письмо с подтверждением отправлено');
-//         } else {
-//             console.error('Ошибка при отправке письма с подтверждением');
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Ошибка при отправке запроса:', error);
-//     });
-// });
-
-
-// fetch('http://localhost:3000/verify/' + token)
-// .then(response => response.json())
-// .then(data => {
-//     alert(data.message);
-// })
-// .catch(error => {
-//     console.error('Ошибка при подтверждении почты:', error);
-// });
-
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
@@ -657,7 +524,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 // Add default option
                 const defaultOption = document.createElement('option');
-                defaultOption.text = '--Выберите марку автомобиля--';
+                defaultOption.text = 'Марка автомобиля';
                 brandSelect.add(defaultOption);
 
                 // Add options for each brand
@@ -687,7 +554,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 // Add default option
                 const defaultOption = document.createElement('option');
-                defaultOption.text = '--Выберите модель автомобиля--';
+                defaultOption.text = 'Модель автомобиля';
                 carSelect.add(defaultOption);
 
                 // Add options for each model
@@ -717,7 +584,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 // Add default option
                 const defaultOption = document.createElement('option');
-                defaultOption.text = '--Выберите год авто--';
+                defaultOption.text = 'Год автомобиля';
                 yearSelect.add(defaultOption);
 
                 // Add options for each year
@@ -860,7 +727,7 @@ window.addEventListener('DOMContentLoaded', function() {
         yearSelect.innerHTML = ''; // Clear existing options
         // Add default option
         const defaultOption = document.createElement('option');
-        defaultOption.text = '--Выберите год авто--';
+        defaultOption.text = 'Год автомобиля';
         yearSelect.add(defaultOption);
     }
     // Function to clear car years dropdown
@@ -868,11 +735,40 @@ window.addEventListener('DOMContentLoaded', function() {
         carSelect.innerHTML = ''; // Clear existing options
         // Add default option
         const defaultOption = document.createElement('option');
-        defaultOption.text = '--Выберите модель автомобиля--';
+        defaultOption.text = 'Модель автомобиля';
         carSelect.add(defaultOption);
     }
+
+
+
+
+    // Фильтр брендов
+// document.querySelector('.filter-drop-list__tittle').addEventListener('click', function(){
+//     document.querySelector('.filter__drop-list').classList.toggle('filter__drop-list_active');
+//   })
+  
+  document.querySelector('.tittle-sort__by-price').addEventListener('click', function(){
+    if (this.classList.contains('tittle-sort__by-price_bottom-top')) {
+      this.classList.remove('tittle-sort__by-price_bottom-top');
+      this.classList.add('tittle-sort__by-price_top-bottom');
+    } else if (this.classList.contains('tittle-sort__by-price_top-bottom')) {
+      this.classList.remove('tittle-sort__by-price_top-bottom');
+      this.classList.add('tittle-sort__by-price_bottom-top');
+    } else {
+      this.classList.add('tittle-sort__by-price_bottom-top');
+    }
+  
+    document.querySelector('.tittle-sort__by-novelty').classList.remove('tittle-sort__by-novelty_active');
+  });
+  
+  document.querySelector('.tittle-sort__by-novelty').addEventListener('click', function(){
+    document.querySelector('.tittle-sort__by-price').classList.remove('tittle-sort__by-price_bottom-top', 'tittle-sort__by-price_top-bottom');
+  
+    this.classList.add('tittle-sort__by-novelty_active');
+  });
+
+
+  document.querySelector(".switch-pages__btn").addEventListener('click', function(){
+    alert(`number of lll${document.querySelector(".product_list").children.length}`)
+  })
 });
-
-
-
-

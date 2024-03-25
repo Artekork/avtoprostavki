@@ -210,3 +210,32 @@
   transform: rotateZ(0deg);
   filter: invert(39%) sepia(80%) saturate(2212%) hue-rotate(228deg) brightness(97%) contrast(94%);
 }
+
+
+
+@media (max-width: 430px) { 
+  
+
+  .header{
+    max-width: 100%;
+    margin: 0px;
+    padding: 15px 10px 0;
+  }
+  .header_tittle{
+    font-size: 16px;
+    margin: auto 10px;
+  }
+
+  .header_nav{
+    display: none;
+  }
+  .header-logo__img{
+    width: 30px;
+  }
+  .new_year_hat{
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    width: 30px;
+  }
+}

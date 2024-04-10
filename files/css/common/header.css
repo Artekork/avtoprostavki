@@ -127,6 +127,7 @@
   color: #939EB3;
   transition: .3s ease-in-out;
   width: max-content;
+  cursor: pointer;
 }
 .user-card__exit:hover{
   color: #7866F0;
@@ -158,15 +159,6 @@
 .user-card__li span{
 }
 
-
-
-
-
-
-
-
-
-
 .header_link{
   vertical-align: middle;
   display: flex;
@@ -175,6 +167,9 @@
   color: #000;
   font-size: 16px;
   font-family: 'ProximaNova_Regular';
+}
+.header_link:hover, .footer_customer_link:hover{
+  text-decoration: underline;
 }
 .header_nav_li:not(:first-child){
   margin-left: 55px;
@@ -211,21 +206,46 @@
   filter: invert(39%) sepia(80%) saturate(2212%) hue-rotate(228deg) brightness(97%) contrast(94%);
 }
 
-
+.bottom-nav{
+  position: sticky;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  height: 50px;
+  background: #F5F6F8;
+  z-index: 2;
+}
+.bottom-nav__container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  vertical-align: middle;
+}
+.bottom-nav__link-selected{
+  filter: invert(54%) sepia(37%) saturate(875%) hue-rotate(207deg) brightness(93%) contrast(91%);
+}
+.bottom-nav__link-img{
+  width: 22px;
+}
 
 @media (max-width: 430px) { 
   
 
   .header{
+    /* background: white;
+    position: sticky;
+    top: 0; */
     max-width: 100%;
     margin: 0px;
     padding: 15px 10px 0;
+    z-index: 1000;
   }
   .header_tittle{
     font-size: 16px;
     margin: auto 10px;
   }
-
   .header_nav{
     display: none;
   }
@@ -237,5 +257,9 @@
     top: -15px;
     left: 10px;
     width: 30px;
+  }
+
+  .bottom-nav{
+    display: block;
   }
 }

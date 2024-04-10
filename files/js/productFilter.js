@@ -1,6 +1,7 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+import { createToast } from "./notif.js";
 
 window.addEventListener('DOMContentLoaded', function() {
 
@@ -17,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    firebase.initializeApp(firebaseConfig);
+    // firebase.initializeApp(firebaseConfig);
     let database = firebase.database();
     let prostavkiRef = database.ref('prostavki');
 
@@ -51,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //                 // Создаем изображение для избранного
     //                 var heartImg = document.createElement('img');
     //                 heartImg.classList.add("product_item_img_tofavourite");
-    //                 heartImg.src = "/files/images/other/heart_notfill.png";
+    //                 heartImg.src = "/files/images/other/purple_heartNoFill.png";
     //                 heartImg.alt = "";
     
     //                 // Создаем изображение товара
@@ -129,11 +130,11 @@ window.addEventListener('DOMContentLoaded', function() {
     //                                     if (snapshot.exists()) {
     //                                         // Товар уже в избранном, удаляем его
     //                                         userFavoritesRef.child(selectedProductId).remove();
-    //                                         heartImg.src = '/files/images/other/heart_notfill.png';
+    //                                         heartImg.src = '/files/images/other/purple_heartNoFill.png';
     //                                     } else {
     //                                         // Товар не в избранном, добавляем его
     //                                         userFavoritesRef.child(selectedProductId).set("1");
-    //                                         heartImg.src = '/files/images/other/heart_fill.png';
+    //                                         heartImg.src = '/files/images/other/purple_heart.png';
     //                                     }
     //                                 })
     //                                 .catch(function(error) {
@@ -148,14 +149,14 @@ window.addEventListener('DOMContentLoaded', function() {
     //                             if (myObject.favourite && myObject.favourite[selectedProductId]) {
     //                                 // Товар уже в избранном, удаляем его
     //                                 delete myObject.favourite[selectedProductId];
-    //                                 heartImg.src = '/files/images/other/heart_notfill.png';
+    //                                 heartImg.src = '/files/images/other/purple_heartNoFill.png';
     //                             } else {
     //                                 // Товар не в избранном, добавляем его
     //                                 if (!myObject.favourite) {
     //                                     myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
     //                                 }
     //                                 myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
-    //                                 heartImg.src = '/files/images/other/heart_fill.png';
+    //                                 heartImg.src = '/files/images/other/purple_heart.png';
     //                             }
             
     //                             // Записываем обновленный объект обратно в куки
@@ -231,9 +232,9 @@ window.addEventListener('DOMContentLoaded', function() {
     //                     userFavoritesRef.child(productId).once('value')
     //                         .then(function(snapshot) {
     //                             if (snapshot.exists()) {
-    //                                 heartImg.src = '/files/images/other/heart_fill.png';
+    //                                 heartImg.src = '/files/images/other/purple_heart.png';
     //                             } else {
-    //                                 heartImg.src = '/files/images/other/heart_notfill.png';
+    //                                 heartImg.src = '/files/images/other/purple_heartNoFill.png';
     //                             }
     //                         })
     //                         .catch(function(error) {
@@ -246,10 +247,10 @@ window.addEventListener('DOMContentLoaded', function() {
                         
     //                     if (myObject.favourite && myObject.favourite[productId]) {
     //                         // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
-    //                         heartImg.src = '/files/images/other/heart_fill.png';
+    //                         heartImg.src = '/files/images/other/purple_heart.png';
     //                     } else {
     //                         // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
-    //                         heartImg.src = '/files/images/other/heart_notfill.png';
+    //                         heartImg.src = '/files/images/other/purple_heartNoFill.png';
     //                     }
     //                 }
     //                 productContainer.appendChild(productItem);
@@ -267,7 +268,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //     "prostavka1"
     // ]);
 
-    var countToShow = 1;
+    var countToShow = 4;
     var showMoreHandler;
     function showProducts(productsToShow) {
         let productContainer = document.querySelector('.product_list');
@@ -320,194 +321,222 @@ window.addEventListener('DOMContentLoaded', function() {
             .then(function(snapshot) {
                 var prostavkaData = snapshot.val();
                 var description = prostavkaData.description;
+                var productId = snapshot.key; // Получаем ID продукта
                 var price = prostavkaData.price;
                 var imageUrl = prostavkaData.images["1"];
-
+        
                 // Создаем элемент карточки
                 var productItem = document.createElement('a');
                 productItem.href = "";
-                productItem.classList.add("product_item", "product-item");
-                productItem.dataset.productId = productId;
-
+                productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+                productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+        
                 // Создаем элемент для изображения
                 var productItemImg = document.createElement('div');
                 productItemImg.classList.add("product_item_img");
-
+        
                 // Создаем изображение для избранного
                 var heartImg = document.createElement('img');
                 heartImg.classList.add("product_item_img_tofavourite");
-                heartImg.src = "/files/images/other/heart_notfill.png";
+                heartImg.src = "/files/images/other/purple_heartNoFill.png";
                 heartImg.alt = "";
-
+        
+                // Создаем изображение для избранного(mobileVer)
+                var heartImgMobile = document.createElement('img');
+                heartImgMobile.classList.add("product_item_img_tofavourite");
+                heartImgMobile.src = "/files/images/other/purple_heartNoFill.png";
+                heartImgMobile.alt = "";
+        
                 // Создаем изображение товара
                 var productImg = document.createElement('img');
                 productImg.classList.add("product_item_img_cont");
                 productImg.src = imageUrl;
                 productImg.alt = "";
-
+        
                 // Добавляем изображения в элемент карточки
                 productItemImg.appendChild(heartImg);
                 productItemImg.appendChild(productImg);
-
+        
                 // Создаем элемент описания
                 var productItemDesc = document.createElement('div');
                 productItemDesc.classList.add("product_item_desc");
-
+        
                 // Создаем параграф для описания
-                var descriptionParagraph = document.createElement('p');
-                descriptionParagraph.textContent = description;
-
+                var descriptionParagraph = document.createElement('div');
+                descriptionParagraph.classList.add("product_item_desc__text");
+        
+                var descriptionParagraphText = document.createElement('div');
+                descriptionParagraphText.classList.add("product_item_desc__text-desc");
+                descriptionParagraphText.textContent = description;
+  
+                descriptionParagraph.appendChild(descriptionParagraphText);
+                descriptionParagraph.appendChild(heartImgMobile);
+  
+  
+  
+  
+  
+  
+  
                 // Создаем элемент для цены
                 var productItemPrice = document.createElement('div');
                 productItemPrice.classList.add("product_item_price");
-                productItemPrice.textContent = price + " руб/ком.";
-
-                // Создаем элемент кнопки "Купить"
+        
+                // Добавляем цену
+                productItemPrice.textContent = price + " руб/к";
+        
+                // Создаем элемент кнопки
                 var productItemBtn = document.createElement('div');
                 productItemBtn.classList.add("product_item_btn");
-
+        
+                // Создаем изображение для кнопки
                 var buyImg = document.createElement('img');
                 buyImg.src = "/files/images/other/buy.png";
                 buyImg.alt = "";
-
+        
+                // Добавляем кнопку
                 productItemBtn.appendChild(buyImg);
                 productItemBtn.appendChild(document.createTextNode("Купить"));
-
-                // Добавляем обработчик события для кнопки "Купить"
-                productItemBtn.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    // Ваша логика для обработки нажатия на кнопку "Купить"
-                });
-
+        
                 // Добавляем элементы описания в элемент карточки
                 productItemDesc.appendChild(descriptionParagraph);
                 productItemDesc.appendChild(productItemPrice);
                 productItemPrice.appendChild(productItemBtn);
-
+        
                 // Добавляем изображения и описание в элемент карточки
                 productItem.appendChild(productItemImg);
                 productItem.appendChild(productItemDesc);
-
-                // Добавляем обработчик события для кнопки "Добавить в избранное"
+  
+  
+  
+  
                 productItem.addEventListener('click', function(event) {
-                    if (event.target.classList.contains('product_item_img_tofavourite')) {
-                        event.preventDefault(); // Предотвращаем переход по ссылке
-                        event.stopPropagation(); // Останавливаем всплытие события
-        
-                        // Меняем иконку сердечка
-                        var heartImg = event.target;
-        
-                        // Получаем ID продукта из атрибута data-product-id
-                        var selectedProductId = event.currentTarget.dataset.productId;
-        
-                        // Проверяем, вошел ли пользователь
-                        var currentUser = localStorage.getItem('currentUser');
-        
-                        if (currentUser) {
-                            // Получаем ссылку на базу данных для избранного пользователя
-                            var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
-        
-                            // Проверяем, есть ли уже такой товар в избранном
-                            userFavoritesRef.child(selectedProductId).once('value')
-                                .then(function(snapshot) {
-                                    if (snapshot.exists()) {
-                                        // Товар уже в избранном, удаляем его
-                                        userFavoritesRef.child(selectedProductId).remove();
-                                        heartImg.src = '/files/images/other/heart_notfill.png';
+                  if (event.target.classList.contains('product_item_img_tofavourite')) {
+                    event.preventDefault(); // Предотвращаем переход по ссылке
+                      event.stopPropagation(); // Останавливаем всплытие события
+  
+                      // Меняем иконку сердечка
+                      var heartImg = event.target;
+  
+                      // Получаем ID продукта из атрибута data-product-id
+                      var selectedProductId = event.currentTarget.dataset.productId;
+  
+                      // Проверяем, вошел ли пользователь
+                      var currentUser = localStorage.getItem('currentUser');
+  
+                      if (currentUser) {
+                          // Получаем ссылку на базу данных для избранного пользователя
+                          var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+  
+                          // Проверяем, есть ли уже такой товар в избранном
+                          userFavoritesRef.child(selectedProductId).once('value')
+                              .then(function(snapshot) {
+                                  if (snapshot.exists()) {
+                                      // Товар уже в избранном, удаляем его
+                                      userFavoritesRef.child(selectedProductId).remove();
+                                      heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                                      heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                                      createToast("success", "Товар удалён из избранного!");
                                     } else {
-                                        // Товар не в избранном, добавляем его
-                                        userFavoritesRef.child(selectedProductId).set("1");
-                                        heartImg.src = '/files/images/other/heart_fill.png';
+                                      // Товар не в избранном, добавляем его
+                                      userFavoritesRef.child(selectedProductId).set("1");
+                                      heartImg.src = '/files/images/other/purple_heart.png';
+                                      heartImgMobile.src = '/files/images/other/purple_heart.png';
+                                      createToast("success", "Товар добавлен в избранное!");
                                     }
-                                })
-                                .catch(function(error) {
-                                    console.error("Error checking user favorites: ", error);
-                                });
+                              })
+                              .catch(function(error) {
+                                  console.error("Error checking user favorites: ", error);
+                              });
+                      } 
+                      else {
+                        
+                        // Получаем текущее значение объекта из куки
+                        var myObject = Cookies.getJSON('userInfo') || {};
+  
+                        if (myObject.favourite && myObject.favourite[selectedProductId]) {
+                            // Товар уже в избранном, удаляем его
+                            delete myObject.favourite[selectedProductId];
+                            heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                            heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                            createToast("success", "Товар удалён из избранного!");
                         } 
                         else {
-                            
-                            // Получаем текущее значение объекта из куки
-                            var myObject = Cookies.getJSON('userInfo') || {};
-        
-                            if (myObject.favourite && myObject.favourite[selectedProductId]) {
-                                // Товар уже в избранном, удаляем его
-                                delete myObject.favourite[selectedProductId];
-                                heartImg.src = '/files/images/other/heart_notfill.png';
-                            } else {
-                                // Товар не в избранном, добавляем его
-                                if (!myObject.favourite) {
-                                    myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
-                                }
-                                myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
-                                heartImg.src = '/files/images/other/heart_fill.png';
-                            }
-        
-                            // Записываем обновленный объект обратно в куки
-                            Cookies.set('userInfo', myObject);
-        
+                          // Товар не в избранном, добавляем его
+                          if (!myObject.favourite) {
+                              myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
+                          }
+                          myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
+                          heartImg.src = '/files/images/other/purple_heart.png';
+                          heartImgMobile.src = '/files/images/other/purple_heart.png';
+                          createToast("success", "Товар добавлен в избранное!");
                         }
-                    }               
-                    else if (event.target.classList.contains('product_item_btn')) {
-                        event.preventDefault(); // Предотвращаем переход по ссылке
-                        event.stopPropagation(); // Останавливаем всплытие события
-        
-        
-                        // Получаем ID продукта из атрибута data-product-id
-                        var selectedProductIdCart = event.currentTarget.dataset.productId;
-        
-                        // Проверяем, вошел ли пользователь
-                        var currentUser = localStorage.getItem('currentUser');
-        
-                        if (currentUser) {
-                            // Получаем ссылку на базу данных для избранного пользователя
-                            var userCartRef = database.ref('accounts/' + currentUser + '/cart');
-        
-                            // Проверяем, есть ли уже такой товар в избранном
-                            userCartRef.child(selectedProductIdCart).once('value')
-                                .then(function(snapshot) {
-                                    userCartRef.child(selectedProductIdCart).set("1");
-                                })
-                                .catch(function(error) {
-                                    console.error("Error checking user favorites: ", error);
-                                });
-        
-                        } else {
-                            // Получаем текущее значение объекта из куки
-                            var myObject = Cookies.getJSON('userInfo');
-                            
-                            // Проверяем, есть ли уже объект в куки
-                            if (!myObject) {
-                                myObject = {}; // Если объекта нет, создаем пустой объект
-                            }
-                            
-                            // Проверяем, есть ли уже объект "cart" в объекте myObject
-                            if (!myObject.cart) {
-                                myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
-                            }
-                                // Добавляем товар в корзину
-                            var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
-                            myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
-        
-                            Cookies.set('userInfo', myObject);
-        
-                        } 
-                    }        
-                    else {
-                        event.preventDefault();
-        
-                        // Получаем ID продукта из атрибута data-product-id
-                        var selectedProductId = event.currentTarget.dataset.productId;
-        
-                        // Сохраняем ID продукта в локальное хранилище
-                        localStorage.setItem('selectedProductId', selectedProductId);
-        
-                        // Переадресация на страницу товара
-                        window.location.href = '/files/html/item.html';                  
-                    }
-                    }); 
-
-
+  
+                        // Записываем обновленный объект обратно в куки
+                        Cookies.set('userInfo', myObject);
+                      }
+                  }               
+                  else if (event.target.classList.contains('product_item_btn')) {
+                    event.preventDefault(); // Предотвращаем переход по ссылке
+                      event.stopPropagation(); // Останавливаем всплытие события
+  
+  
+                      // Получаем ID продукта из атрибута data-product-id
+                      var selectedProductIdCart = event.currentTarget.dataset.productId;
+  
+                      // Проверяем, вошел ли пользователь
+                      var currentUser = localStorage.getItem('currentUser');
+  
+                      if (currentUser) {
+                        // Получаем ссылку на базу данных для избранного пользователя
+                        var userCartRef = database.ref('accounts/' + currentUser + '/cart');
+  
+                        // Проверяем, есть ли уже такой товар в избранном
+                        userCartRef.child(selectedProductIdCart).once('value')
+                            .then(function(snapshot) {
+                              userCartRef.child(selectedProductIdCart).set("1");
+                              createToast("success", "Товар добавлен в корзину!");
+                            })
+                            .catch(function(error) {
+                                console.error("Error checking user favorites: ", error);
+                            });
+  
+                      } 
+                      else {
+                        // Получаем текущее значение объекта из куки
+                        var myObject = Cookies.getJSON('userInfo');
+                        
+                        // Проверяем, есть ли уже объект в куки
+                        if (!myObject) {
+                            myObject = {}; // Если объекта нет, создаем пустой объект
+                        }
+                        
+                        // Проверяем, есть ли уже объект "cart" в объекте myObject
+                        if (!myObject.cart) {
+                            myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
+                        }
+                        // Добавляем товар в корзину
+                        var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
+                        myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
+                        createToast("success", "Товар добавлен в корзину!");
+  
+                        Cookies.set('userInfo', myObject);
+                      } 
+                  }        
+                  else {
+                    event.preventDefault();
+  
+                    // Получаем ID продукта из атрибута data-product-id
+                    var selectedProductId = event.currentTarget.dataset.productId;
+  
+                    // Переадресация на страницу товара
+                    window.location.href = '/files/html/item.html?id=' + selectedProductId;                 
+                  }
+                });            
+  
+  
+  
+  
                 var currentUser = localStorage.getItem('currentUser');
                 // Проверяем, залогинен ли пользователь
                 if (currentUser) {
@@ -516,9 +545,11 @@ window.addEventListener('DOMContentLoaded', function() {
                     userFavoritesRef.child(productId).once('value')
                         .then(function(snapshot) {
                             if (snapshot.exists()) {
-                                heartImg.src = '/files/images/other/heart_fill.png';
+                                heartImg.src = '/files/images/other/purple_heart.png';
+                                heartImgMobile.src = '/files/images/other/purple_heart.png';
                             } else {
-                                heartImg.src = '/files/images/other/heart_notfill.png';
+                                heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                                heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
                             }
                         })
                         .catch(function(error) {
@@ -531,12 +562,16 @@ window.addEventListener('DOMContentLoaded', function() {
                     
                     if (myObject.favourite && myObject.favourite[productId]) {
                         // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
-                        heartImg.src = '/files/images/other/heart_fill.png';
+                        heartImg.src = '/files/images/other/purple_heart.png';
+                        heartImgMobile.src = '/files/images/other/purple_heart.png';
+  
                     } else {
                         // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
-                        heartImg.src = '/files/images/other/heart_notfill.png';
+                        heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                        heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
                     }
-                }
+                  }
+                // Добавляем элемент карточки в найденный контейнер
                 productContainer.appendChild(productItem);
             })
             .catch(function(error) {
@@ -595,7 +630,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 // Add default option
                 const defaultOption = document.createElement('option');
-                defaultOption.text = 'Модель автомобиля';
+                defaultOption.text = 'Выберите модель';
                 carSelect.add(defaultOption);
 
                 // Add options for each model
@@ -625,7 +660,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 // Add default option
                 const defaultOption = document.createElement('option');
-                defaultOption.text = 'Год автомобиля';
+                defaultOption.text = 'Выберите год';
                 yearSelect.add(defaultOption);
 
                 // Add options for each year
@@ -771,7 +806,7 @@ window.addEventListener('DOMContentLoaded', function() {
         yearSelect.innerHTML = ''; // Clear existing options
         // Add default option
         const defaultOption = document.createElement('option');
-        defaultOption.text = 'Год автомобиля';
+        defaultOption.text = 'Выберите год';
         yearSelect.add(defaultOption);
     }
     // Function to clear car years dropdown
@@ -779,7 +814,7 @@ window.addEventListener('DOMContentLoaded', function() {
         carSelect.innerHTML = ''; // Clear existing options
         // Add default option
         const defaultOption = document.createElement('option');
-        defaultOption.text = 'Модель автомобиля';
+        defaultOption.text = 'Выберите модель';
         carSelect.add(defaultOption);
     }
 
@@ -811,5 +846,35 @@ window.addEventListener('DOMContentLoaded', function() {
     this.classList.add('tittle-sort__by-novelty_active');
   });
 
+
+
+  this.document.querySelector('.product-list__btn-filter').addEventListener('click', function(){
+    let filter_menu = document.querySelector('.filter__fields')
+    let overlay = document.querySelector('.overlay')
+    let button_filter = document.querySelector('.product-list__btn')
+    
+    overlay.style.display = 'block'
+    
+    filter_menu.style.transform = 'translateX(0%)'
+
+    function closeOverlay() {
+        overlay.style.display = 'none'
+        filter_menu.style.transform = 'translateX(-100%)'
+        overlay.removeEventListener('click', closeOverlay)
+        button_filter.removeEventListener('click', closeOverlay)
+    }
+
+    overlay.addEventListener('click', closeOverlay)
+    button_filter.addEventListener('click', closeOverlay)
+  })
+
+  this.window.addEventListener('resize', function() {
+    if (window.innerWidth > 440) {
+        document.querySelector('.filter__fields').style.transform = 'translateX(0%)';
+    } else {
+        document.querySelector('.filter__fields').style.transform = 'translateX(-100%)';
+
+    }
+});
 
 });

@@ -18,6 +18,7 @@ main{
   display: flex;
   align-items: center;
   height: 50px;
+  cursor: pointer;
 }
 .item-tittle__arrow{
   transform: rotateY(180deg);
@@ -42,6 +43,8 @@ main{
   align-items: center;
   background-size: cover;
   background-position: center;
+
+  cursor: pointer;
 }
 .swiper-slide img {
   display: block;
@@ -115,6 +118,14 @@ main{
   padding: 10px;
   border-radius: 15px;
 }
+.contacts_info__btn-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contacts_info__btn-container_mobile{
+  display: none;
+}
 .common_button{
   display: flex;
   align-items: center;
@@ -126,12 +137,15 @@ main{
   padding: 15px 0px;
   border: 3px solid #7866F0;
   font-size: 16px;
+  width: 100%;
 
   transition: .3s;
+  cursor: pointer;
 }
 .common_button img{
   transition: .3s;
   padding-right: 10px;
+  width: 18px;
 }
 .favourite-btn{
   color: #7866F0;
@@ -258,4 +272,92 @@ main{
   right: -3px;
   left: -3px;
   bottom: -3px;
+}
+
+
+
+
+
+
+@media (max-width: 430px) { 
+  main{
+    margin: 15px 10px;
+  }
+  .item-tittle__go-back{
+    display: none;
+  }
+  .item-tittle__tittle{
+    font-size: 18px;
+  }
+
+  .item-description{
+    flex-direction: column;
+  }
+  
+  .swiper{
+    height: 70px;
+  }
+  .mySwiper2 {
+    height: 250px;
+  }
+  .mySwiper2 .swiper-slide img {
+    border-radius: 20px;
+  }
+  .item-description__slider {
+    height: auto;
+  }
+  .contacts_info_price {
+    font-size: 22px;
+    background: linear-gradient(80deg, #F5F6F8 0%, #ECF2FF 100%);
+  }
+  .contacts_info {
+    max-width: max-content;
+    min-width: 240px;
+    height: auto;
+    padding: 0px;
+    outline: none;    
+    border-radius: 20px;
+    margin-left: 0px;
+  }
+  .contacts_info__btn-container{
+    display: none;
+  }
+  .contacts_info__btn-container_mobile{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .common_button img {
+    transition: .3s;
+    padding-right: 10px;
+    width: 15px;
+  }
+
+  .common_button {
+    border-radius: 10px;
+    padding: 13px 0px;
+    font-size: 14px;
+  }
+  .contacts_info_desc{
+    margin-top: 20px;
+  }
+  .contacts_info_item:not(:first-child) {
+    padding-top: 10px;
+  }
+  .contacts_info__call-btn{
+    margin-top: 20px;
+  }
+
+  .item-text__tittle, .item-properties__tittle {
+    font-size: 18px;
+    padding-top: 20px;
+  }
+  .item-text__desc, .item-properties__desc {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  .item-text img {
+    width: 66%;
+  }
 }

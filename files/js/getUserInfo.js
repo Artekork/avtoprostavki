@@ -1,3 +1,6 @@
+import { createToast } from "./notif.js";
+
+
 function updateAllInfoProfile() {
 
     if (getUserInform() != null){
@@ -5,28 +8,40 @@ function updateAllInfoProfile() {
             if (userData) {
     
                 if (userData.name) {
-                    document.querySelector('#personal-data__name').placeholder = userData.name;
+                    if (document.querySelector('#personal-data__name')){
+                        document.querySelector('#personal-data__name').placeholder = userData.name;
+                    }
                     document.querySelectorAll('.user-fullname').forEach(function(elem) {
                         elem.textContent  = userData.name;
                     });
                 }
                 if (userData.surname) {
-                    document.querySelector('#personal-data__surname').placeholder = userData.surname;
+                    if(document.querySelector('#personal-data__surname')){
+                        document.querySelector('#personal-data__surname').placeholder = userData.surname;
+                        
+                    }
                     document.querySelectorAll('.user-fullname').forEach(function(elem) {
                         elem.textContent  += " "+userData.surname;
                     });
                 }
                 if (userData.otchestvo) {
-                    document.querySelector('#personal-data__otch').placeholder = userData.otchestvo;
+                    if(document.querySelector('#personal-data__otch')){
+                        document.querySelector('#personal-data__otch').placeholder = userData.otchestvo;
+                        
+                    }
                 }
                 if (userData.mobile) {
-                    document.querySelector('#personal-data__tel').placeholder = userData.mobile;
+                    if(document.querySelector('#personal-data__tel')){
+                        document.querySelector('#personal-data__tel').placeholder = userData.mobile;
+                    }
                     document.querySelectorAll('.user-phone').forEach(function(elem) {
                         elem.textContent  = userData.mobile;
                     });
                 }
                 if (userData.email) {
-                    document.querySelector('#personal-data__mail').placeholder = userData.email;
+                    if(document.querySelector('#personal-data__mail')){
+                        document.querySelector('#personal-data__mail').placeholder = userData.email; 
+                    }
                 }
                 if (userData.profileImg) {
                     document.querySelectorAll('.user_pic').forEach(function(elem) {
@@ -36,6 +51,8 @@ function updateAllInfoProfile() {
     
             } else {
                 console.log("Ошибка получения данных пользователя");
+                createToast("error", "Ошибка получения данных пользователя!");
+
             }
         });
     } else {
@@ -78,7 +95,7 @@ function getUserInform() {
     if (currentUser) {       
 
         var database = firebase.database();
-        var prostavkiRef = database.ref('accounts/' + currentUser);
+        let prostavkiRef = database.ref('accounts/' + currentUser);
 
         return prostavkiRef.once('value').then(function(snapshot) {
             if (snapshot.exists()) {
@@ -96,6 +113,7 @@ function getUserInform() {
         return null;
     }      
 }
+
 
 
 

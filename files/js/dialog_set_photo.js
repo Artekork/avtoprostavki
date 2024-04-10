@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getDatabase, ref as databaseRef, set, remove } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 import { getStorage, ref, ref as storageRef, deleteObject, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js";
+import { createToast } from "./notif.js";
 document.addEventListener("DOMContentLoaded", function () {
     // Конфигурация Firebase для вашего веб-приложения
     const firebaseConfig = {
@@ -20,22 +21,45 @@ document.addEventListener("DOMContentLoaded", function () {
     const database = getDatabase(app);
 
     $(document).ready(function() {
-        var preview = new Croppie($('#image-preview')[0], {
-          viewport: {
-            width:  300,
-            height: 300,
-            type: 'circle'
-          },
-          boundary: {
-            width: 350,
-            height: 350
-          },
-          enableResize: false,
-          enableOrientation: true,
-          enableExif: true,
-          slider: true, // Показывать ползунок масштабирования
-          sliderWidth: 20, // Устанавливаем ширину ползунка в 50 пикселей
-        });
+        
+
+        if (window.matchMedia("(max-width: 430px)").matches) {
+          var preview = new Croppie($('#image-preview')[0], {
+            viewport: {
+              width:  200,
+              height: 200,
+              type: 'circle'
+            },
+            boundary: {
+              width: 250,
+              height: 250
+            },
+            enableResize: false,
+            enableOrientation: true,
+            enableExif: true,
+            slider: true, // Показывать ползунок масштабирования
+            sliderWidth: 20, // Устанавливаем ширину ползунка в 50 пикселей
+          });
+        } else{
+          var preview = new Croppie($('#image-preview')[0], {
+            viewport: {
+              width:  300,
+              height: 300,
+              type: 'circle'
+            },
+            boundary: {
+              width: 350,
+              height: 350
+            },
+            enableResize: false,
+            enableOrientation: true,
+            enableExif: true,
+            slider: true, // Показывать ползунок масштабирования
+            sliderWidth: 20, // Устанавливаем ширину ползунка в 50 пикселей
+          });
+        }
+
+        
     
         $('#image-input').on('change', function(e) {
           var file = e.target.files[0];
@@ -77,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
               set(dbReference, downloadURL)
                 .then(() => {
                   // Успешно записали URL в базу данных
+                  createToast("success", "Фото изменено!");
+
                   console.log('URL успешно записан в базу данных');
                   dialog.close();
                   body.classList.remove('dialog-photo_opened');
@@ -87,10 +113,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => {
                   console.error('Ошибка записи в базу данных:', error);
-                });
+                  createToast("error", "Ошибка записи в базу данных!");
+            });
             })
             .catch(function(error) {
               console.error('Ошибка загрузки изображения:', error);
+              createToast("error", "Ошибка загрузки изображения!");
+
             });
         }
       });
@@ -135,9 +164,13 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteObject(storageReference)
           .then(() => {
               console.log('Изображение успешно удалено из хранилища');
+              createToast("success", "Изображение удалено!");
+
           })
           .catch((error) => {
               console.error('Ошибка при удалении изображения из хранилища:', error);
+              createToast("error", "Ошибка при удалении изображения");
+
           });
 
       // Удаляем ссылку на изображение из базы данных Firebase Realtime Database
@@ -150,8 +183,5 @@ document.addEventListener("DOMContentLoaded", function () {
               console.error('Ошибка при удалении ссылки на изображение из базы данных:', error);
           });
   });
-
-
-
 });
 

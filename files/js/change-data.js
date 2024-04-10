@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
 import { getDatabase, ref, set, get, update} from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+import { createToast } from "./notif.js";
 
 import { updateAllInfoProfile, getMainInfo} from "./getUserInfo.js";
 
@@ -48,8 +49,14 @@ function getUserDataFromInput(){
     }
 
     if (Object.keys(userData).length === 0) {
-        alert("Нет данных для обновления.");
+        createToast("error", "Нет данных для обновления!");
+
         return; // Не выполнять обновление, если нет данных для обновления
+    } else{
+        setTimeout(() => {
+            createToast("success", "Данные изменены!");
+        }, 1000);
+
     }
     return userData
 }
@@ -104,11 +111,134 @@ function updateUserData(){
 
         updateAllInfoProfile();
 
+
+
     }).catch(error => {
         console.error("Ошибка при записи в базу данных:", error);
+        createToast("error", "Ошибка при записи в базу данных!");
+
     });
 }
 
+
+
+function sendEmailOperatorOrder(orderData){
+        
+    fetch('/send-order-email-operator', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ order: orderData })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Ошибка при отправке запроса');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log(data); // Выводим сообщение об успешной отправке
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+}
+
+function sendEmailUserOrder(orderData, userGmail) {
+    const requestData = {
+        order: orderData,
+        userEmail: userGmail
+    };
+
+    fetch('/send-order-email-user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Ошибка при отправке запроса');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log(data); // Выводим сообщение об успешной отправке
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+}
+
+
+
+
+function addOrderUnlogin() {
+    const uniqueId = () => {
+        const dateString = Date.now().toString(36);
+        const randomness = Math.random().toString(36).substr(2);
+        return dateString + randomness;
+    };
+
+    // Получаем информацию о пользователе из куки
+    var userData = Cookies.getJSON('userInfo');
+
+    // Собираем выбранные товары и их количество из куки
+    let selectedProducts = {};
+        document.querySelectorAll('.cart-checkbox:checked').forEach(function(checkbox) {
+            let productId = checkbox.id;
+            let quantity = parseInt(checkbox.closest('.section-cart__product').querySelector('.section-cart_product-counter').textContent);
+            selectedProducts[productId] = quantity;
+        });
+        
+    // Подготавливаем информацию о заказе
+    let totalPrice = document.querySelector('.section-cart__confirm-total-cost').textContent
+    
+
+    
+    let productPrice= document.querySelector('.confirm-price__order-price_product').textContent;
+    // let deliveryPrice= document.querySelector('.confirm-price__order-price_delivery').textContent;
+    // let commissionPrice= document.querySelector('.confirm-price__order-price_commission').textContent;
+
+
+    
+    let payment_method = document.querySelector(".order-payment__method").textContent;
+    let delivery_method = document.querySelector(".order-delivery__method").textContent;
+
+    let orderData = {
+        date: new Date().toLocaleDateString('ru-RU'), // Дата заказа в формате дд.мм.гггг
+        payMethod: payment_method, 
+        delivery: delivery_method,
+        list: selectedProducts, // Выбранные товары и их количество
+        price: {
+            totalPrice,
+            productPrice
+            // deliveryPrice,
+            // commissionPrice
+        },
+        userData: userData // Данные пользователя из куки
+    };
+    
+
+    sendEmailOperatorOrder(orderData);
+    sendEmailUserOrder(orderData, mail_cart);
+
+
+    
+    // Путь к новому заказу
+    let pathToOrder = '/orders/' + uniqueId();
+
+    // Добавляем информацию о заказе в базу данных
+    firebase.database().ref(pathToOrder).set(orderData)
+        .then(function() {
+            console.log("Заказ успешно добавлен в базу данных.");
+        })
+        .catch(function(error) {
+            console.error("Ошибка при добавлении заказа в базу данных:", error);
+        });
+}
 function addOrder(){
     const uniqueId = () => {
         const dateString = Date.now().toString(36);
@@ -127,18 +257,52 @@ function addOrder(){
             selectedProducts[productId] = quantity;
         });
 
-        let price = document.querySelector('.section-cart__confirm-total-cost').textContent
+        let totalPrice = document.querySelector('.section-cart__confirm-total-cost').textContent
+        
+        let productPrice= document.querySelector('.confirm-price__order-price_product').textContent;
+        // let deliveryPrice= document.querySelector('.confirm-price__order-price_delivery').textContent;
+        // let commissionPrice= document.querySelector('.confirm-price__order-price_commission').textContent;
     
+        let adres_cart = document.querySelector("#personal-data__adres").value;
+        let name_cart = document.querySelector("#personal-data__name_cart").value;
+        let surname_cart = document.querySelector("#personal-data__surname_cart").value;
+        let otch_cart = document.querySelector("#personal-data__otch_cart").value;
+        let mobile_cart = document.querySelector("#personal-data__tel_cart").value;
+        let mail_cart = document.querySelector("#personal-data__mail_cart").value;
+
         // Подготавливаем информацию о заказе
+
+        
+    
+        let payment_method = document.querySelector(".order-payment__method").textContent;
+        let delivery_method = document.querySelector(".order-delivery__method").textContent;
+        
         let orderData = {
             date: new Date().toLocaleDateString('ru-RU'), // Дата заказа в формате дд.мм.гггг
             userId: currentUser,
-            payMethod: "cash", // Предполагаемый способ оплаты, можно изменить по вашему усмотрению
+            payMethod: payment_method, 
+            delivery: delivery_method,
             list: selectedProducts, // Выбранные товары и их количество
-            price: price,
-            userData: userData // Данные пользователя
+            price: {
+                totalPrice,
+                productPrice
+                // deliveryPrice,
+                // commissionPrice
+            },
+            // userData: userData, // Данные пользователя
+            userData: {
+                adres: adres_cart,
+                mobile: mobile_cart,
+                name: name_cart,
+                otchestvo: otch_cart,
+                surname: surname_cart,
+                email: mail_cart
+            } // Данные пользователя
         };
         
+        sendEmailOperatorOrder(orderData);
+        sendEmailUserOrder(orderData, mail_cart);
+
         // Путь к новому заказу
         let pathToOrder = '/orders/' + uniqueId();
     
@@ -173,48 +337,5 @@ function addOrder(){
             console.error("Ошибка при получении информации о пользователе: ", error);
         });
 }
-
-function addOrderUnlogin() {
-    const uniqueId = () => {
-        const dateString = Date.now().toString(36);
-        const randomness = Math.random().toString(36).substr(2);
-        return dateString + randomness;
-    };
-
-    // Получаем информацию о пользователе из куки
-    var userData = Cookies.getJSON('userInfo');
-
-    // Собираем выбранные товары и их количество из куки
-    let selectedProducts = {};
-        document.querySelectorAll('.cart-checkbox:checked').forEach(function(checkbox) {
-            let productId = checkbox.id;
-            let quantity = parseInt(checkbox.closest('.section-cart__product').querySelector('.section-cart_product-counter').textContent);
-            selectedProducts[productId] = quantity;
-        });
-        
-    // Подготавливаем информацию о заказе
-    let price = document.querySelector('.section-cart__confirm-total-cost').textContent
-
-    let orderData = {
-        date: new Date().toLocaleDateString('ru-RU'), // Дата заказа в формате дд.мм.гггг
-        payMethod: "cash", // Предполагаемый способ оплаты, можно изменить по вашему усмотрению
-        list: selectedProducts, // Выбранные товары и их количество
-        price: price,
-        userData: userData // Данные пользователя из куки
-    };
-    
-    // Путь к новому заказу
-    let pathToOrder = '/orders/' + uniqueId();
-
-    // Добавляем информацию о заказе в базу данных
-    firebase.database().ref(pathToOrder).set(orderData)
-        .then(function() {
-            console.log("Заказ успешно добавлен в базу данных.");
-        })
-        .catch(function(error) {
-            console.error("Ошибка при добавлении заказа в базу данных:", error);
-        });
-}
-
 
 export { updateUserData, addOrder, addOrderUnlogin};

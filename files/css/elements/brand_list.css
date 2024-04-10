@@ -1,23 +1,27 @@
 /* ------------ Brand ------------*/
+  
 .brand{
-  margin: 100px 12% 0;
+  margin: 100px 10% 0;
 }
-.section_tittle{
-  font-size: 32px;
-  font-family: 'ProximaNova_Bold';
+.brand_tittle{
+  padding-left: 15px;
 }
+
 .brand_list{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 60px;
+  max-height: 360px;
+  overflow: hidden;
 }
 .brand_item{
   border-radius: 20px;
   background: #FFF;
-  box-shadow: 0px 4px 20px 0px rgba(21, 11, 50, 0.13);
+  box-shadow: 0px 4px 15px 0px rgba(21, 11, 50, 0.13);
+  margin: 15px;
   display: flex;
   min-width: max-content;
-
+  flex: 1 1 auto;
 
   height: 90px;
 
@@ -26,24 +30,19 @@
 .brand_item:hover{
   transform: rotate3d(0, 0, 1, 720deg) scale(1);
 }
-.brand_item:not(:nth-child(3n)){
-  margin-right: 35px;
-}
-.brand_item:nth-child(n+7){
-display: none;
-}
-.brand_item:nth-child(n+4){
-  margin-top: 35px;
-}
-.brand_item_desc{
+
+
+.brand_item_desc__decs{
   font-size: 24px;
   font-family: 'ProximaNova_SemiBold';
-
+}
+.brand_item_desc{
   display: flex;
   align-items: center;
   max-width: max-content;
   max-height: max-content;
   color: black;
+  padding-right: 10px;
 }
 .brand_item_desc img{
   margin: 20px;
@@ -56,16 +55,66 @@ display: none;
   width: 25px;
   margin: auto 20px auto auto;
 }
-.section_note{
-  display: inline-block;
-  font-size: 16px;
-  color: #757575;
-  font-family: 'ProximaNova_SemiBold';
 
-  width: 100%;
-  text-align: center;
-  padding-top: 45px;
+
+
+@media (max-width: 430px) { 
+  .brand{
+    margin: 20px 0px 0;
+  }
+
+  .brand_list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0px;
+    gap: 10px;
+    overflow:hidden;
+    max-height: 314px;
+    padding: 10px;
+  }
+
+
+  .brand_item{
+    border-radius: 30px;
+    margin: 0px;
+    height: 44px;
+    transition: 0.7s cubic-bezier(.49, 0, .50, 1);
+    max-width: 200px;
+    flex: 0 1 auto; /* Изменено значение flex */
+    box-shadow: 0px 4px 6px 0px rgba(21, 11, 50, 0.13);
 }
-.section_note img {
-  margin-bottom: -1px;
+  .brand_item_desc img{
+    margin: 6px;
+    vertical-align: middle;
+    max-width: 32px;
+    max-height: 32px;
+  }
+
+  
+  .brand_item > img{
+    width: 13px;
+    height: 13px;
+    margin: auto 5px auto auto;
+    /* display: none; */
+  }
+
+  .brand_item_desc{
+    display: flex;
+    align-items: center;
+    max-width: max-content;
+    max-height: max-content;
+    color: black;
+    padding-right: 10px;
+    
+    
+  }
+
+  .brand_item_desc__decs{
+    font-size: 14px;
+    word-wrap: break-word; /* Разрешение переноса слов */
+    white-space: normal; 
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 80px;
+  }
 }

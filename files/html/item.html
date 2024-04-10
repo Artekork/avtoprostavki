@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Автопроставки Беларусь</title>
+    <meta name="description" content="Автопроставки на Audi, Chevrolet, BMW, Mercedes-Benz, Kia, BMW, Citroen и многое другое!">
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/files/images/other/logo.png">
 
     <!------------------- links ------------------->  
     <link rel="stylesheet" href="/files/css/common/header.css">
@@ -12,85 +16,169 @@
     <link rel="stylesheet" href="/files/css/common/normalise.css">
     <link rel="stylesheet" href="/files/css/common/fonts.css">
     <link rel="stylesheet" href="/files/css/common/general.css">
+    <link rel="stylesheet" href="/files/css/common/sign.css">
+    <link rel="stylesheet" href="/files/css/common/notif.css">
 
     <link rel="stylesheet" href="/files/css/item.css">
+
+    <!-- Cookies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+
 
     <!-- Slider Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
+    <ul class="notifications"></ul>
     <div class="overlay"></div>
     <dialog class="dialog_call">
-      <img id="close" src="/files/images/other/close.png" alt="">
+      <div class="dialog_call_container">
+        <img id="close" src="/files/images/other/close.png" alt="">
+        <p class="dialog_tittle" id="asd">
+          Заказать звонок
+        </p>
+        <!--  -->
+        <form> 
+          <div class="form_container">
+            <p class="dialog_desc">Имя*</p>
+            <input class="dialog_input" 
+              type="text" 
+              name="Name"
+              id="name">
+            <p class="dialog_desc">Почта*</p>
+            <input class="dialog_input" type="email" name="E-mail" id="mail">
+            <p class="dialog_desc">Телефон*</p>
+            <input class="dialog_input" 
+              name="Number" 
+              id="number">
+            <p class="dialog_desc">Комментарий</p>
+            <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
 
-      <p class="dialog_tittle" id="asd">
-        Заказать звонок
-      </p>
-      <!--  -->
-      <form action="https://jsonplaceholder.typicode.com/posts" method="POST"> 
-        <div class="form_container">
-          <p class="dialog_desc">Имя*</p>
-          <input class="dialog_input" 
-            required 
-            type="text" 
-            name="Name"
-            oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')"
-            id="name">
-          <p class="dialog_desc">Телефон*</p>
-          <input class="dialog_input" 
-            required 
-            type="tel" 
-            oninvalid="this.setCustomValidity('Введите телефон')" oninput="setCustomValidity('')"
-            name="Number" 
-            id="number">
-          <p class="dialog_desc">Почта</p>
-          <input class="dialog_input" type="email" name="E-mail" id="mail">
-          <p class="dialog_desc">Комментарий</p>
-          <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
+            <div class="dialog_checkbox dialog_checkbox_call">
 
-          <div class="dialog_checkbox">
+              <label class="checkbox-container">
+                <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+                <div class="checkmark"></div>
+              </label>
+              <p class="dialog_checkbox_text ">Согласие на обработку персональных данных. <br><span class="policy-data__desc">Вы соглашаетесь с <a href="#">политикой обработки персональных данных</a> и <a href="#">пользовательским соглашением</a></span></p>
 
-            <label class="checkbox-container">
-              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-              <div class="checkmark"></div>
-            </label>
+              <!-- <p class="checkbox_error">Примите соглашение</p> -->
+            </div>
 
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-            <!-- <p class="checkbox_error">Примите соглашение</p> -->
+
+            <!-- <div class="dialog_checkbox">
+              <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            </div> -->
+
+            <p class="dialog_chose">Как вы хотите получить ответ?</p>
+
+            <div class="dialog_buttons">
+              <a id="call" class="dialog_btn">
+                Звонок
+              </a>
+              <a id="write" class="dialog_btn">
+                Написать
+              </a>
+            </div>
           </div>
-
-
-          <!-- <div class="dialog_checkbox">
-            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-          </div> -->
-
-          <p class="dialog_chose">Как вы хотите получить ответ?</p>
-
-          <div class="dialog_buttons">
-            <button id="call" class="dialog_btn">
-              Звонок
-            </button>
-            <button id="write" class="dialog_btn">
-              Написать
-            </button>
-            <input type="hidden" name="Method" id="methodField" value="call or write">
-          </div>
-        </div>
-      </form>
-
+        </form>
+      </div>
     </dialog>
+
+    <dialog class="dialog-auth dialog-auth_sign-up dialog-auth_sign-in">
+      <div class="dialog-sing-in__container">
+        <img class="close-sign" src="/files/images/other/close.png" alt="">
+    
+        <div class="dialog-sing-in__tittle">
+            Вход в личный кабинет
+        </div>
+        <form id="login-form" autocomplete="on">
+            <div class="dialog-sing-in__email">
+                <div class="sing-in-email__tittle">
+                    E-mail
+                </div>
+                <input autocomplete="username" class="sign-in__input" type="email" id="sign-in-input-email" name="email">
+                <div class="sing-in-email__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    <div class="sign-in-pass-tittle__text">
+                        Пароль
+                    </div>
+                    <div class="sign-in-pass-tittle__forgot-pass">
+                        Забыли пароль?
+                    </div>
+                </div>
+                <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+    
+                <input autocomplete="current-password" class="sign-in__input" type="password" id="sign-in-input-pass" name="password">
+                <div class="sing-in-pass__error">
+                </div>
+            </div>
+            <button class="dialog-sing-in__btn-sign-in">Вход</button>
+        </form>
+        <div class="dialog-sing-in__create-acc">
+            <div class="sing-in-create__tittle">
+                У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+            </div>
+        </div>
+      </div>
+
+      <div class="dialog-sing-up__container">
+          <img class="close-sign" src="/files/images/other/close.png" alt="">
+
+          <div class="dialog-sing-in__tittle">
+              Регистрация
+          </div>
+          <form>
+            <div class="dialog-sing-in__email">
+              <div class="sing-in-email__tittle">
+                  E-mail
+              </div>
+              <input class="sign-in__input" type="email" id="sign-up-input-email">
+              <div class="sing-up-email__error">
+              </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    Пароль
+                </div>
+                <input class="sign-in__input sign-in__check-pass_active" type="password" id="sign-up-input-pass">
+                <div class="sing-up-pass__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__conf-pass">
+                <div class="sing-in-pass__tittle">
+                    Повторите пароль
+                </div>
+                <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+                <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+                <div class="sing-up-conf-pass__error">
+                </div>
+            </div>
+          </form>
+          <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
+          <div class="dialog-sing-in__create-acc">
+              <div class="sing-in-create__tittle">
+                  У вас есть аккаунт? <a class="sing-in__link">Войти</a>
+              </div>                
+          </div>
+      </div>
+    </dialog>   
 
     <div class="content_container">
       <header class="header">
         <div class="logo">
           <a href="/index.html" class="logo_inner">
-            <img src="/files/images/other/logo.png" alt="">
+            <img class="header-logo__img" src="/files/images/other/logo.png" alt="">
             <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
             <div class="header_tittle">Belavtoprostavki</div>
           </a>
         </div>
-        <nav class="header_nav ">
+        <nav class="header_nav">
           <ul>
             <li class="header_nav_li link_contact "> 
               <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
@@ -103,40 +191,42 @@
                     <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв<br> ул. Гришина 122, п. 1, кв. 133 </div>
                     <div class="contacts_info_item"><img src="/files/images/other/mail.png" alt="">2info@1ak.by </div>
                     <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно <br>8:00-22:00 (без обеда)</div>
-                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375 (22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
+                    <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
                   </div>
                   <button class="open_dialog_btn dialog_contact_btn">
                     <img src="/files/images/other/call.png" alt="">Заказать звонок
                   </button>
               </div>
             </li>
-            <li class="header_nav_li li_nav_authorized-only"> 
-              <a href="/files/html/test.html" class="header_link">
+            <li class="header_nav_li header_nav_li__favourite "> 
+              <a href="/files/html/profile.html?section=favourite" class="header_link">
                 <img class="header_nav_img" src="/files/images/other/favorite.png" alt="">Избранное
               </a>
             </li>
-            <li class="header_nav_li li_nav_authorized-only"> <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
+            <li class="header_nav_li header_nav_li__cart"> <a href="/files/html/profile.html?section=cart" class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Корзина</a></li>
 
             <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
             <li class="header_nav_li li_nav_authorized-only"> 
-              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
               </a>
               <div class="nav-user-card">
                 <div class="user-card__info">
-                  <img src="/files/images/other/user.png" alt="">
+                  <img class = "user_pic" src="/files/images/other/user.png" alt="">
                   <div class="user-card__desc">
-                    <div class="user-card__name">Артём Каравацкий</div>
-                    <div class="user-card__phone">+375 (29) 134-21-71</div>
+                    <div class="user-card__name user-fullname">Пользователь</div>
+                    <div class="user-card__phone user-phone">Нет телефона</div>
                     <div class="user-card__exit">Выйти</div>
                   </div>
                 </div>
                 <div class="user-card__list">
-                  <ul>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Корзина</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Избранное</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Личные данные</span></li>
-                    <li class="user-card__li"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>История покупок</span></li>
+                  <ul>                  
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=profile"><img class="user-car__list-img" src="/files/images/other/user_body.svg" alt=""><span>Профиль</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=history"><img class="user-car__list-img" src="/files/images/other/profile_cart.svg" alt=""><span>История покупок</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=favourite"><img class="user-car__list-img" src="/files/images/other/profile_heartsvg.svg" alt=""><span>Избранное</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=user-info"><img class="user-car__list-img" src="/files/images/other/profile_data.svg" alt=""><span>Личные данные</span></a></li>
+                    <li class="user-card__li"><a href="/files/html/profile.html?section=cart"><img class="user-car__list-img" src="/files/images/other/profile_history.svg" alt=""><span>Корзина</span></a></li>
+
+                  
                   </ul>
                 </div>
               </div>
@@ -169,8 +259,7 @@
               </div>
               <div thumbsSlider="" class="swiper mySwiper">
                 <div class="swiper-wrapper slider2">
-<!--                   
-                  <div class="swiper-slide">
+              <!--<div class="swiper-slide">
                     <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
                   </div> -->
                 </div>
@@ -179,13 +268,26 @@
             <div class="contacts_info">
               <h2 class="contacts_info_price">23456</h2>
               
-              <button class="common_button">
-                <img src="/files/images/other/buy.png" alt="">В корзину
-              </button>
-              
-              <button class="common_button favourite-btn">
-                <img src="/files/images/other/purple_heart.png" alt="">Добавить в избранное
-              </button>
+              <div class="contacts_info__btn-container">
+                <button class="common_button cart-btn">
+                  <img src="/files/images/other/buy.png" alt="">В корзину asd
+                </button>
+                
+                <button class="common_button favourite-btn">
+                  <img src="/files/images/other/purple_heart.png" alt="">В избранное  asd
+                </button>
+              </div>
+
+              <div class="contacts_info__btn-container_mobile">
+                
+                <button class="common_button favourite-btn favourite-btn_mobile">
+                  <img src="/files/images/other/purple_heart.png" alt="">В избранное  asd
+                </button>
+                
+                <button class="common_button cart-btn cart-btn_mobile">
+                  <img src="/files/images/other/buy.png" alt="">В корзину asd
+                </button>
+              </div>
 
               <div class="contacts_info_desc">
                 <div class="contacts_info_item"><img src="/files/images/other/location.png" alt="">220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 </div>
@@ -193,7 +295,7 @@
                 <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно 8:00-22:00 (без обеда)</div>
                 <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
               </div>
-              <button class="common_button">
+              <button class="common_button contacts_info__call-btn">
                 <img src="/files/images/other/call.png" alt="">Заказать звонок
               </button>
             </div>            
@@ -226,7 +328,7 @@
           </div>
         </section>
 
-        <section class="product">
+        <!-- <section class="product">
           <h2 class="product_tittle item-text__tittle">Просмотренные товары </h2>
           <div class="product_list">
                        
@@ -295,69 +397,104 @@
               </div>
             </a>            
           </div>
-        </section>
+        </section> -->
       </main>
       <footer class="footer">
         <div class="footer_inner">
-          <div class="footer_item">
+          <div class="footer_item footer_buyer">
             <p class="footer_customer">Покупателям</p>
             <div class="footer_links_pages">          
               <a href="/files/html/items.html" class="footer_customer_link">Каталог товаров</a>
-              <a href="#" class="footer_customer_link">О нас</a>
-              <a href="#" class="footer_customer_link">Отзывы</a>
+              <a href="/files/html/about.html" class="footer_customer_link">О компании</a>
+              <a href="/files/html/methods.html" class="footer_customer_link">Способы оплаты и доставки</a>
+              <a href="#" class="footer_customer_link">Пользовательское соглашение</a>
+              <a href="#" class="footer_customer_link">Политика обработки персональных данных</a>
             </div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_mode">
             <p class="footer_customer">Режим работы</p>
             <p class="footer_item_info">
               Онлайн-заказ: круглосуточно<br>
-              Время работы: 8:00-22:00<br>
-              Оператор: 8:00-22:00<br>
+              Магазин: 8:00-18:00<br>
+              Оператор: 8:00-18:00<br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_contacts">
+            <p class="footer_customer">Контакты</p>
             <p class="footer_item_info">
-              Тел.: +375 (22) 344-55-78 (МТС)<br>
-              +375 (22) 344-55-78 (A1) <br>
-              E-mail: 2info@1ak.by <br>
+              Консультант: +375 (29) 841-28-56<br>
+              E-mail: belavtoprostavki@gmail.com <br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_adres">
+            <p class="footer_customer">Адрес магазина</p>
             <p class="footer_item_info">
-              220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 
+              Г. Могилев, улица Лазаренко 73В, 2 этаж слева 
             </p>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_social">
             <p class="footer_customer">Социальные сети</p>
             <div class="footer_links_social">              
-              <a href="#"><img src="/files/images/other/tg.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/viber.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/whatsapp.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://t.me/talyasikk"><img class="footer_links_social__img" src="/files/images/other/tg.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="viber://chat?number=%2B375298412856"><img class="footer_links_social__img" src="/files/images/other/viber.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://wa.me/375298412856"><img class="footer_links_social__img" src="/files/images/other/whatsapp.png" alt=""></a>
             </div>
           </div>
+
+
+          
+          <div class="footer_item footer-logos">
+            <div class="footer-logos__content">
+              <img class="footer-logos-content__img" src="/files/images/content/logos/HORIZONTAL.png" alt="">
+            </div>
+            <div class="footer-logos__content_m">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/1.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/2.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/3.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/4.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/5.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/6.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/7.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/8.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/9.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/10.png" alt="">
+              
+            </div>
+          </div>
+
+
+
+
+
         </div>
         <p class="Copyright"> Copyright © 2023 Artekok.inc. All Rights Reserved </p>
       </footer>
+      <section class="bottom-nav">
+        <nav class="bottom-nav__container">
+          <a href="/index.html" class="bottom-nav__link bottom-nav__link-selected"><img src="/files/images/other/home.svg" alt="Главная" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=profile" class="bottom-nav__link"><img src="/files/images/other/user_body.svg" alt="Профиль" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=favourite" class="bottom-nav__link"><img src="/files/images/other/profile_heartsvg.svg" alt="Избранное" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=cart" class="bottom-nav__link"><img src="/files/images/other/profile_cart.svg" alt="Корзина" class="bottom-nav__link-img"></a>
+        </nav>
+      </section>
     </div>
 
 
 
-    <!------------------- Scripts ------------------->  
+    <!------------------- Scripts ------------------->
+    <script src="/files/js/item.js"></script>
 
     <!-------- Dialog call window -------->  
     <script src="https://unpkg.com/imask"></script>
-    <script src="/files/js/dialog_call.js"></script>
+    <script src="/files/js/dialog_call.js" type="module"></script>
     
     <!-------- Firebase  -------->  
     
     
-    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
-
-    
     <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
+
+
+    <script src="/files/js/checkUser.js"></script>
     <!-------------------- Links -------------------->  
     
     <!-- Smooth scroll -->
@@ -372,6 +509,7 @@
     
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    
     <script src="/files/js/setProductId.js"></script>
 
       <!-- Initialize Swiper -->
@@ -391,8 +529,52 @@
         thumbs: {
           swiper: swiper,
         },
+        
       });
+      setTimeout(() => {
+        document.querySelector('.item-description__slider').style.width = (document.querySelector('.item-description__slider').offsetWidth - 1) + 'px';
+        setTimeout(() => {
+          document.querySelector('.item-description__slider').style.width = 'auto';
+          
+        }, 2);
+      }, 2000);
     </script>
 
+
+    <script type="module">
+          
+      import { updateAllInfoProfile} from "/files/js/getUserInfo.js";
+      
+      
+      
+      document.addEventListener('DOMContentLoaded', function() {
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
+          authDomain: "avtoprostavki-1337.firebaseapp.com",
+          databaseURL: "https://avtoprostavki-1337-default-rtdb.firebaseio.com",
+          projectId: "avtoprostavki-1337",
+          storageBucket: "avtoprostavki-1337.appspot.com",
+          messagingSenderId: "580863358064",
+          appId: "1:580863358064:web:133ed9c449a5338601b0b5",
+          measurementId: "G-SL7W9G5G4E"
+        };
+
+      firebase.initializeApp(firebaseConfig);
+
+      var database = firebase.database();
+
+        var myObject = Cookies.getJSON('userInfo') || {};
+        myObject.favourite = myObject.favourite || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        Cookies.set('userInfo', myObject);
+
+        let currentUser = localStorage.getItem('currentUser')
+        if (currentUser){
+          updateAllInfoProfile();
+        }        
+      });
+    </script>
   </body>
 </html>

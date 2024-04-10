@@ -1,0 +1,100 @@
+.description-section{
+  margin: 25px 12.5% 0;
+  max-width: 1000px;
+}
+.description-list__elem {
+  font-size: 20px;
+  font-family: 'ProximaNova_Regular';
+  line-height: 150%;
+  margin-left: 15px;
+}
+.description__tittle {
+  font-size: 32px;
+  font-family: 'ProximaNova_SemiBold';
+  margin-top: 40px;
+}
+.description__text {
+  font-size: 20px;
+  font-family: 'ProximaNova_Regular';
+  margin-top: 40px;
+  line-height: 150%;
+}
+.sample-documents{
+  margin-top: 50px;
+}
+.sample-documents__link{
+  color: #7866F0;
+  font-size: 20px;
+  font-family: 'ProximaNova_SemiBold';
+  cursor: pointer;
+}
+
+.dialog-receipt{
+  width: 700px;
+  height: 800px;
+  border-radius: 20px;
+  background-color: white;
+  position: fixed;
+  margin: auto auto;
+
+  overflow: hidden;
+}
+.dialog-receipt__container {
+  border-radius: 20px;
+  position: relative;
+  padding: 25px 35px;
+  
+}
+.dialog-receipt__close-btn{
+  position: absolute;
+  right: 25px;
+  top:32px;
+  cursor: pointer;
+}
+.dialog-receipt__tittle {
+  font-size: 24px;
+  font-family: 'ProximaNova_Bold';
+  text-align: center;
+}
+.dialog-receipt__inner-container{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.dialog-receipt__content {
+  margin-top: 15px;
+  height: 700px; /* Высота контента, которая вмещается без прокрутки */
+  overflow-y: auto; /* Добавляет вертикальную прокрутку, только если контент превышает высоту */
+}
+
+
+.dialog-receipt__item {
+  background-color: #EEF3FF;
+  display: flex;
+}
+.dialog-receipt__item-img {
+  margin: 25px auto;
+  align-items: center;
+}
+
+@media (max-width: 430px) { 
+  .description-section{
+    margin: 0px 10px;
+    max-width: 1000px;
+  }
+  .description__tittle {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  .description__text {
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 150%;
+  }
+  .description-list__elem {
+    font-size: 14px;
+  }  
+  .sample-documents__link{
+    font-size: 16px;
+  }
+}

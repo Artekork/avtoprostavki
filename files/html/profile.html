@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Автопроставки Беларусь</title>
+    <meta name="description" content="Автопроставки на Audi, Chevrolet, BMW, Mercedes-Benz, Kia, BMW, Citroen и многое другое!">
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/files/images/other/logo.png">
 
     <!------------------- links ------------------->  
     <!---------- CSS ---------->  
@@ -15,10 +19,15 @@
     <link rel="stylesheet" href="/files/css/common/fonts.css">
     <link rel="stylesheet" href="/files/css/common/general.css">
     <link rel="stylesheet" href="/files/css/common/sign.css">
+    <link rel="stylesheet" href="/files/css/common/notif.css">
 
     <link rel="stylesheet" href="/files/css/elements/brand_list.css">
     <link rel="stylesheet" href="/files/css/elements/product_list.css">
     <link rel="stylesheet" href="/files/css/profile.css">
+
+
+    
+    <!-- Font Awesome CDN link for icons -->
 
 
     <!---------- Libraries + JS ---------->  
@@ -33,14 +42,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 
-    <link rel="stylesheet" href="/files/css/profile.css">
 
+    <script src="/files/js/notif.js" defer type="module"></script>
+
+    
 
   </head>
   <body>
+    <ul class="notifications"></ul>
     <script>
       // localStorage.removeItem('currentUser');
     </script>
+
+
+
+    
+
 
     <dialog class="dialog-photo"> 
       <div class="dialog-photo-container">
@@ -58,102 +75,98 @@
     </dialog>
     <div class="overlay"></div>
     <dialog class="dialog_call">
-      <img id="close" src="/files/images/other/close.png" alt="">
+      <div class="dialog_call_container">
+        <img id="close" src="/files/images/other/close.png" alt="">
+        <p class="dialog_tittle" id="asd">
+          Заказать звонок
+        </p>
+        <!--  -->
+        <form> 
+          <div class="form_container">
+            <p class="dialog_desc">Имя*</p>
+            <input class="dialog_input" 
+              type="text" 
+              name="Name"
+              id="name">
+            <p class="dialog_desc">Почта*</p>
+            <input class="dialog_input" type="email" name="E-mail" id="mail">
+            <p class="dialog_desc">Телефон*</p>
+            <input class="dialog_input" 
+              name="Number" 
+              id="number">
+            <p class="dialog_desc">Комментарий</p>
+            <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
 
-      <p class="dialog_tittle" id="asd">
-        Заказать звонок
-      </p>
-      <!--  -->
-      <form action="https://jsonplaceholder.typicode.com/posts" method="POST"> 
-        <div class="form_container">
-          <p class="dialog_desc">Имя*</p>
-          <input class="dialog_input" 
-            required 
-            type="text" 
-            name="Name"
-            oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')"
-            id="name">
-          <p class="dialog_desc">Телефон*</p>
-          <input class="dialog_input" 
-            required 
-            type="tel" 
-            oninvalid="this.setCustomValidity('Введите телефон')" oninput="setCustomValidity('')"
-            name="Number" 
-            id="number">
-          <p class="dialog_desc">Почта</p>
-          <input class="dialog_input" type="email" name="E-mail" id="mail">
-          <p class="dialog_desc">Комментарий</p>
-          <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
+            <div class="dialog_checkbox dialog_checkbox_call">
 
-          <div class="dialog_checkbox">
+              <label class="checkbox-container">
+                <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+                <div class="checkmark"></div>
+              </label>
+              <p class="dialog_checkbox_text ">Согласие на обработку персональных данных. <br><span class="policy-data__desc">Вы соглашаетесь с <a href="#">политикой обработки персональных данных</a> и <a href="#">пользовательским соглашением</a></span></p>
 
-            <label class="checkbox-container">
-              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-              <div class="checkmark"></div>
-            </label>
+              <!-- <p class="checkbox_error">Примите соглашение</p> -->
+            </div>
 
-            <p class="dialog_checkbox_text">Отправляя форму, Вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-            <!-- <p class="checkbox_error">Примите соглашение</p> -->
+
+            <!-- <div class="dialog_checkbox">
+              <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            </div> -->
+
+            <p class="dialog_chose">Как вы хотите получить ответ?</p>
+
+            <div class="dialog_buttons">
+              <a id="call" class="dialog_btn">
+                Звонок
+              </a>
+              <a id="write" class="dialog_btn">
+                Написать
+              </a>
+            </div>
           </div>
-
-
-          <!-- <div class="dialog_checkbox">
-            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-          </div> -->
-
-          <p class="dialog_chose">Как Вы хотите получить ответ?</p>
-
-          <div class="dialog_buttons">
-            <button id="call" class="dialog_btn">
-              Звонок
-            </button>
-            <button id="write" class="dialog_btn">
-              Написать
-            </button>
-            <input type="hidden" name="Method" id="methodField" value="call or write">
-          </div>
-        </div>
-      </form>
-
+        </form>
+      </div>
     </dialog>
 
     <dialog class="dialog-auth dialog-auth_sign-up dialog-auth_sign-in">
       <div class="dialog-sing-in__container">
-          <img class="close-sign" src="/files/images/other/close.png" alt="">
-
-          <div class="dialog-sing-in__tittle">
-              Вход в личный кабинет
-          </div>
-          <div class="dialog-sing-in__email">
-              <div class="sing-in-email__tittle">
-                  E-mail
-              </div>
-              <input class="sign-in__input" type="email" id="sign-in-input-email">
-              <div class="sing-in-email__error">
-              </div>
-          </div>
-          <div class="dialog-sing-in__pass">
-              <div class="sing-in-pass__tittle">
-                  <div class="sign-in-pass-tittle__text">
-                      Пароль
-                  </div>
-                  <div class="sign-in-pass-tittle__forgot-pass">
-                      Забыли пароль?
-                  </div>
-              </div>
-              <div class="sign-in__check-pass sign-in__check-pass_active"></div>
-
-              <input class="sign-in__input" type="password" id="sign-in-input-pass">
-              <div class="sing-in-pass__error">
-              </div>
-          </div>
-          <button class="dialog-sing-in__btn-sign-in">Вход</button>
-          <div class="dialog-sing-in__create-acc">
-              <div class="sing-in-create__tittle">
-                  У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
-              </div>                
-          </div>
+        <img class="close-sign" src="/files/images/other/close.png" alt="">
+    
+        <div class="dialog-sing-in__tittle">
+            Вход в личный кабинет
+        </div>
+        <form id="login-form" autocomplete="on">
+            <div class="dialog-sing-in__email">
+                <div class="sing-in-email__tittle">
+                    E-mail
+                </div>
+                <input autocomplete="username" class="sign-in__input" type="email" id="sign-in-input-email" name="email">
+                <div class="sing-in-email__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    <div class="sign-in-pass-tittle__text">
+                        Пароль
+                    </div>
+                    <div class="sign-in-pass-tittle__forgot-pass">
+                        Забыли пароль?
+                    </div>
+                </div>
+                <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+    
+                <input autocomplete="current-password" class="sign-in__input" type="password" id="sign-in-input-pass" name="password">
+                <div class="sing-in-pass__error">
+                </div>
+            </div>
+            <a class="dialog-sing-in__btn-sign-in">Вход</a>
+        </form>
+        <div class="dialog-sing-in__create-acc">
+            <div class="sing-in-create__tittle">
+                У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+            </div>
+        </div>
       </div>
 
       <div class="dialog-sing-up__container">
@@ -162,31 +175,33 @@
           <div class="dialog-sing-in__tittle">
               Регистрация
           </div>
-          <div class="dialog-sing-in__email">
+          <form>
+            <div class="dialog-sing-in__email">
               <div class="sing-in-email__tittle">
                   E-mail
               </div>
               <input class="sign-in__input" type="email" id="sign-up-input-email">
               <div class="sing-up-email__error">
               </div>
-          </div>
-          <div class="dialog-sing-in__pass">
-              <div class="sing-in-pass__tittle">
-                  Пароль
-              </div>
-              <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
-              <div class="sing-up-pass__error">
-              </div>
-          </div>
-          <div class="dialog-sing-in__conf-pass">
-              <div class="sing-in-pass__tittle">
-                  Повторите пароль
-              </div>
-              <div class="sign-up__check-pass sign-up__check-pass_active"></div>
-              <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
-              <div class="sing-up-conf-pass__error">
-              </div>
-          </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    Пароль
+                </div>
+                <input class="sign-in__input sign-in__check-pass_active" type="password" id="sign-up-input-pass">
+                <div class="sing-up-pass__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__conf-pass">
+                <div class="sing-in-pass__tittle">
+                    Повторите пароль
+                </div>
+                <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+                <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+                <div class="sing-up-conf-pass__error">
+                </div>
+            </div>
+          </form>
           <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
           <div class="dialog-sing-in__create-acc">
               <div class="sing-in-create__tittle">
@@ -194,18 +209,18 @@
               </div>                
           </div>
       </div>
-    </dialog>   
+    </dialog>    
 
     <div class="content_container">
       <header class="header">
         <div class="logo">
           <a href="/index.html" class="logo_inner">
-            <img src="/files/images/other/logo.png" alt="">
+            <img class="header-logo__img" src="/files/images/other/logo.png" alt="">
             <img class="new_year_hat" src="/files/images/other/hat.png" alt="">
             <div class="header_tittle">Belavtoprostavki</div>
           </a>
         </div>
-        <nav class="header_nav ">
+        <nav class="header_nav">
           <ul>
             <li class="header_nav_li link_contact "> 
               <a href="#" class="header_link"><img class="header_nav_img" src="/files/images/other/phone.png" alt="">Контакты</a>
@@ -234,14 +249,14 @@
 
             <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
             <li class="header_nav_li li_nav_authorized-only"> 
-              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
               </a>
               <div class="nav-user-card">
                 <div class="user-card__info">
                   <img class = "user_pic" src="/files/images/other/user.png" alt="">
                   <div class="user-card__desc">
                     <div class="user-card__name user-fullname">Пользователь</div>
-                    <div class="user-card__phone user-phone"> </div>
+                    <div class="user-card__phone user-phone">Нет телефона</div>
                     <div class="user-card__exit">Выйти</div>
                   </div>
                 </div>
@@ -438,7 +453,7 @@
                 </div>
               </div>
             
-            
+              
             </div>
 
             <div id="section-cart-content" style="display: none;" class="profile-content main-content__section section-menu-cart">
@@ -452,7 +467,7 @@
 
                     <div class="section-cart__list">  
                       <div class="section-cart__check-all">
-                        <label class="checkbox-container">
+                        <label class="checkbox-container checkbox-container_main">
                           <input type="checkbox" id="main-checkbox">
                           <div class="checkmark"></div>
                         </label>  
@@ -497,9 +512,51 @@
                             48,71 руб
                           </div>
                         </div>                        
-                      </div>    -->
+                      </div> -->
 
+
+                      <!-- <div class="section-cart__product">
+                        <label class="checkbox-container">
+                          <input type="checkbox" id="prostavka222228" class="cart-checkbox">
+                          <div class="checkmark"></div>
+                        </label>
+                        
+                        <div class="section-cart_product-card section-cart_product-card_mobile">
+                          <div class="section-cart_product-card-desc">
+                            <div class="product-card-desc__img-container">
+                              <img class="product-card-desc__img" src="/files/images/content/product-brand/prostavka228/2.png" alt="">
+                            </div>
+                            <div class="product-card-desc__text">
+                              <div class="product-card-text__desc">
+                                Проставки для увеличения дорожного просвета автомобиля Audi A8......
+                              </div>
+                              <div class="product-card-text__price">
+                                <div class="product-card-price__id">
+                                  Код товара: 732
+                                </div>
+                                <div class="section-cart_product-price">
+                                  48,71 руб
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="section-cart_product-card__buttons">
+                            <div class="product-card-buttons__fav">
+                              В избранное
+                            </div>
+                            <div class="product-card-buttons__delete">
+                              Удалить
+                            </div>
+                            <div class="product-card-buttons__counter">
+                              <img class="section-cart__btn-decrease" src="/files/images/other/-.png" alt="">
+                              <span class="section-cart_product-counter">5</span>
+                              <img class="section-cart__btn-increase" src="/files/images/other/+.png" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
                       
+
                       
                     </div>
 
@@ -513,10 +570,48 @@
                         48,71 руб
                       </div>
                     </div>
+                                
+                    <div class="section-cart__confirm-price-all">
+                      
+                      <div class="confirm-price__order_item">
+                        <div class="confirm-price__order-text">
+                          Стоимость товаров
+                        </div>
+                        <div class="confirm-price__order-price confirm-price__order-price_product">
+                          22,69
+                        </div>
+                      </div>  
+
+
+                      <!-- <div class="confirm-price__order_item">
+                        <div class="confirm-price__order-text">
+                          Стоимость доставки
+                        </div>
+                        <div class="confirm-price__order-price confirm-price__order-price_delivery">
+                          22,69
+                        </div>
+                      </div>  
+
+                      
+                      <div class="confirm-price__order_item">
+                        <div class="confirm-price__order-text">
+                          Комиссия банка
+                        </div>
+                        <div class="confirm-price__order-price confirm-price__order-price_commission">
+                          22,69
+                        </div>
+                      </div>   -->
+
+
+                    </div>  
+
+
+
+
 
                                           
                     <div class="section-cart__confirm-order-adres">
-
+                      
                       <div class="order-adres__tittle">
                         Адрес
                       </div>  
@@ -532,8 +627,20 @@
                         Наличными при получении
                       </div> 
                     </div>
+
+       
+                    <div class="section-cart__confirm-order-delivery">
+                      <div class="order-delivery__tittle">
+                        Способ доставки
+                      </div>  
+                      <div class="order-delivery__method">
+                        Белпочта
+                      </div> 
+                    </div>
+
+
                     <div class="section-cart__confirm-btn">     
-                      Заказ подтверждаю                                            
+                      Заказ подтверждаю
                     </div>
                   </div>
                 </div>
@@ -551,6 +658,7 @@
                       </div>
                     </div>  
                     <input class="personal-data__input personal-data__input-adres" type="email" id="personal-data__adres">   
+                    <span><button class="input-adres__button">Сохранить</button></span>
                   </div> 
                 </div>
 
@@ -595,11 +703,32 @@
                         </div>
                       </div>  
                       <input class="personal-data__input personal-data__input-number" type="tel" id="personal-data__tel_cart"> 
-                    </div>                       
-                    <div class="personal-data__input-block">
-                      <div class="personal-data__input-text">Почта</div>  
-                      <input disabled class="personal-data__input" placeholder="-"  type="email" id="personal-data__mail_cart">   
                     </div>
+                    
+                    
+
+
+
+
+
+
+                                         
+                    <div class="personal-data__input-block">
+                      <div class="personal-data__input-text">
+                        <div class="personal-data-input-text__tittle">
+                          Почта*
+                        </div>
+                        <div class="personal-data-input-text__alert" id = "cart-email-alert">
+                          <span><img src="/files/images/other/alert.png" alt=""></span>Введите почту
+                        </div>
+                      </div>  
+                      <input class="personal-data__input personal-data__input-email" type="email" id="personal-data__mail_cart"> 
+                    </div>
+
+
+
+
+
                       
                   </div>
               
@@ -610,7 +739,7 @@
                   <h2 class="product_tittle section_tittle">Комментарий</h2>
                 
                   <div class="container222">
-                    <ul class="list">
+                    <!-- <ul class="list">
                       <li class="list__item">
                         <input checked type="radio" class="radio-btn" name="choice" id="a-opt" />
                         <label for="a-opt" class="cart-call-method">Обработать без звонка. Мы отправим Вам подтверждение заказа с указанием даты и времени на ваш номер через Viber/SMS</label>
@@ -620,16 +749,80 @@
                         <input type="radio" class="radio-btn" name="choice" id="b-opt" />
                         <label for="b-opt" class="cart-call-method">Нужен звонок специалиста для уточнения деталей заказа</label>
                       </li>
-                    </ul>
+                    </ul> -->
 
                     <textarea class="comment-cart" type="text" name="Comment"></textarea>
 
                   </div>
 
 
-                </div>
+                </div> 
+
+
+                <div class="section-cart__contact-data contact-data__delivery">
+                  <h2 class="product_tittle section_tittle">Способ доставки</h2>
                 
+                  <div class="radio-btn-container radio-btn-container_delivery">
+                    <ul class="radio-btns__list">
+                      <li class="list__item">
+                        <input checked type="radio" class="radio-btn" name="delivery" id="delivery__a-opt" />
+                        <label for="delivery__a-opt" class="cart-call-method">Европочта (стоимость зависит от расстояния)</label>
+                      </li>                      
+                      <li class="list__item">
+                        <input type="radio" class="radio-btn" name="delivery" id="delivery__b-opt" />
+                        <label for="delivery__b-opt" class="cart-call-method">Белпочта (стоимость зависит от расстояния)</label>
+                      </li>
+                      <li class="list__item">
+                        <input type="radio" class="radio-btn" name="delivery" id="delivery__c-opt" />
+                        <label for="delivery__c-opt" class="cart-call-method">Самовывоз (г. Могилёв, ул. Лазаренко, 73В, второй этаж слева)</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>  
+
+                
+                <div class="section-cart__contact-data contact-data__payment">
+                  <h2 class="product_tittle section_tittle">Способ оплаты</h2>
+                
+                  <div class="radio-btn-container radio-btn-container_payment">
+                    <ul class="radio-btns__list">
+                      <li class="list__item">
+                        <input checked type="radio" class="radio-btn" name="payment" id="payment__a-opt" />
+                        <label for="payment__a-opt" class="cart-call-method">Наличными при получении</label>
+                      </li>                      
+                      <li class="list__item">
+                        <input type="radio" class="radio-btn" name="payment" id="payment__b-opt" />
+                        <label for="payment__b-opt" class="cart-call-method">Безналичный при получении</label>
+                      </li>
+                      <li class="list__item">
+                        <input type="radio" class="radio-btn" name="payment" id="payment__c-opt" />
+                        <label for="payment__c-opt" class="cart-call-method">Оплата картой онлайн (через систему WEBPAY и через систему «Расчёт»)</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>  
+                
+                
+                <div class="dialog_checkbox dialog-checkbox__policy-cart">
+
+                  <label class="checkbox-container">
+                    <input checked="checked" type="checkbox" required id="checkbox_cart" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+                    <div class="checkmark"></div>
+                  </label>
+
+                  <p class="dialog_checkbox_text">Согласие на обработку персональных данных. <br><span class="policy-data__desc">Вы соглашаетесь с <a href="#">политикой обработки персональных данных</a> и <a href="#">пользовательским соглашением</a></span></p>
+                  <!-- <p class="checkbox_error">Примите соглашение</p> -->
+                </div>
+
+
+                
+
+
+
+
+              
               </div>
+
 
               <div class="section-card-cart__message section-card__message">
                 <div class="section-message__tittle">
@@ -642,37 +835,47 @@
                   За покупками
                 </a>
               </div>
-            </div>
 
 
 
 
 
-
-            <!-- 
-            <section class="main-content">            
-              <div class="top-bar__navigation">
-                <ul>
-                    <li class="list-elem section-profile selected" ><a href="#">Профиль</a></li>
-                    <li class="list-elem section-history"><a href="#">Покупки</a></li>
-                    <li class="list-elem section-favourite"><a href="#">Избранное</a></li>
-                    <li class="list-elem section-user-info"><a href="#">Личные данные</a></li>
-                    <li class="list-elem section-cart" ><a href="#">Корзина</a></li>
-                    <span class="slider"></span>
-                </ul>
-              </div>
-              <div class="main-content__sections">              
-                <div id="section-profile-content" style="display: flex;" class="profile-content main-content__section section-menu-profile">...</div>
-                <div id="section-history-content" style="display: none;" class="profile-content main-content__section section-menu-history">...</div>
-                <div id="section-favourite-content" style="display: none;" class="profile-content main-content__section section-menu-favourite">...</div>
-                <div id="section-user-info-content" style="display: none;" class="profile-content main-content__section section-menu-user-info">...</div>
-                <div id="section-cart-content" style="display: none;" class="profile-content main-content__section section-menu-cart">...</div>               
+              <div class="section-card-cart__message section-card__message section-card__order-message">
+                <div class="section-message__tittle section-message__tittle-order">
+                  Спасибо, ваш заказ получен!
+                </div>
+                <div class="section-message__desc section-message__desc-order">
+                  В самое ближайшее время наш менеджер свяжется с Вами для уточнения деталей заказа.
+                </div>
+                <a class="section-message__btn confirm-order-btn">
+                  Отлично!
+                </a>
               </div>
 
-            </section>
-            -->
 
 
+              <!-- 
+              <section class="main-content">            
+                <div class="top-bar__navigation">
+                  <ul>
+                      <li class="list-elem section-profile selected" ><a href="#">Профиль</a></li>
+                      <li class="list-elem section-history"><a href="#">Покупки</a></li>
+                      <li class="list-elem section-favourite"><a href="#">Избранное</a></li>
+                      <li class="list-elem section-user-info"><a href="#">Личные данные</a></li>
+                      <li class="list-elem section-cart" ><a href="#">Корзина</a></li>
+                      <span class="slider"></span>
+                  </ul>
+                </div>
+                <div class="main-content__sections">              
+                  <div id="section-profile-content" style="display: flex;" class="profile-content main-content__section section-menu-profile">...</div>
+                  <div id="section-history-content" style="display: none;" class="profile-content main-content__section section-menu-history">...</div>
+                  <div id="section-favourite-content" style="display: none;" class="profile-content main-content__section section-menu-favourite">...</div>
+                  <div id="section-user-info-content" style="display: none;" class="profile-content main-content__section section-menu-user-info">...</div>
+                  <div id="section-cart-content" style="display: none;" class="profile-content main-content__section section-menu-cart">...</div>               
+                </div>
+
+              </section>
+              -->
 
 
 
@@ -693,54 +896,89 @@
       </main>
       <footer class="footer">
         <div class="footer_inner">
-          <div class="footer_item">
+          <div class="footer_item footer_buyer">
             <p class="footer_customer">Покупателям</p>
             <div class="footer_links_pages">          
               <a href="/files/html/items.html" class="footer_customer_link">Каталог товаров</a>
-              <a href="#" class="footer_customer_link">О нас</a>
-              <a href="#" class="footer_customer_link">Отзывы</a>
+              <a href="/files/html/about.html" class="footer_customer_link">О компании</a>
+              <a href="/files/html/methods.html" class="footer_customer_link">Способы оплаты и доставки</a>
+              <a href="#" class="footer_customer_link">Пользовательское соглашение</a>
+              <a href="#" class="footer_customer_link">Политика обработки персональных данных</a>
             </div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_mode">
             <p class="footer_customer">Режим работы</p>
             <p class="footer_item_info">
               Онлайн-заказ: круглосуточно<br>
-              Время работы: 8:00-22:00<br>
-              Оператор: 8:00-22:00<br>
+              Магазин: 8:00-18:00<br>
+              Оператор: 8:00-18:00<br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_contacts">
+            <p class="footer_customer">Контакты</p>
             <p class="footer_item_info">
-              Тел.: +375 (22) 344-55-78 (МТС)<br>
-              +375 (22) 344-55-78 (A1) <br>
-              E-mail: 2info@1ak.by <br>
+              Консультант: +375 (29) 841-28-56<br>
+              E-mail: belavtoprostavki@gmail.com <br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_adres">
+            <p class="footer_customer">Адрес магазина</p>
             <p class="footer_item_info">
-              220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 
+              Г. Могилев, улица Лазаренко 73В, 2 этаж слева 
             </p>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_social">
             <p class="footer_customer">Социальные сети</p>
             <div class="footer_links_social">              
-              <a href="#"><img src="/files/images/other/tg.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/viber.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/whatsapp.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://t.me/talyasikk"><img class="footer_links_social__img" src="/files/images/other/tg.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="viber://chat?number=%2B375298412856"><img class="footer_links_social__img" src="/files/images/other/viber.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://wa.me/375298412856"><img class="footer_links_social__img" src="/files/images/other/whatsapp.png" alt=""></a>
             </div>
           </div>
+
+
+          
+          <div class="footer_item footer-logos">
+            <div class="footer-logos__content">
+              <img class="footer-logos-content__img" src="/files/images/content/logos/HORIZONTAL.png" alt="">
+            </div>
+            <div class="footer-logos__content_m">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/1.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/2.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/3.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/4.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/5.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/6.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/7.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/8.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/9.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/10.png" alt="">
+              
+            </div>
+          </div>
+
+
+
+
+
         </div>
         <p class="Copyright"> Copyright © 2023 Artekok.inc. All Rights Reserved </p>
       </footer>
+      <section class="bottom-nav">
+        <nav class="bottom-nav__container">
+          <a href="/index.html" class="bottom-nav__link"><img src="/files/images/other/home.svg" alt="Главная" class="bottom-nav__link-img"></a>
+          <a class="bottom-nav__link bottom-nav__link-profile"><img src="/files/images/other/user_body.svg" alt="Профиль" class=" bottom-nav__link-img "></a>
+          <a class="bottom-nav__link bottom-nav__link-fav"><img src="/files/images/other/profile_heartsvg.svg" alt="Избранное" class=" bottom-nav__link-img "></a>
+          <a class="bottom-nav__link bottom-nav__link-cart"><img src="/files/images/other/profile_cart.svg" alt="Корзина" class="bottom-nav__link-img "></a>
+        </nav>
+      </section>
     </div>
 
     <!------------------- Scripts ------------------->  
 
     <!-------- Dialog call window -------->  
     <script src="https://unpkg.com/imask"></script>
-    <script src="/files/js/dialog_call.js"></script>
+    <script src="/files/js/dialog_call.js" type="module"></script>
 
 
 
@@ -814,54 +1052,262 @@
                           var prostavkaData = childSnapshot.val();
                           var productId = childSnapshot.key; // Получаем ID продукта
                           if (historyProductIds.includes(productId)) {
-                              // Товар находится в списке истории покупок пользователя
-                              var description = prostavkaData.description;
-                              var price = prostavkaData.price;
-                              var imageUrl = prostavkaData.images["1"];
+                            var prostavkaData = childSnapshot.val();
+              var description = prostavkaData.description;
+              var productId = childSnapshot.key; // Получаем ID продукта
+              var price = prostavkaData.price;
+              var imageUrl = prostavkaData.images["1"];
+      
+              // Создаем элемент карточки
+              var productItem = document.createElement('a');
+              productItem.href = "";
+              productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+              productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+      
+              // Создаем элемент для изображения
+              var productItemImg = document.createElement('div');
+              productItemImg.classList.add("product_item_img");
+      
+              // Создаем изображение для избранного
+              var heartImg = document.createElement('img');
+              heartImg.classList.add("product_item_img_tofavourite");
+              heartImg.src = "/files/images/other/purple_heartNoFill.png";
+              heartImg.alt = "";
+      
+              // Создаем изображение для избранного(mobileVer)
+              var heartImgMobile = document.createElement('img');
+              heartImgMobile.classList.add("product_item_img_tofavourite");
+              heartImgMobile.src = "/files/images/other/purple_heartNoFill.png";
+              heartImgMobile.alt = "";
+      
+              // Создаем изображение товара
+              var productImg = document.createElement('img');
+              productImg.classList.add("product_item_img_cont");
+              productImg.src = imageUrl;
+              productImg.alt = "";
+      
+              // Добавляем изображения в элемент карточки
+              productItemImg.appendChild(heartImg);
+              productItemImg.appendChild(productImg);
+      
+              // Создаем элемент описания
+              var productItemDesc = document.createElement('div');
+              productItemDesc.classList.add("product_item_desc");
+      
+              // Создаем параграф для описания
+              var descriptionParagraph = document.createElement('div');
+              descriptionParagraph.classList.add("product_item_desc__text");
+      
+              var descriptionParagraphText = document.createElement('div');
+              descriptionParagraphText.classList.add("product_item_desc__text-desc");
+              descriptionParagraphText.textContent = description;
 
-                              var productItem = document.createElement('a');
-                              productItem.href = "";
-                              productItem.classList.add("product_item", "product-item-history");
-                              productItem.dataset.productId = productId;
+              descriptionParagraph.appendChild(descriptionParagraphText);
+              descriptionParagraph.appendChild(heartImgMobile);
 
-                              var productItemImg = document.createElement('div');
-                              productItemImg.classList.add("product_item_img");
 
-                              var productImg = document.createElement('img');
-                              productImg.classList.add("product_item_img_cont");
-                              productImg.src = imageUrl;
-                              productImg.alt = "";
 
-                              productItemImg.appendChild(productImg);
 
-                              var productItemDesc = document.createElement('div');
-                              productItemDesc.classList.add("product_item_desc");
 
-                              var descriptionParagraph = document.createElement('p');
-                              descriptionParagraph.textContent = description;
 
-                              var productItemPrice = document.createElement('div');
-                              productItemPrice.classList.add("product_item_price");
-                              productItemPrice.textContent = price + " руб/компл.";
 
-                              var buyImg = document.createElement('img');
-                              buyImg.src = "/files/images/other/buy.png";
-                              buyImg.alt = "";
+              // Создаем элемент для цены
+              var productItemPrice = document.createElement('div');
+              productItemPrice.classList.add("product_item_price");
+      
+              // Добавляем цену
+              productItemPrice.textContent = price + " руб/к";
+      
+              // Создаем элемент кнопки
+              var productItemBtn = document.createElement('div');
+              productItemBtn.classList.add("product_item_btn");
+      
+              // Создаем изображение для кнопки
+              var buyImg = document.createElement('img');
+              buyImg.src = "/files/images/other/buy.png";
+              buyImg.alt = "";
+      
+              // Добавляем кнопку
+              productItemBtn.appendChild(buyImg);
+              productItemBtn.appendChild(document.createTextNode("Купить"));
+      
+              // Добавляем элементы описания в элемент карточки
+              productItemDesc.appendChild(descriptionParagraph);
+              productItemDesc.appendChild(productItemPrice);
+              productItemPrice.appendChild(productItemBtn);
+      
+              // Добавляем изображения и описание в элемент карточки
+              productItem.appendChild(productItemImg);
+              productItem.appendChild(productItemDesc);
 
-                              productItemDesc.appendChild(descriptionParagraph);
-                              productItemDesc.appendChild(productItemPrice);
 
-                              productItem.appendChild(productItemImg);
-                              productItem.appendChild(productItemDesc);
 
-                              productItem.addEventListener('click', function(event) {
-                                  event.preventDefault();
-                                  var selectedProductId = event.currentTarget.dataset.productId;
-                                  localStorage.setItem('selectedProductId', selectedProductId);
-                                  window.location.href = '/files/html/item.html';
-                              });
 
-                              productContainer.appendChild(productItem);
+              productItem.addEventListener('click', function(event) {
+                if (event.target.classList.contains('product_item_img_tofavourite')) {
+                  event.preventDefault(); // Предотвращаем переход по ссылке
+                    event.stopPropagation(); // Останавливаем всплытие события
+
+                    // Меняем иконку сердечка
+                    var heartImg = event.target;
+
+                    // Получаем ID продукта из атрибута data-product-id
+                    var selectedProductId = event.currentTarget.dataset.productId;
+
+                    // Проверяем, вошел ли пользователь
+                    var currentUser = localStorage.getItem('currentUser');
+
+                    if (currentUser) {
+                        // Получаем ссылку на базу данных для избранного пользователя
+                        var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+
+                        // Проверяем, есть ли уже такой товар в избранном
+                        userFavoritesRef.child(selectedProductId).once('value')
+                            .then(function(snapshot) {
+                                if (snapshot.exists()) {
+                                    // Товар уже в избранном, удаляем его
+                                    userFavoritesRef.child(selectedProductId).remove();
+                                    heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                                    heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                                    createToast("success", "Товар удалён из избранного!");
+                                } else {
+                                    // Товар не в избранном, добавляем его
+                                    userFavoritesRef.child(selectedProductId).set("1");
+                                    heartImg.src = '/files/images/other/purple_heart.png';
+                                    heartImgMobile.src = '/files/images/other/purple_heart.png';
+                                    createToast("success", "Товар добавлен в избранное!");
+                                }
+                            })
+                            .catch(function(error) {
+                                console.error("Error checking user favorites: ", error);
+                            });
+                    } 
+                    else {
+                      
+                      // Получаем текущее значение объекта из куки
+                      var myObject = Cookies.getJSON('userInfo') || {};
+
+                      if (myObject.favourite && myObject.favourite[selectedProductId]) {
+                          // Товар уже в избранном, удаляем его
+                          delete myObject.favourite[selectedProductId];
+                          heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                          heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                          createToast("success", "Товар удалён из избранного!");
+                      } 
+                      else {
+                        // Товар не в избранном, добавляем его
+                        if (!myObject.favourite) {
+                            myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
+                        }
+                        myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
+                        heartImg.src = '/files/images/other/purple_heart.png';
+                        heartImgMobile.src = '/files/images/other/purple_heart.png';
+                        createToast("success", "Товар добавлен в избранное!");
+                      }
+
+                      // Записываем обновленный объект обратно в куки
+                      Cookies.set('userInfo', myObject);
+                    }
+                }               
+                else if (event.target.classList.contains('product_item_btn')) {
+                  event.preventDefault(); // Предотвращаем переход по ссылке
+                    event.stopPropagation(); // Останавливаем всплытие события
+
+
+                    // Получаем ID продукта из атрибута data-product-id
+                    var selectedProductIdCart = event.currentTarget.dataset.productId;
+
+                    // Проверяем, вошел ли пользователь
+                    var currentUser = localStorage.getItem('currentUser');
+
+                    if (currentUser) {
+                      // Получаем ссылку на базу данных для избранного пользователя
+                      var userCartRef = database.ref('accounts/' + currentUser + '/cart');
+
+                      // Проверяем, есть ли уже такой товар в избранном
+                      userCartRef.child(selectedProductIdCart).once('value')
+                          .then(function(snapshot) {
+                            userCartRef.child(selectedProductIdCart).set("1");
+                            createToast("success", "Товар добавлен в корзину!");
+
+                          
+                          })
+                          .catch(function(error) {
+                              console.error("Error checking user favorites: ", error);
+                          });
+
+                    } 
+                    else {
+                      // Получаем текущее значение объекта из куки
+                      var myObject = Cookies.getJSON('userInfo');
+                      
+                      // Проверяем, есть ли уже объект в куки
+                      if (!myObject) {
+                          myObject = {}; // Если объекта нет, создаем пустой объект
+                      }
+                      
+                      // Проверяем, есть ли уже объект "cart" в объекте myObject
+                      if (!myObject.cart) {
+                          myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
+                      }
+                      // Добавляем товар в корзину
+                      var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
+                      myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
+                      createToast("success", "Товар добавлен в корзину!");
+
+                      Cookies.set('userInfo', myObject);
+                    } 
+                }        
+                else {
+                  event.preventDefault();
+
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductId = event.currentTarget.dataset.productId;
+
+                  // Переадресация на страницу товара
+                  window.location.href = '/files/html/item.html?id=' + selectedProductId;                 
+                }
+              });            
+
+
+
+
+              var currentUser = localStorage.getItem('currentUser');
+              // Проверяем, залогинен ли пользователь
+              if (currentUser) {
+                  var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+                  
+                  userFavoritesRef.child(productId).once('value')
+                      .then(function(snapshot) {
+                          if (snapshot.exists()) {
+                              heartImg.src = '/files/images/other/purple_heart.png';
+                              heartImgMobile.src = '/files/images/other/purple_heart.png';
+                          } else {
+                              heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                              heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                          }
+                      })
+                      .catch(function(error) {
+                          console.error("Error checking user favorites: ", error);
+                      });
+              } 
+              else {
+                  // Получаем текущее значение объекта из куки
+                  var myObject = Cookies.getJSON('userInfo') || {};
+                  
+                  if (myObject.favourite && myObject.favourite[productId]) {
+                      // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
+                      heartImg.src = '/files/images/other/purple_heart.png';
+                      heartImgMobile.src = '/files/images/other/purple_heart.png';
+
+                  } else {
+                      // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
+                      heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                      heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                  }
+                }
+              // Добавляем элемент карточки в найденный контейнер
+              productContainer.appendChild(productItem);
                           }
                       });
                   })
@@ -925,6 +1371,66 @@
         
       })
       
+
+
+
+
+
+
+      const notifications = document.querySelector(".notifications"),
+      buttons = document.querySelectorAll(".buttons .btn");
+
+      const toastDetails = {
+          timer: 1500,
+          success: {
+              icon: '/files/images/other/tick.png',
+              text: 'Success: This is a success toast.',
+          },
+          error: {
+              icon: '/files/images/other/cross.png',
+              text: 'Error: This is an error toast.',
+          },
+          warning: {
+              icon: 'fa-triangle-exclamation',
+              text: 'Warning: This is a warning toast.',
+          },
+          info: {
+              icon: 'fa-circle-info',
+              text: 'Info: This is an information toast.',
+          }
+      }
+
+      const removeToast = (toast) => {
+          toast.classList.add("hide");
+          if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
+          setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
+      }
+
+      const createToast = (id, inputText) => {
+          // Getting the icon and text for the toast based on the id passed
+          const { icon } = toastDetails[id];
+          const toast = document.createElement("li"); // Creating a new 'li' element for the toast
+          toast.className = `toast ${id}`; // Setting the classes for the toast
+          // Setting the inner HTML for the toast
+          toast.innerHTML = `<div class="column" onclick="removeToast(this.parentElement)">
+                              <img class="notif_img" src="${icon}">
+                              <span>${inputText}</span>
+                            </div>`;
+          notifications.appendChild(toast); // Append the toast to the notification ul
+          // Setting a timeout to remove the toast after the specified duration
+          toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
+      }
+
+
+      function createtete(){
+          alert("text")
+      }
+      // // Adding a click event listener to each button to create a toast when clicked
+      // buttons.forEach(btn => {
+      //     btn.addEventListener("click", () => createToast(btn.id, "Тестовый ввод"));
+      // });
+
+
     </script>
 
     <!-- Избранные -->   
@@ -987,8 +1493,8 @@
 
     <script type="module">
       
-      import { updateAllInfoProfile, getUserInform, updateCartInfoProfile, getHistory, getFavorites  } from "../js/getUserInfo.js";
-      import { showHistory, showFavorites, showInfoCard } from "../js/navbar-menu.js";
+      import { updateAllInfoProfile, getUserInform, updateCartInfoProfile, getHistory, getFavorites  } from "/files/js/getUserInfo.js";
+      import { showHistory, showFavorites, showInfoCard } from "/files/js/navbar-menu.js";
       
       
       document.addEventListener('DOMContentLoaded', function() {
@@ -1031,5 +1537,13 @@
 
 
 
+  
+</div>
+
+<script>
+    document.querySelector('.input-adres__button').addEventListener("click", () => createToast("error", "Тестовый ввод"));
+</script>
+
+   
   </body>
 </html>

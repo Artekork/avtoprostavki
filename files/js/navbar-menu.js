@@ -109,7 +109,48 @@ document.querySelector(".section-card-profile__history").onclick = function () {
     showContent(index_value);
 };
 
-document.querySelector(".section-card-profile__favourite").onclick = function () {
+
+
+document.querySelector('.confirm-order-btn').addEventListener('click', function(){
+    // Скрыть текущую секцию профиля
+    let currentSection = document.querySelector(".section-menu-profile");
+    currentSection.style.display = "none";
+
+    // Переместить слайдер к соответствующему пункту меню
+    let targetMenuItem = li[1];
+    slider.style.width = targetMenuItem.clientWidth + "px";
+    index_value = 1;
+    get_left_position();
+    slider.style.left = left_position + "px";
+    left_position = 0;
+
+    // Изменить цвет текста в необходимых местах
+    li.forEach((item, index) => {
+        if (index === index_value) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+
+    // Отобразить соответствующий контент при выборе пункта меню
+    showContent(index_value);
+
+    let sectionToShow = document.querySelector('.section-card__order-message');
+
+    sectionToShow.style.display = 'none';
+
+})
+
+
+
+
+
+
+
+document.querySelector(".section-card-profile__favourite").addEventListener('click', openFavourites)
+document.querySelector(".bottom-nav__link-fav").addEventListener('click', openFavourites)
+function openFavourites() {
     // Скрыть текущую секцию профиля
     let currentSection = document.querySelector(".section-menu-profile");
     currentSection.style.display = "none";
@@ -130,12 +171,73 @@ document.querySelector(".section-card-profile__favourite").onclick = function ()
             item.classList.remove('selected');
         }
     });
-
+    document.querySelector('.bottom-nav__link-profile').classList.remove('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-fav').classList.add('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-cart').classList.remove('bottom-nav__link-selected');
     // Отобразить соответствующий контент при выборе пункта меню
     showContent(index_value);
 
+}
 
-};
+document.querySelector(".bottom-nav__link-profile").addEventListener('click', openProfile)
+function openProfile() {
+    // Скрыть текущую секцию профиля
+    let currentSection = document.querySelector(".section-menu-profile");
+    currentSection.style.display = "none";
+
+    // Переместить слайдер к соответствующему пункту меню
+    let targetMenuItem = li[0];
+    slider.style.width = targetMenuItem.clientWidth + "px";
+    index_value = 0;
+    get_left_position();
+    slider.style.left = left_position + "px";
+    left_position = 0;
+
+    // Изменить цвет текста в необходимых местах
+    li.forEach((item, index) => {
+        if (index === index_value) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+    document.querySelector('.bottom-nav__link-profile').classList.add('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-fav').classList.remove('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-cart').classList.remove('bottom-nav__link-selected');
+
+    // Отобразить соответствующий контент при выборе пункта меню
+    showContent(index_value);
+}
+
+document.querySelector(".bottom-nav__link-cart").addEventListener('click', openCart)
+function openCart() {
+    // Скрыть текущую секцию профиля
+    let currentSection = document.querySelector(".section-menu-profile");
+    currentSection.style.display = "none";
+
+    // Переместить слайдер к соответствующему пункту меню
+    let targetMenuItem = li[4];
+    slider.style.width = targetMenuItem.clientWidth + "px";
+    index_value = 4;
+    get_left_position();
+    slider.style.left = left_position + "px";
+    left_position = 0;
+
+    // Изменить цвет текста в необходимых местах
+    li.forEach((item, index) => {
+        if (index === index_value) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+
+    document.querySelector('.bottom-nav__link-profile').classList.remove('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-fav').classList.remove('bottom-nav__link-selected');
+    document.querySelector('.bottom-nav__link-cart').classList.add('bottom-nav__link-selected');
+    // Отобразить соответствующий контент при выборе пункта меню
+    showContent(index_value);
+}
 
 function showHistory(){
     // alert(getHistory())
@@ -267,7 +369,7 @@ document.querySelector(".section-profile").addEventListener("click", async funct
         showInfoCard();
         showHistory();
         changeURL('profile')
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
         isLoading = false;
     }
 })
@@ -281,7 +383,7 @@ document.querySelector(".section-favourite").addEventListener("click", async fun
         isLoading = true;
         updateFavouritesList();
         changeURL('favourite')
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
         isLoading = false;
     }
 })
@@ -292,7 +394,7 @@ document.querySelector(".section-user-info").addEventListener("click", async fun
         updateAllInfoProfile();
         updateCartInfoProfile();
         changeURL('user-info')
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
         isLoading = false;
     }
 })
@@ -303,7 +405,17 @@ document.querySelector(".section-cart").addEventListener("click", async function
         updateCartList();
         updateMainCheckbox();
         changeURL('cart')
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Подождать 0.1 секунды
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        isLoading = false;
+    }
+})
+document.querySelector(".bottom-nav__link-cart").addEventListener("click", async function(){
+    if (!isLoading) {
+        isLoading = true;
+        updateCartList();
+        updateMainCheckbox();
+        changeURL('cart')
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
         isLoading = false;
     }
 })
@@ -318,18 +430,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     switch(section) {
         case 'profile':
             defaultSectionIndex = 0;
+            document.querySelector('.bottom-nav__link-profile').classList.add('bottom-nav__link-selected');
+
             break;
         case 'history':
             defaultSectionIndex = 1;
             break;
         case 'favourite':
             defaultSectionIndex = 2;
+            document.querySelector('.bottom-nav__link-fav').classList.add('bottom-nav__link-selected');
+
             break;
         case 'user-info':
             defaultSectionIndex = 3;
             break;
         case 'cart':
             defaultSectionIndex = 4;
+            document.querySelector('.bottom-nav__link-cart').classList.add('bottom-nav__link-selected');
+
             break;
         default:
             defaultSectionIndex = 0; // Если параметр 'section' не определен или некорректен, показываем первый раздел по умолчанию
@@ -353,6 +471,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             item.classList.remove('selected');
         }
     });
+
+    
 });
 
 document.querySelectorAll('.section-card-profile__button-login').forEach(element => {
@@ -361,6 +481,17 @@ document.querySelectorAll('.section-card-profile__button-login').forEach(element
         document.body.classList.add('dialog-sign-opened');   
     })
 })
+document.querySelector('.input-adres__button').addEventListener('click', function(){
+    document.querySelector('.order-adres__location').innerHTML = document.querySelector('.personal-data__input-adres').value
 
 
+
+    throw_message("Заказ выполнен успешно"); 
+    return false;
+    
+})
+function throw_message(str) {
+    $('#error_message').html(str);
+    $("#error_box").fadeIn(200).delay(1500).fadeOut(200);
+}
 export { showHistory, showFavorites, showInfoCard }

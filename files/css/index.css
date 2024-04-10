@@ -15,7 +15,30 @@
   font-family: 'ProximaNova_Bold';
   color: white;
 }
-
+.banner-btns__container{
+  display: flex;
+  gap: 30px;
+  margin-top: 60px;
+}
+.banner-btn{
+  background-color: white;
+  padding: 20px 0;
+  border-radius: 10px;
+  color: #7866F0;
+  width: 270px;
+  text-align: center;
+  height: max-content;
+  font-size: 18px;
+  font-family: 'ProximaNova_SemiBold';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.banner-btn__img{
+  width: 17px;
+  margin-right: 10px;
+}
 .banner-inner__tittle_mobile{
   display: none;
 }
@@ -45,16 +68,19 @@
   color: #3a3a3a;
 
 }
-.banner_btn{
+/* /* .banner_btn{
   text-wrap: nowrap;
   background-color: #7866F0;
   padding: 15px;
   border-radius: 9px;
   margin: 10px;
   color: white;
-}
+} 
 
 
+.banner-btn__img{
+  width: 13px;
+} */
 /* ------------ Сontacts ------------*/
 
 .contacts{
@@ -175,7 +201,8 @@
 }
 .reviews_item_grades{
   color: rgba(176, 176, 176, 1);
-  display: flex;
+  display: none;
+  /* display: flex; */
 }
 .reviews_item_grades img{
   margin-right: 5px;
@@ -202,16 +229,16 @@
 
 
 @media (max-width: 430px) { 
+  
   .content_container {
     margin: 0; 
     border-radius: 0;
   }
 
-
-  
+/*----------Banner----------*/
   .banner{
     background-size: cover; 
-    height: 132px;
+    max-height: 132px;
     background-image: url("/files/images/content/backgrounds/bg-search.png");
     background-repeat: no-repeat;
     border-radius: 15px;
@@ -236,14 +263,14 @@
     border-radius: 10px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 15px;
     max-width: 100%;
     overflow: hidden;
   }
   .banner_search_field{
     width: 100%;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 10px;
+    padding-right: 5px;
     height: 35px;
     font-size: 14px;
     color: #3a3a3a;
@@ -259,7 +286,101 @@
   }
   .banner-btn__img{
     width: 11px;
+    display: none;
+  }
+  .banner-btns__container{
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .banner-btn{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
   }
 
 
+  
+/*----------Contacts----------*/
+  .contacts{
+    margin: 45px 10px 0px;
+  }  
+  .contacts_info {
+    margin-top: 20px;
+  }
+  .contacts_inner{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 10px;
+  }
+  
+  .contacts_map{
+    height: 300px;
+    border-radius: 15px;
+    margin-left: 0px;
+  }
+  .contacts_info_tittle{
+    display: none;
+  }
+  .contacts_info_desc{
+    margin-top: 10px;
+  }
+  .contacts_info_item:not(:first-child) {
+    padding-top: 10px;
+  }
+  .contact-dialog-btn{
+    margin-top: 20px;
+  }
+
+  /*----------Reviews----------*/
+  .reviews {
+    margin: 50px 10px 0px;
+  }
+  .reviews_list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .reviews_item:not(:last-child) {
+    margin-right: 0px;
+  }
+
+  .reviews_item {
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  .reviews_item_user img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .reviews_item_user_desc {
+    margin: auto 10px;
+  }
+  .reviews_item_user_desc_name {
+    font-size: 14px;
+    font-family: 'ProximaNova_Regular';
+  }
+  .reviews_item_user_desc_date {
+    font-size: 14px;
+    color: #838383;
+    font-family: 'ProximaNova_Regular';
+  }
+  .reviews_item_desc {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  .reviews_item_verdict {
+    padding-top: 10px;
+  }
+  .reviews_item_product_score, .reviews_item_company_score, .reviews_item_grades {
+    font-size: 14px;
+    font-family: 'ProximaNova_Regular';
+    padding-top: 15px;
+  }
+  .reviews_item:last-child{
+    display: none;
+  }
+
+ 
 }

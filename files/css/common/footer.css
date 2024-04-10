@@ -1,6 +1,7 @@
 /* ------------ footer ------------*/
 .footer{
   margin: 100px 7% 0px;
+  
 }
 .footer_inner{
   display: flex;
@@ -8,6 +9,8 @@
   background-color: #F5F6F8;
   border-radius: 40px;
   padding: 50px 100px;
+
+  position: relative;
 }
 .footer_item{
   max-width: 250px;
@@ -20,26 +23,115 @@
   display: flex;
   flex-direction: column;
 }
-.footer_item_info{
+.number-link{
+  text-wrap: nowrap;
+}
+.footer_item_info, .number-link{
+  color: black;
   font-size: 16px;
   font-family: 'ProximaNova_Regular';
+  padding-top: 15px;
+  line-height: 23px;
 }
 .footer_customer_link{
   color: #000;
   padding-top: 15px;
 }
-.footer_item_info{
-  padding-top: 15px;
-  line-height: 23px;
-}
 .footer_links_social{
   padding-top: 15px;
   display: flex;
   justify-content: center;
+  gap: 6px;
 }
-.footer_links_social a:not(:last-child){
-  padding-right: 6px;
+
+
+.footer-logos{
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  max-width: max-content;
+  width: 65%;
 }
+.footer-logos-content__img{
+  width: 100%;
+}
+
+.footer-logos__content_m{
+  display: none;
+}
+
 .Copyright{
   padding: 40px 100px;
+}
+
+@media (max-width: 430px) { 
+ /*----------Footer----------*/
+  .footer {
+    margin: 50px 0 0px;
+  } 
+  .footer_inner{
+    display: flex;
+    border-radius: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer_links_pages {
+    max-width: 145px;
+  }
+  .footer_buyer{
+    order: 0;
+  }
+  .footer_social{
+    order: 1;
+  }
+  .footer_contacts, .footer_mode, .footer_adres{
+    order: 2;
+  }
+  .footer_item_info{
+    font-size: 14px;
+    font-family: 'ProximaNova_Regular';
+    padding-top: 5px;
+    line-height: 23px;
+  }
+  .footer_customer {
+    font-size: 14px;
+    font-family: 'ProximaNova_Bold';
+  }
+  .footer_customer_link {
+    padding-top: 8px;
+    font-size: 14px;
+  }
+  .footer_links_social{
+    gap: 5px;
+  }
+  .footer_links_social__img{
+    width: 35px;
+  }
+  .footer-logos__content{
+    display: none;
+  }
+  .footer-logos{
+    position: relative;
+    bottom: auto;
+    right: auto;
+    max-width: max-content;
+    width: 100%;
+    order: 2;
+  }
+  .footer-logos__content_m{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .footer-logos-content__img_m:last-child {
+    margin-right: auto;;
+  }
+  .Copyright{
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 12px;
+  }
 }

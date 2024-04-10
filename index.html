@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Автопроставки Беларусь</title>
+    <meta name="description" content="Автопроставки на Audi, Chevrolet, BMW, Mercedes-Benz, Kia, BMW, Citroen и многое другое!">
 
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/files/images/other/logo.png">
     <!------------------- links ------------------->  
+    <!-- CSS -->
     <link rel="stylesheet" href="/files/css/common/header.css">
     <link rel="stylesheet" href="/files/css/common/dialog_call.css">
     <link rel="stylesheet" href="/files/css/common/footer.css">
@@ -13,9 +17,11 @@
     <link rel="stylesheet" href="/files/css/common/fonts.css">
     <link rel="stylesheet" href="/files/css/common/general.css">
     <link rel="stylesheet" href="/files/css/common/sign.css">
+    <link rel="stylesheet" href="/files/css/common/notif.css">
     
     <link rel="stylesheet" href="/files/css/elements/product_list.css">
     <link rel="stylesheet" href="/files/css/elements/brand_list.css">
+
     <link rel="stylesheet" href="/files/css/index.css">
 
 
@@ -24,8 +30,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
 
 
+
   </head>
   <body>
+    <ul class="notifications"></ul>
     <script>
       // localStorage.removeItem('currentUser');
     </script>
@@ -33,101 +41,96 @@
     <dialog class="dialog_call">
       <div class="dialog_call_container">
         <img id="close" src="/files/images/other/close.png" alt="">
+        <p class="dialog_tittle" id="asd">
+          Заказать звонок
+        </p>
+        <!--  -->
+        <form> 
+          <div class="form_container">
+            <p class="dialog_desc">Имя*</p>
+            <input class="dialog_input" 
+              type="text" 
+              name="Name"
+              id="name">
+            <p class="dialog_desc">Почта*</p>
+            <input class="dialog_input" type="email" name="E-mail" id="mail">
+            <p class="dialog_desc">Телефон*</p>
+            <input class="dialog_input" 
+              name="Number" 
+              id="number">
+            <p class="dialog_desc">Комментарий</p>
+            <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
 
-      <p class="dialog_tittle" id="asd">
-        Заказать звонок
-      </p>
-      <!--  -->
-      <form action="https://jsonplaceholder.typicode.com/posts" method="POST"> 
-        <div class="form_container">
-          <p class="dialog_desc">Имя*</p>
-          <input class="dialog_input" 
-            required 
-            type="text" 
-            name="Name"
-            oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')"
-            id="name">
-          <p class="dialog_desc">Телефон*</p>
-          <input class="dialog_input" 
-            required 
-            type="tel" 
-            oninvalid="this.setCustomValidity('Введите телефон')" oninput="setCustomValidity('')"
-            name="Number" 
-            id="number">
-          <p class="dialog_desc">Почта</p>
-          <input class="dialog_input" type="email" name="E-mail" id="mail">
-          <p class="dialog_desc">Комментарий</p>
-          <textarea class="dialog_input dialog_comment" type="text" name="Comment" id="comment"></textarea>
+            <div class="dialog_checkbox dialog_checkbox_call">
 
-          <div class="dialog_checkbox">
+              <label class="checkbox-container">
+                <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+                <div class="checkmark"></div>
+              </label>
+              <p class="dialog_checkbox_text ">Согласие на обработку персональных данных. <br><span class="policy-data__desc">Вы соглашаетесь с <a href="#">политикой обработки персональных данных</a> и <a href="#">пользовательским соглашением</a></span></p>
 
-            <label class="checkbox-container">
-              <input checked="checked" type="checkbox" required id="check" oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-              <div class="checkmark"></div>
-            </label>
+              <!-- <p class="checkbox_error">Примите соглашение</p> -->
+            </div>
 
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-            <!-- <p class="checkbox_error">Примите соглашение</p> -->
+
+            <!-- <div class="dialog_checkbox">
+              <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
+              <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
+            </div> -->
+
+            <p class="dialog_chose">Как вы хотите получить ответ?</p>
+
+            <div class="dialog_buttons">
+              <a id="call" class="dialog_btn">
+                Звонок
+              </a>
+              <a id="write" class="dialog_btn">
+                Написать
+              </a>
+            </div>
           </div>
-
-
-          <!-- <div class="dialog_checkbox">
-            <input required type="checkbox" id="check" checked oninvalid="this.setCustomValidity('Вам нужно согласиться')" oninput="setCustomValidity('')">
-            <p class="dialog_checkbox_text">Отправляя форму, вы соглашаетесь с <a href="#">Пользовательским соглашением</a></p>
-          </div> -->
-
-          <p class="dialog_chose">Как вы хотите получить ответ?</p>
-
-          <div class="dialog_buttons">
-            <button id="call" class="dialog_btn">
-              Звонок
-            </button>
-            <button id="write" class="dialog_btn">
-              Написать
-            </button>
-            <input type="hidden" name="Method" id="methodField" value="call or write">
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
     </dialog>
 
     <dialog class="dialog-auth dialog-auth_sign-up dialog-auth_sign-in">
       <div class="dialog-sing-in__container">
-          <img class="close-sign" src="/files/images/other/close.png" alt="">
-
-          <div class="dialog-sing-in__tittle">
-              Вход в личный кабинет
-          </div>
-          <div class="dialog-sing-in__email">
-              <div class="sing-in-email__tittle">
-                  E-mail
-              </div>
-              <input class="sign-in__input" type="email" id="sign-in-input-email">
-              <div class="sing-in-email__error">
-              </div>
-          </div>
-          <div class="dialog-sing-in__pass">
-              <div class="sing-in-pass__tittle">
-                  <div class="sign-in-pass-tittle__text">
-                      Пароль
-                  </div>
-                  <div class="sign-in-pass-tittle__forgot-pass">
-                      Забыли пароль?
-                  </div>
-              </div>
-              <div class="sign-in__check-pass sign-in__check-pass_active"></div>
-
-              <input class="sign-in__input" type="password" id="sign-in-input-pass">
-              <div class="sing-in-pass__error">
-              </div>
-          </div>
-          <button class="dialog-sing-in__btn-sign-in">Вход</button>
-          <div class="dialog-sing-in__create-acc">
-              <div class="sing-in-create__tittle">
-                  У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
-              </div>                
-          </div>
+        <img class="close-sign" src="/files/images/other/close.png" alt="">
+    
+        <div class="dialog-sing-in__tittle">
+            Вход в личный кабинет
+        </div>
+        <form id="login-form" autocomplete="on">
+            <div class="dialog-sing-in__email">
+                <div class="sing-in-email__tittle">
+                    E-mail
+                </div>
+                <input autocomplete="username" class="sign-in__input" type="email" id="sign-in-input-email" name="email">
+                <div class="sing-in-email__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    <div class="sign-in-pass-tittle__text">
+                        Пароль
+                    </div>
+                    <div class="sign-in-pass-tittle__forgot-pass">
+                        Забыли пароль?
+                    </div>
+                </div>
+                <div class="sign-in__check-pass sign-in__check-pass_active"></div>
+    
+                <input autocomplete="current-password" class="sign-in__input" type="password" id="sign-in-input-pass" name="password">
+                <div class="sing-in-pass__error">
+                </div>
+            </div>
+            <button class="dialog-sing-in__btn-sign-in">Вход</button>
+        </form>
+        <div class="dialog-sing-in__create-acc">
+            <div class="sing-in-create__tittle">
+                У вас нет аккаунта? <a class="sing-in__link">Создать аккаунт</a>
+            </div>
+        </div>
       </div>
 
       <div class="dialog-sing-up__container">
@@ -136,31 +139,33 @@
           <div class="dialog-sing-in__tittle">
               Регистрация
           </div>
-          <div class="dialog-sing-in__email">
+          <form>
+            <div class="dialog-sing-in__email">
               <div class="sing-in-email__tittle">
                   E-mail
               </div>
               <input class="sign-in__input" type="email" id="sign-up-input-email">
               <div class="sing-up-email__error">
               </div>
-          </div>
-          <div class="dialog-sing-in__pass">
-              <div class="sing-in-pass__tittle">
-                  Пароль
-              </div>
-              <input class="sign-in__input sign-in__check-pass_active" type="text" id="sign-up-input-pass">
-              <div class="sing-up-pass__error">
-              </div>
-          </div>
-          <div class="dialog-sing-in__conf-pass">
-              <div class="sing-in-pass__tittle">
-                  Повторите пароль
-              </div>
-              <div class="sign-up__check-pass sign-up__check-pass_active"></div>
-              <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
-              <div class="sing-up-conf-pass__error">
-              </div>
-          </div>
+            </div>
+            <div class="dialog-sing-in__pass">
+                <div class="sing-in-pass__tittle">
+                    Пароль
+                </div>
+                <input class="sign-in__input sign-in__check-pass_active" type="password" id="sign-up-input-pass">
+                <div class="sing-up-pass__error">
+                </div>
+            </div>
+            <div class="dialog-sing-in__conf-pass">
+                <div class="sing-in-pass__tittle">
+                    Повторите пароль
+                </div>
+                <div class="sign-up__check-pass sign-up__check-pass_active"></div>
+                <input class="sign-in__input" type="password" id="sign-up-input-conf-pass">
+                <div class="sing-up-conf-pass__error">
+                </div>
+            </div>
+          </form>
           <button class="dialog-sing-up__btn-sign-up">Зарегистрироваться</button>
           <div class="dialog-sing-in__create-acc">
               <div class="sing-in-create__tittle">
@@ -169,6 +174,7 @@
           </div>
       </div>
     </dialog>   
+
 
     <div class="content_container">
       <header class="header">
@@ -208,14 +214,14 @@
 
             <li class="header_nav_li li_nav_authorized li_nav_sign"> <a href="#" class="header_link sign-in-button"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Вход</a></li> 
             <li class="header_nav_li li_nav_authorized-only"> 
-              <a class="header_link"><img class="header_nav_img" src="/files/images/other/cart.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
+              <a class="header_link"><img class="header_nav_img" src="/files/images/other/account.png" alt="">Пользователь <img class="user__arrow-img" src="/files/images/other/shortarrow.svg" alt="">
               </a>
               <div class="nav-user-card">
                 <div class="user-card__info">
                   <img class = "user_pic" src="/files/images/other/user.png" alt="">
                   <div class="user-card__desc">
                     <div class="user-card__name user-fullname">Пользователь</div>
-                    <div class="user-card__phone user-phone"> </div>
+                    <div class="user-card__phone user-phone">Нет телефона</div>
                     <div class="user-card__exit">Выйти</div>
                   </div>
                 </div>
@@ -241,26 +247,43 @@
             <h1 class="banner-inner__tittle_fullhd banner-inner__tittle">Найди свою <br> сочную автопроставку</h1>
             <h1 class="banner-inner__tittle_mobile banner-inner__tittle">Найди свою сочную автопроставку</h1>
 
-            <article class="banner_search">
+            <!-- <article class="banner_search">
               <input placeholder="Введите марку" type="text" class="banner_search_field"></input>
               <div class="banner_btn">
                 <img class="banner-btn__img" src="/files/images/other/search.png" alt=""> Найти
               </div>
-            </article>
+            </article> -->
+
+
+            <div class="banner-btns__container">
+              <a href="/files/html/items.html" class="banner-btn">
+                <img class="banner-btn__img" src="/files/images/other/search_violet.png" alt="">Каталог проставок
+              </a>
+
+              <a class="banner-btn banner-btn__call-btn">
+                <img class="banner-btn__img" src="/files/images/other/call_violet.png" alt="">Заказать звонок
+              </a>
+            </div>
+
+
           </div>
         </section>
 
         <section class="brand">
             <h2 class="brand_tittle section_tittle">Доступные марки</h2>
             <div class="brand_list">
-              <!-- 
+              
 
-              <a href="/files/html/brands.html" class="brand_item">
+              <!-- <a href="/files/html/brands.html" class="brand_item">
                 <div class="brand_item_desc">
-                  <img src="/files/images/content/car-brand/bmw.png" alt=""> BMW
+                  <img src="/files/images/content/car-brand/bmw.png" alt=""> 
+                  <div class="texttest">
+                    Mercedes-Benz
+                  </div>
                 </div>
                 <img src="/files/images/other/arrow.png" alt="">
-              </a> -->
+              </a>  -->
+           
               
             </div>
             <a href="/files/html/brands.html" class="brand_note section_note">
@@ -275,7 +298,7 @@
 
             <!-- <a class="product_item">
               <div class="product_item_img">
-                <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+                <img class="product_item_img_tofavourite" src="/files/images/other/purple_heartNoFill.png" alt="">
                 <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
               </div>
               <div class="product_item_desc">
@@ -337,7 +360,7 @@
               // Создаем изображение для избранного
               var heartImg = document.createElement('img');
               heartImg.classList.add("product_item_img_tofavourite");
-              heartImg.src = "/files/images/other/heart_notfill.png";
+              heartImg.src = "/files/images/other/purple_heartNoFill.png";
               heartImg.alt = "";
 
               // Создаем изображение товара
@@ -421,18 +444,20 @@
                 <div class="contacts_info_item"><img src="/files/images/other/worktime.png" alt="">Ежедневно 8:00-22:00 (без обеда)</div>
                 <div class="contacts_info_item"><img src="/files/images/other/phone_contact.png" alt=""><p>+375(22) 344-55-78 (МТС) <br> +375 (22) 344-55-78 (A1)</p></div>
               </div>
-              <button class="open_dialog_btn">
+              <button class="open_dialog_btn contact-dialog-btn">
                 <img src="/files/images/other/call.png" alt="">Заказать звонок
               </button>
             </div>
             <div class="contacts_map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.295656241086!2d30.303776277076025!3d53.90872193249618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d0518859b51e1d%3A0x1c5135130ff1cb7e!2z0JDQktCi0J7Ql9CQ0J_Qp9CQ0KHQotCYINCf0J4g0KHQkNCc0KvQnCDQndCY0JfQmtCY0Jwg0KbQldCd0JDQnCDQkiDQnNCe0JPQmNCb0IHQktCVINCjINCe0JvQldCT0JAg0JIg0JDQoNCc0JDQlNCVINCf0JDQktCY0JvQrNCe0J0gMTMy0JAgKzM3NTI5MTQxMTMxMQ!5e0!3m2!1sru!2sby!4v1702978248701!5m2!1sru!2sby" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.295656241086!2d30.303776277076025!3d53.90872193249618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d0518859b51e1d%3A0x1c5135130ff1cb7e!2z0JDQktCi0J7Ql9CQ0J_Qp9CQ0KHQotCYINCf0J4g0KHQkNCc0KvQnCDQndCY0JfQmtCY0Jwg0KbQldCd0JDQnCDQkiDQnNCe0JPQmNCb0IHQktCVINCjINCe0JvQldCT0JAg0JIg0JDQoNCc0JDQlNCVINCf0JDQktCY0JvQrNCe0J0gMTMy0JAgKzM3NTI5MTQxMTMxMQ!5e0!3m2!1sru!2sby!4v1702978248701!5m2!1sru!2sby&amp;disableDefaultUI=1&amp;disableDoubleClickZoom=1&amp;disableDragging=1&amp;disableScrollWheelZoom=1&amp;disableKeyboardShortcuts=1&amp;disableStreetView=1" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          </div>
+
           </div>
 
         </section>
 
-        <section class="reviews">
+        <!-- <section class="reviews">
           <h2 class="reviews_tittle section_tittle">Отзывы о компании</h2>
           <div class="reviews_list">
             <a class="reviews_item">
@@ -571,58 +596,93 @@
           <a href="#" class="reviews_note section_note">
             Список всех отзывов<img src="/files/images/other/shortarrow.png" alt="">
           </a>
-        </section>
+        </section> -->
       </main>
       <footer class="footer">
         <div class="footer_inner">
-          <div class="footer_item">
+          <div class="footer_item footer_buyer">
             <p class="footer_customer">Покупателям</p>
             <div class="footer_links_pages">          
               <a href="/files/html/items.html" class="footer_customer_link">Каталог товаров</a>
-              <a href="#" class="footer_customer_link">О нас</a>
-              <a href="#" class="footer_customer_link">Отзывы</a>
+              <a href="/files/html/about.html" class="footer_customer_link">О компании</a>
+              <a href="/files/html/methods.html" class="footer_customer_link">Способы оплаты и доставки</a>
+              <a href="#" class="footer_customer_link">Пользовательское соглашение</a>
+              <a href="#" class="footer_customer_link">Политика обработки персональных данных</a>
             </div>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_mode">
             <p class="footer_customer">Режим работы</p>
             <p class="footer_item_info">
               Онлайн-заказ: круглосуточно<br>
-              Время работы: 8:00-22:00<br>
-              Оператор: 8:00-22:00<br>
+              Магазин: 8:00-18:00<br>
+              Оператор: 8:00-18:00<br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_contacts">
+            <p class="footer_customer">Контакты</p>
             <p class="footer_item_info">
-              Тел.: +375 (22) 344-55-78 (МТС)<br>
-              +375 (22) 344-55-78 (A1) <br>
-              E-mail: 2info@1ak.by <br>
+              Консультант: +375 (29) 841-28-56<br>
+              E-mail: belavtoprostavki@gmail.com <br>
             </p>
           </div>
-          <div class="footer_item">
-            <p class="footer_customer">Режим работы</p>
+          <div class="footer_item footer_adres">
+            <p class="footer_customer">Адрес магазина</p>
             <p class="footer_item_info">
-              220028, г. Могилёв ул. Гришина 122, п. 1, кв. 133 
+              Г. Могилев, улица Лазаренко 73В, 2 этаж слева 
             </p>
           </div>
-          <div class="footer_item">
+          <div class="footer_item footer_social">
             <p class="footer_customer">Социальные сети</p>
             <div class="footer_links_social">              
-              <a href="#"><img src="/files/images/other/tg.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/viber.png" alt=""></a>
-              <a href="#"><img src="/files/images/other/whatsapp.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://t.me/talyasikk"><img class="footer_links_social__img" src="/files/images/other/tg.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="viber://chat?number=%2B375298412856"><img class="footer_links_social__img" src="/files/images/other/viber.png" alt=""></a>
+              <a class="footer_links_social__link" target="_blank" href="https://wa.me/375298412856"><img class="footer_links_social__img" src="/files/images/other/whatsapp.png" alt=""></a>
             </div>
           </div>
+
+
+          
+          <div class="footer_item footer-logos">
+            <div class="footer-logos__content">
+              <img class="footer-logos-content__img" src="/files/images/content/logos/HORIZONTAL.png" alt="">
+            </div>
+            <div class="footer-logos__content_m">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/1.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/2.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/3.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/4.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/5.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/6.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/7.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/8.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/9.png" alt="">
+              <img class="footer-logos-content__img_m" src="/files/images/content/logos/10.png" alt="">
+              
+            </div>
+          </div>
+
+
+
+
+
         </div>
         <p class="Copyright"> Copyright © 2023 Artekok.inc. All Rights Reserved </p>
       </footer>
+      <section class="bottom-nav">
+        <nav class="bottom-nav__container">
+          <a href="/index.html" class="bottom-nav__link bottom-nav__link-selected"><img src="/files/images/other/home.svg" alt="Главная" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=profile" class="bottom-nav__link"><img src="/files/images/other/user_body.svg" alt="Профиль" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=favourite" class="bottom-nav__link"><img src="/files/images/other/profile_heartsvg.svg" alt="Избранное" class="bottom-nav__link-img"></a>
+          <a href="/files/html/profile.html?section=cart" class="bottom-nav__link"><img src="/files/images/other/profile_cart.svg" alt="Корзина" class="bottom-nav__link-img"></a>
+        </nav>
+      </section>
     </div>
 
     <!------------------- Scripts ------------------->  
 
     <!-------- Dialog call window -------->  
     <script src="https://unpkg.com/imask"></script>
-    <script src="/files/js/dialog_call.js"></script>
+    <script src="/files/js/dialog_call.js" type="module"></script>
 
 
 
@@ -634,7 +694,6 @@
 
     
     <script src="/files/js/firebase/sign-in-up.js" type="module"></script>
-
 
 
     <script src="/files/js/checkUser.js"></script>
@@ -654,39 +713,40 @@
         messagingSenderId: "580863358064",
         appId: "1:580863358064:web:133ed9c449a5338601b0b5",
         measurementId: "G-SL7W9G5G4E"
-    };
-    
-    
-      // Ваш код дальше
-    
+      };
       var database = firebase.database();
       var brandsRef = database.ref('cars');
     
       brandsRef.once('value')
         .then(function(snapshot) {
           var brandList = document.querySelector('.brand_list');
-    
+          let counter = 0;    
           snapshot.forEach(function(childSnapshot) {
-            var brandData = childSnapshot.val();
-            var brandName = brandData.text;
-            var brandImgUrl = brandData.img;
-    
-            var brandItem = document.createElement('a');
-            brandItem.href = "/files/html/brands.html";
-            brandItem.classList.add("brand_item");
-    
-            var brandItemDesc = document.createElement('div');
-            brandItemDesc.classList.add("brand_item_desc");
-            brandItemDesc.innerHTML = '<img src="' + brandImgUrl + '" alt=""> ' + brandName;
-    
-            var arrowImg = document.createElement('img');
-            arrowImg.src = "/files/images/other/arrow.png";
-            arrowImg.alt = "";
-    
-            brandItem.appendChild(brandItemDesc);
-            brandItem.appendChild(arrowImg);
-    
-            brandList.appendChild(brandItem);
+            if (counter < 12){
+              var brandData = childSnapshot.val();
+              var brandName = brandData.text;
+              var brandImgUrl = brandData.img;
+      
+              var brandItem = document.createElement('a');
+              brandItem.href = "/files/html/brands.html";
+              brandItem.classList.add("brand_item");
+      
+              var brandItemDesc = document.createElement('div');
+              brandItemDesc.classList.add("brand_item_desc");
+              brandItemDesc.innerHTML = '<img src="' + brandImgUrl + '" alt=""> <div class="brand_item_desc__decs">' + brandName + '</div>';
+      
+              var arrowImg = document.createElement('img');
+              arrowImg.src = "/files/images/other/arrow.png";
+              arrowImg.alt = "";
+      
+              brandItem.appendChild(brandItemDesc);
+              brandItem.appendChild(arrowImg);
+      
+              brandList.appendChild(brandItem);
+              counter++;
+            } else{
+              return;
+            }
           });
         })
         .catch(function(error) {
@@ -698,6 +758,7 @@
 
     <!-- Prostavki -->    
     <script>
+      
       // Инициализация Firebase
       const firebaseConfig = {
         apiKey: "AIzaSyBksjnCLyWqL4004kCtrpjzt6mZzl3mk5E",
@@ -712,159 +773,193 @@
     
       firebase.initializeApp(firebaseConfig);
     
-      // Ваш код дальше
-    
       var database = firebase.database();
       var prostavkiRef = database.ref('prostavki');
     
       // Ищем элемент с классом product_list внутри контейнера body
       var productContainer = document.querySelector('.product_list');
     
+
+
+
+
+
+      
       prostavkiRef.once('value')
         .then(function(snapshot) {
+          let count = 0;
+
           snapshot.forEach(function(childSnapshot) {
-            var prostavkaData = childSnapshot.val();
-            var description = prostavkaData.description;
-            var productId = childSnapshot.key; // Получаем ID продукта
-            var price = prostavkaData.price;
-            var imageUrl = prostavkaData.images["1"];
-    
-            // Создаем элемент карточки
-            var productItem = document.createElement('a');
-            productItem.href = "";
-            productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
-            productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
-    
-            // Создаем элемент для изображения
-            var productItemImg = document.createElement('div');
-            productItemImg.classList.add("product_item_img");
-    
-            // Создаем изображение для избранного
-            var heartImg = document.createElement('img');
-            heartImg.classList.add("product_item_img_tofavourite");
-            heartImg.src = "/files/images/other/heart_notfill.png";
-            heartImg.alt = "";
-    
-            // Создаем изображение товара
-            var productImg = document.createElement('img');
-            productImg.classList.add("product_item_img_cont");
-            productImg.src = imageUrl;
-            productImg.alt = "";
-    
-            // Добавляем изображения в элемент карточки
-            productItemImg.appendChild(heartImg);
-            productItemImg.appendChild(productImg);
-    
-            // Создаем элемент описания
-            var productItemDesc = document.createElement('div');
-            productItemDesc.classList.add("product_item_desc");
-    
-            // Создаем параграф для описания
-            var descriptionParagraph = document.createElement('p');
-            descriptionParagraph.textContent = description;
-    
-            // Создаем элемент для цены
-            var productItemPrice = document.createElement('div');
-            productItemPrice.classList.add("product_item_price");
-    
-            // Добавляем цену
-            productItemPrice.textContent = price + " руб/ком.";
-    
-            // Создаем элемент кнопки
-            var productItemBtn = document.createElement('div');
-            productItemBtn.classList.add("product_item_btn");
-    
-            // Создаем изображение для кнопки
-            var buyImg = document.createElement('img');
-            buyImg.src = "/files/images/other/buy.png";
-            buyImg.alt = "";
-    
-            // Добавляем кнопку
-            productItemBtn.appendChild(buyImg);
-            productItemBtn.appendChild(document.createTextNode("Купить"));
-    
-            // Добавляем элементы описания в элемент карточки
-            productItemDesc.appendChild(descriptionParagraph);
-            productItemDesc.appendChild(productItemPrice);
-            productItemPrice.appendChild(productItemBtn);
-    
-            // Добавляем изображения и описание в элемент карточки
-            productItem.appendChild(productItemImg);
-            productItem.appendChild(productItemDesc);
+            if (count < 5){
+              var prostavkaData = childSnapshot.val();
+              var description = prostavkaData.description;
+              var productId = childSnapshot.key; // Получаем ID продукта
+              var price = prostavkaData.price;
+              var imageUrl = prostavkaData.images["1"];
+      
+              // Создаем элемент карточки
+              var productItem = document.createElement('a');
+              productItem.href = "";
+              productItem.classList.add("product_item", "product-item"); // Добавляем класс product-item
+              productItem.dataset.productId = productId; // Добавляем атрибут data-product-id с ID продукта
+      
+              // Создаем элемент для изображения
+              var productItemImg = document.createElement('div');
+              productItemImg.classList.add("product_item_img");
+      
+              // Создаем изображение для избранного
+              var heartImg = document.createElement('img');
+              heartImg.classList.add("product_item_img_tofavourite");
+              heartImg.src = "/files/images/other/purple_heartNoFill.png";
+              heartImg.alt = "";
+      
+              // Создаем изображение для избранного(mobileVer)
+              var heartImgMobile = document.createElement('img');
+              heartImgMobile.classList.add("product_item_img_tofavourite");
+              heartImgMobile.src = "/files/images/other/purple_heartNoFill.png";
+              heartImgMobile.alt = "";
+      
+              // Создаем изображение товара
+              var productImg = document.createElement('img');
+              productImg.classList.add("product_item_img_cont");
+              productImg.src = imageUrl;
+              productImg.alt = "";
+      
+              // Добавляем изображения в элемент карточки
+              productItemImg.appendChild(heartImg);
+              productItemImg.appendChild(productImg);
+      
+              // Создаем элемент описания
+              var productItemDesc = document.createElement('div');
+              productItemDesc.classList.add("product_item_desc");
+      
+              // Создаем параграф для описания
+              var descriptionParagraph = document.createElement('div');
+              descriptionParagraph.classList.add("product_item_desc__text");
+      
+              var descriptionParagraphText = document.createElement('div');
+              descriptionParagraphText.classList.add("product_item_desc__text-desc");
+              descriptionParagraphText.textContent = description;
+
+              descriptionParagraph.appendChild(descriptionParagraphText);
+              descriptionParagraph.appendChild(heartImgMobile);
 
 
 
 
-            productItem.addEventListener('click', function(event) {
-              if (event.target.classList.contains('product_item_img_tofavourite')) {
-                event.preventDefault(); // Предотвращаем переход по ссылке
-                  event.stopPropagation(); // Останавливаем всплытие события
 
-                  // Меняем иконку сердечка
-                  var heartImg = event.target;
 
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductId = event.currentTarget.dataset.productId;
 
-                  // Проверяем, вошел ли пользователь
-                  var currentUser = localStorage.getItem('currentUser');
+              // Создаем элемент для цены
+              var productItemPrice = document.createElement('div');
+              productItemPrice.classList.add("product_item_price");
+      
+              // Добавляем цену
+              productItemPrice.textContent = price + " руб/к";
+      
+              // Создаем элемент кнопки
+              var productItemBtn = document.createElement('div');
+              productItemBtn.classList.add("product_item_btn");
+      
+              // Создаем изображение для кнопки
+              var buyImg = document.createElement('img');
+              buyImg.src = "/files/images/other/buy.png";
+              buyImg.alt = "";
+      
+              // Добавляем кнопку
+              productItemBtn.appendChild(buyImg);
+              productItemBtn.appendChild(document.createTextNode("Купить"));
+      
+              // Добавляем элементы описания в элемент карточки
+              productItemDesc.appendChild(descriptionParagraph);
+              productItemDesc.appendChild(productItemPrice);
+              productItemPrice.appendChild(productItemBtn);
+      
+              // Добавляем изображения и описание в элемент карточки
+              productItem.appendChild(productItemImg);
+              productItem.appendChild(productItemDesc);
 
-                  if (currentUser) {
-                      // Получаем ссылку на базу данных для избранного пользователя
-                      var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
 
-                      // Проверяем, есть ли уже такой товар в избранном
-                      userFavoritesRef.child(selectedProductId).once('value')
-                          .then(function(snapshot) {
-                              if (snapshot.exists()) {
-                                  // Товар уже в избранном, удаляем его
-                                  userFavoritesRef.child(selectedProductId).remove();
-                                  heartImg.src = '/files/images/other/heart_notfill.png';
-                              } else {
-                                  // Товар не в избранном, добавляем его
-                                  userFavoritesRef.child(selectedProductId).set("1");
-                                  heartImg.src = '/files/images/other/heart_fill.png';
-                              }
-                          })
-                          .catch(function(error) {
-                              console.error("Error checking user favorites: ", error);
-                          });
-                  } 
-                  else {
-                    
-                    // Получаем текущее значение объекта из куки
-                    var myObject = Cookies.getJSON('userInfo') || {};
 
-                    if (myObject.favourite && myObject.favourite[selectedProductId]) {
-                        // Товар уже в избранном, удаляем его
-                        delete myObject.favourite[selectedProductId];
-                        heartImg.src = '/files/images/other/heart_notfill.png';
-                    } else {
+
+              productItem.addEventListener('click', function(event) {
+                if (event.target.classList.contains('product_item_img_tofavourite')) {
+                  event.preventDefault(); // Предотвращаем переход по ссылке
+                    event.stopPropagation(); // Останавливаем всплытие события
+
+                    // Меняем иконку сердечка
+                    var heartImg = event.target;
+
+                    // Получаем ID продукта из атрибута data-product-id
+                    var selectedProductId = event.currentTarget.dataset.productId;
+
+                    // Проверяем, вошел ли пользователь
+                    var currentUser = localStorage.getItem('currentUser');
+
+                    if (currentUser) {
+                        // Получаем ссылку на базу данных для избранного пользователя
+                        var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+
+                        // Проверяем, есть ли уже такой товар в избранном
+                        userFavoritesRef.child(selectedProductId).once('value')
+                            .then(function(snapshot) {
+                                if (snapshot.exists()) {
+                                    // Товар уже в избранном, удаляем его
+                                    userFavoritesRef.child(selectedProductId).remove();
+                                    heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                                    heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                                    createToast("success", "Товар удалён из избранного!");
+                                } else {
+                                    // Товар не в избранном, добавляем его
+                                    userFavoritesRef.child(selectedProductId).set("1");
+                                    heartImg.src = '/files/images/other/purple_heart.png';
+                                    heartImgMobile.src = '/files/images/other/purple_heart.png';
+                                    createToast("success", "Товар добавлен в избранное!");
+                                }
+                            })
+                            .catch(function(error) {
+                                console.error("Error checking user favorites: ", error);
+                            });
+                    } 
+                    else {
+                      
+                      // Получаем текущее значение объекта из куки
+                      var myObject = Cookies.getJSON('userInfo') || {};
+
+                      if (myObject.favourite && myObject.favourite[selectedProductId]) {
+                          // Товар уже в избранном, удаляем его
+                          delete myObject.favourite[selectedProductId];
+                          heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                          heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                          createToast("success", "Товар удалён из избранного!");
+                      } 
+                      else {
                         // Товар не в избранном, добавляем его
                         if (!myObject.favourite) {
                             myObject.favourite = {}; // Если объекта "favourite" нет, создаем пустой объект
                         }
                         myObject.favourite[selectedProductId] = 1; // Устанавливаем товар в избранное
-                        heartImg.src = '/files/images/other/heart_fill.png';
+                        heartImg.src = '/files/images/other/purple_heart.png';
+                        heartImgMobile.src = '/files/images/other/purple_heart.png';
+                        createToast("success", "Товар добавлен в избранное!");
+                      }
+
+                      // Записываем обновленный объект обратно в куки
+                      Cookies.set('userInfo', myObject);
                     }
-
-                    // Записываем обновленный объект обратно в куки
-                    Cookies.set('userInfo', myObject);
-
-                  }
-              }               
-              else if (event.target.classList.contains('product_item_btn')) {
-                event.preventDefault(); // Предотвращаем переход по ссылке
-                  event.stopPropagation(); // Останавливаем всплытие события
+                }               
+                else if (event.target.classList.contains('product_item_btn')) {
+                  event.preventDefault(); // Предотвращаем переход по ссылке
+                    event.stopPropagation(); // Останавливаем всплытие события
 
 
-                  // Получаем ID продукта из атрибута data-product-id
-                  var selectedProductIdCart = event.currentTarget.dataset.productId;
+                    // Получаем ID продукта из атрибута data-product-id
+                    var selectedProductIdCart = event.currentTarget.dataset.productId;
 
-                  // Проверяем, вошел ли пользователь
-                  var currentUser = localStorage.getItem('currentUser');
+                    // Проверяем, вошел ли пользователь
+                    var currentUser = localStorage.getItem('currentUser');
 
-                  if (currentUser) {
+                    if (currentUser) {
                       // Получаем ссылку на базу данных для избранного пользователя
                       var userCartRef = database.ref('accounts/' + currentUser + '/cart');
 
@@ -872,12 +967,14 @@
                       userCartRef.child(selectedProductIdCart).once('value')
                           .then(function(snapshot) {
                             userCartRef.child(selectedProductIdCart).set("1");
+                            createToast("success", "Товар добавлен в корзину!");
                           })
                           .catch(function(error) {
                               console.error("Error checking user favorites: ", error);
                           });
 
-                  } else {
+                    } 
+                    else {
                       // Получаем текущее значение объекта из куки
                       var myObject = Cookies.getJSON('userInfo');
                       
@@ -890,80 +987,122 @@
                       if (!myObject.cart) {
                           myObject.cart = {}; // Если объекта "cart" нет, создаем пустой объект
                       }
-                       // Добавляем товар в корзину
+                      // Добавляем товар в корзину
                       var productId = selectedProductIdCart; // Замените "your_product_id" на реальный id товара
                       myObject.cart[productId] = 1; // Если товара нет в корзине, устанавливаем его количество равным 1
+                      createToast("success", "Товар добавлен в корзину!");
 
                       Cookies.set('userInfo', myObject);
+                    } 
+                }        
+                else {
+                  event.preventDefault();
 
-                  } 
-              }        
-              else {
-                event.preventDefault();
+                  // Получаем ID продукта из атрибута data-product-id
+                  var selectedProductId = event.currentTarget.dataset.productId;
 
-                // Получаем ID продукта из атрибута data-product-id
-                var selectedProductId = event.currentTarget.dataset.productId;
-
-                // Сохраняем ID продукта в локальное хранилище
-                localStorage.setItem('selectedProductId', selectedProductId);
-
-                // Переадресация на страницу товара
-                window.location.href = '/files/html/item.html';                  
-              }
-            });            
-
-
-
-
-
-
-
-
-            var currentUser = localStorage.getItem('currentUser');
-            // Проверяем, залогинен ли пользователь
-            if (currentUser) {
-                var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
-                
-                userFavoritesRef.child(productId).once('value')
-                    .then(function(snapshot) {
-                        if (snapshot.exists()) {
-                            heartImg.src = '/files/images/other/heart_fill.png';
-                        } else {
-                            heartImg.src = '/files/images/other/heart_notfill.png';
-                        }
-                    })
-                    .catch(function(error) {
-                        console.error("Error checking user favorites: ", error);
-                    });
-            } else {
-                // Получаем текущее значение объекта из куки
-                var myObject = Cookies.getJSON('userInfo') || {};
-                
-                if (myObject.favourite && myObject.favourite[productId]) {
-                    // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
-                    heartImg.src = '/files/images/other/heart_fill.png';
-                } else {
-                    // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
-                    heartImg.src = '/files/images/other/heart_notfill.png';
+                  // Переадресация на страницу товара
+                  window.location.href = '/files/html/item.html?id=' + selectedProductId;                 
                 }
+              });            
+
+
+
+
+              var currentUser = localStorage.getItem('currentUser');
+              // Проверяем, залогинен ли пользователь
+              if (currentUser) {
+                  var userFavoritesRef = database.ref('accounts/' + currentUser + '/favourites');
+                  
+                  userFavoritesRef.child(productId).once('value')
+                      .then(function(snapshot) {
+                          if (snapshot.exists()) {
+                              heartImg.src = '/files/images/other/purple_heart.png';
+                              heartImgMobile.src = '/files/images/other/purple_heart.png';
+                          } else {
+                              heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                              heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                          }
+                      })
+                      .catch(function(error) {
+                          console.error("Error checking user favorites: ", error);
+                      });
+              } 
+              else {
+                  // Получаем текущее значение объекта из куки
+                  var myObject = Cookies.getJSON('userInfo') || {};
+                  
+                  if (myObject.favourite && myObject.favourite[productId]) {
+                      // Если товар уже в избранном в куки, устанавливаем иконку сердечка как заполненную
+                      heartImg.src = '/files/images/other/purple_heart.png';
+                      heartImgMobile.src = '/files/images/other/purple_heart.png';
+
+                  } else {
+                      // Если товара нет в избранном в куки, устанавливаем иконку сердечка как не заполненную
+                      heartImg.src = '/files/images/other/purple_heartNoFill.png';
+                      heartImgMobile.src = '/files/images/other/purple_heartNoFill.png';
+                  }
+                }
+              // Добавляем элемент карточки в найденный контейнер
+              productContainer.appendChild(productItem);
+              count++;
+            } else {
+              return
             }
-            // Добавляем элемент карточки в найденный контейнер
-            productContainer.appendChild(productItem);
+                     
           });
         })
         .catch(function(error) {
           console.error("Error fetching data: ", error);
-        });    
-        
-        
+        });  
+        const notifications = document.querySelector(".notifications")
 
-        
+      const toastDetails = {
+          timer: 1500,
+          success: {
+              icon: '/files/images/other/tick.png',
+              text: 'Success: This is a success toast.',
+          },
+          error: {
+              icon: '/files/images/other/cross.png',
+              text: 'Error: This is an error toast.',
+          },
+          warning: {
+              icon: 'fa-triangle-exclamation',
+              text: 'Warning: This is a warning toast.',
+          },
+          info: {
+              icon: 'fa-circle-info',
+              text: 'Info: This is an information toast.',
+          }
+      }
+
+      const removeToast = (toast) => {
+          toast.classList.add("hide");
+          if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
+          setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
+      }
+
+      const createToast = (id, inputText) => {
+          // Getting the icon and text for the toast based on the id passed
+          const { icon } = toastDetails[id];
+          const toast = document.createElement("li"); // Creating a new 'li' element for the toast
+          toast.className = `toast ${id}`; // Setting the classes for the toast
+          // Setting the inner HTML for the toast
+          toast.innerHTML = `<div class="column" onclick="removeToast(this.parentElement)">
+                              <img class="notif_img" src="${icon}">
+                              <span>${inputText}</span>
+                            </div>`;
+          notifications.appendChild(toast); // Append the toast to the notification ul
+          // Setting a timeout to remove the toast after the specified duration
+          toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
+      }
     </script> 
  
 
     <!-- <a href="" class="product_item product-item" data-product-id="prostavka228">
       <div class="product_item_img">
-        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_tofavourite" src="/files/images/other/purple_heartNoFill.png" alt="">
         <img class="product_item_img_cont" src="https://firebasestorage.googleapis.com/v0/b/avtoprostavki-1337.appspot.com/o/avtoprostavki%2Fprostavka228%2F1.png?alt=media&amp;token=9f5db2b3-2d25-4ab7-826b-a16bb714bf19" alt="">
       </div>
       <div class="product_item_desc">
@@ -978,7 +1117,7 @@
     
     <!-- <a href="/files/html/item.html" class="product_item">
       <div class="product_item_img">
-        <img class="product_item_img_tofavourite" src="/files/images/other/heart_notfill.png" alt="">
+        <img class="product_item_img_tofavourite" src="/files/images/other/purple_heartNoFill.png" alt="">
         <img class="product_item_img_cont" src="/files/images/content/product-brand/product-bmw/1.png" alt="">
       </div>
       <div class="product_item_desc">
@@ -1003,8 +1142,31 @@
     
     <!-- Smooth scroll -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-    <!--Подключается в head <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/files/js/scroll_anim.js"></script>
+
+    <script src="/files/js/getUserInfo.js" type="module"></script>
+    
+    <script type="module">
+      
+      import { updateAllInfoProfile} from "/files/js/getUserInfo.js";
+      
+      
+      document.addEventListener('DOMContentLoaded', function() {
+
+        var myObject = Cookies.getJSON('userInfo') || {};
+        myObject.favourite = myObject.favourite || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        myObject.cart = myObject.cart || {}; // Инициализируем favourite как объект, если он не существует
+        Cookies.set('userInfo', myObject);
+
+        let currentUser = localStorage.getItem('currentUser')
+        if (currentUser){
+          updateAllInfoProfile();
+        }        
+      });
+    </script>
+
+
   </body>
 </html>

@@ -12,12 +12,13 @@
     transform: translate(-50%, -50%);
     overflow: hidden;
     z-index: 1000;
-    transition: 1s ease-in-out;   
+    transition: 0.69s ease-in-out;   
 }
 .close-sign{
     position: absolute;
     top: 20px;
     right: 32px;
+    cursor: pointer;
 }
 .dialog-sing-in__container, .dialog-sing-up__container{
     padding: 40px 40px 30px;
@@ -25,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 1s ease-in-out;
+    transition: transform 0.69s ease-in-out;
     transform: translateX(-101%);  
 }
 .dialog-auth_sign-in .dialog-sing-in__container, .dialog-auth_sign-up .dialog-sing-up__container{
@@ -74,6 +75,7 @@
     position: absolute;
     right: 10px;
     top: 43px;
+    cursor: pointer;
 }
 .sign-in__check-pass_active, .sign-up__check-pass_active{
     background-image: url("/files/images/other/eye.svg");
@@ -90,6 +92,11 @@
 }
 .sign-in-pass-tittle__forgot-pass{
     color: #9F9F9F;
+    cursor: pointer;
+}
+#login-form{
+    display: flex;
+    flex-direction: column;
 }
 .dialog-sing-in__btn-sign-in, .dialog-sing-up__btn-sign-up{
     color: white;
@@ -101,6 +108,8 @@
     font-size: 16px;
     font-family: 'ProximaNova_Regular';
     margin: 30px auto;
+    cursor: pointer;
+    text-align: center;
 }
 .sing-in-create__tittle{
     color: #9F9F9F;
@@ -109,6 +118,7 @@
 }
 .sing-in__link{
     color: #7866F0;
+    cursor: pointer;
 }
 
 .overlay {
@@ -132,3 +142,71 @@
 
 
 
+
+@media (max-width: 430px) { 
+    .dialog-auth{
+        width: 90vw;
+    }
+
+    .sign-in__input {
+        border-radius: 15px;
+        background-color: #EAEAEA;
+        border: 0;
+        height: 40px;
+        width: 80vw;
+        max-width: 350px;
+        padding-left: 10px;
+        font-size: 16px;
+        font-family: 'ProximaNova_Regular';
+        margin-top: 10px;
+    }
+
+
+    .dialog-sing-in__container{
+        padding: 14px;
+    }
+    .dialog-sing-up__container {
+        padding: 12px;
+    }
+
+    .dialog-sing-in__tittle{
+        font-size: 18px;
+    }
+    .dialog-sing-in__email, .dialog-sing-in__pass, .dialog-sing-in__conf-pass {
+        margin-top: 10px;
+    }
+    .sing-in-email__tittle, .sing-in-pass__tittle {
+        color: black;
+        font-size: 14px;
+        font-family: 'ProximaNova_Regular';
+    }
+    
+    .dialog-sing-in__btn-sign-in, .dialog-sing-up__btn-sign-up {
+        color: white;
+        background: #7866F0;
+        width: 200px;
+        padding: 12px 0;
+        border: 0;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: 'ProximaNova_Regular';
+        margin: 30px auto;
+    }
+    .sign-in__check-pass, .sign-up__check-pass {
+        top: 33px;
+    }
+    .sing-in-create__tittle {
+        font-size: 14px;
+    }
+    .close-sign {
+        top: 18px;
+        right: 20px;
+    }
+    
+    .dialog-auth {
+        height: 420px;
+    }
+    .dialog-auth_sign-in {
+        height: 350px;
+    }
+}

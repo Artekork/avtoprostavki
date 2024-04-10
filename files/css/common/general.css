@@ -47,8 +47,39 @@ input[type=number] {
 
 
 
+.section_tittle{
+  font-size: 32px;
+  font-family: 'ProximaNova_Bold';
+}
+
+.section_note{
+  display: inline-block;
+  font-size: 16px;
+  color: #757575;
+  font-family: 'ProximaNova_SemiBold';
+
+  width: 100%;
+  text-align: center;
+  padding-top: 45px;
+}
+.section_note img {
+  margin-bottom: -1px;
+}
 
 
+
+.banner_secondary{
+  background-size:cover; 
+  background-position: center;
+  background-image: url("/files/images/content/backgrounds/brands.png");
+  background-repeat: no-repeat;
+  border-radius: 40px;
+  margin: 25px 6% 0;
+  padding: 50px 6%;
+  color: white;
+  font-family: 'ProximaNova_Bold';
+  font-size: 55px;
+}
 
 
 
@@ -60,6 +91,24 @@ input[type=number] {
     margin: 0; 
     border-radius: 00px;
   }
+  .section_tittle{
+    font-size: 18px;
+    font-family: 'ProximaNova_Bold';
+  }
+  .section_note{
+    font-size: 14px;
+    padding-top: 20px;
+  }
+  .section_note img {
+    width: 12;
+  }  
 
 
+  .banner_secondary{
+    font-size: 24px;
+    margin: 15px 10px;
+    padding: 30px 50px;
+    text-align: center;
+    border-radius: 20px;
+  }
 }

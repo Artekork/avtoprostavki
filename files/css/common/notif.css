@@ -1,0 +1,111 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+:root {
+  --dark: #34495E;
+  --light: #ffffff;
+  --success: #0ABF30;
+  --error: #E24D4C;
+  --warning: #E9BD0C;
+  --info: #3498DB;
+}
+.notifications {
+  position: fixed;
+  top: 30px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 10000000000;
+}
+.notifications :where(.toast, .column) {
+  display: flex;
+  align-items: center;
+}
+.notifications .toast {
+  width: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  border-radius: 15px;
+  padding: 20px 33px;
+  margin-bottom: 10px;
+  background: linear-gradient(60deg, #F5F6F8 0%, #ECF2FF 100%);
+  animation: show_toast 0.3s ease forwards;
+  box-shadow: 0px 4px 20px 0px rgba(21, 11, 50, 0.23);
+  font-size: 50px;
+}
+.notif_img{
+  height: 15px;
+}
+
+.toast .column span {
+  font-size: 16px;
+  margin-left: 10px;
+}
+@keyframes show_toast {
+  0% {
+    transform: translateY(-100%);
+  }
+  40% {
+    transform: translateY(5%);
+  }
+  80% {
+    transform: translateY(-0%);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+.notifications .toast.hide {
+  animation: hide_toast 0.3s ease forwards;
+}
+@keyframes hide_toast {
+  0% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateY(-0%);
+  }
+  80% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(calc((-100% - 30px)));
+  }
+}
+.toast::before {
+  position: absolute;
+  content: "";
+  height: 5px;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  animation: progress 1.5s linear forwards;
+}
+@keyframes progress {
+  100% {
+    width: 0%;
+  }
+}
+.toast.success::before, .btn#success {
+  background: var(--success);
+}
+.toast.error::before, .btn#error {
+  background: var(--error);
+}
+.toast.warning::before, .btn#warning {
+  background: var(--warning);
+}
+.toast.info::before, .btn#info {
+  background: var(--info);
+}
+
+
+.buttons .btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 0 5px;
+  color: var(--light);
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 4px;
+}

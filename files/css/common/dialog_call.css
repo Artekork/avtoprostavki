@@ -10,6 +10,7 @@
   padding: 15px 50px;
   border: 3px solid #7866F0;
   font-size: 16px;
+  cursor: pointer;
 
   transition: .3s;
 }
@@ -25,17 +26,20 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 }
 .dialog_call{
   margin-top: 75px;
-  max-width: 350px;
-  padding: 40px;
+  width: 450px;
   font-size: 16px;
   font-family: 'ProximaNova_Regular';
   border-radius: 20px;
   border: 0;
   margin: auto;
   z-index: 10000;
+}
+.dialog_call_container{
+  padding: 40px;
 }
 .dialog_tittle{        
   font-size: 24px;
@@ -59,11 +63,11 @@
   background-color: #EAEAEA;
   border: 0;
   padding-left: 10px;
+  width: 97%;
+  max-width: 97%;
+  min-width: 97%;
+  max-height: 180px;
   min-height: 50px;
-  max-height: 250px;
-  max-width: 335px;
-  min-width: 335px;
-  font-size: 16px;
 }
 
 .dialog_comment{
@@ -89,7 +93,7 @@
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: #2196F300;
+  background-color: #E2E2E2;
   border-radius: 0.25em;
   transition: all 0.25s;
 }
@@ -102,11 +106,11 @@
   content: "";
   position: absolute;
   transform: rotate(0deg);
-  border: 1px solid black;
+  border: 1px solid #E2E2E2;
   left: 0;
   top: 0;
-  width: 20px;
-  height: 20px;
+  height: 19px;
+  width: 18px;
   border-radius: 0.25em;
   transition: all 0.25s, border-width 0.1s;
 }
@@ -127,13 +131,24 @@
   margin-top: 20px;
   align-items: center;
 }
+.dialog_checkbox_call{
+  align-items: normal;
+}
+.dialog-checkbox__policy-cart{
+  align-items:start;
+}
 #check{
   width: 25px;
   border-radius: 6px;
   overflow: hidden;
 }
-.dialog_checkbox_text{
+.dialog_checkbox_text {
   padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.policy-data__desc{
+  padding-top: 10px;
 }
 .dialog_checkbox_text a{
   color: #7866F0;
@@ -145,18 +160,20 @@
 .dialog_buttons{
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
 }
 .dialog_btn{
   background-color: #7866F0;
   color: white;
-  width: 160px;
+  width: 100%;
   border-radius: 15px;
   padding: 15px;
   border: 0;
   font-family: 'ProximaNova_Regular';
   font-size: 16px;
   border: 3px solid #7866F0;
+  text-align: center;
+  cursor: pointer;
 
   transition: 0.3s;
 }
@@ -179,4 +196,53 @@
 
 .dialog-opened .overlay{
   display: block;
+}
+
+@media (max-width: 430px) { 
+  .dialog_call {
+    max-width: calc(90vw - 30px);
+    padding: 15px;
+  }
+  .dialog_tittle{
+    font-size: 18px;
+  }
+  .dialog_input {
+    height: 40px;
+    border-radius: 10px;
+    background-color: #EAEAEA;
+    border: 0;
+    padding-left: 10px;
+    min-height: 40px;
+    max-height: 250px;
+    min-width: 135px;
+  }
+  .dialog_desc{
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .dialog_desc:first-child {
+    margin-top: 10px;
+  }
+  .dialog_input{
+    font-size: 14px;
+  }
+  .dialog_checkbox_text{
+    font-size: 14px;
+  }
+  .dialog_checkbox {
+    align-items: start;
+  }
+  .dialog_chose{
+    font-size: 14px;
+  }
+  .dialog_buttons{
+    gap: 20px;
+  }
+  .dialog_btn {
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 14px;
+    border: none;
+  }
 }

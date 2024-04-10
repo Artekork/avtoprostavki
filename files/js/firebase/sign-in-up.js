@@ -1,6 +1,7 @@
 // Импорт нужных функций из Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+import { createToast } from "../notif.js";
 window.addEventListener('DOMContentLoaded', function() {
 
 // Конфигурация Firebase для вашего веб-приложения
@@ -16,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Инициализация Firebase
-const app = initializeApp(firebaseConfig);
+var firebase = initializeApp(firebaseConfig);
 const db = getDatabase();
 
 function testAlert() {
@@ -28,14 +29,20 @@ async function isUserExists(email) {
     var userSnapshot = await get(ref(db, userPath));
     return userSnapshot.exists();
 }
+
+function validateEmail(email) {
+    var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase());
+}
+
 function validationSignUp() {
     var email = document.getElementById('sign-up-input-email').value;
     var password = document.getElementById('sign-up-input-pass').value;
     var conf_password = document.getElementById('sign-up-input-conf-pass').value;
 
 
-    if (email === ''){
-        document.querySelector('.sing-up-email__error').innerText = 'Введите E-mail';
+    if (!validateEmail(email)){
+        document.querySelector('.sing-up-email__error').innerText = 'Введите корректный E-mail';
         return;
     } else{
         document.querySelector('.sing-up-email__error').innerText = '';
@@ -59,28 +66,36 @@ function validationSignUp() {
         document.querySelector('.sing-up-conf-pass__error').innerText = '';
     }
 
-    isUserExists(email).then((exists) => {
+    isUserExists(email.replace('.', ',').replace(/\s/g, '')).then((exists) => {
         if (exists) {
             document.querySelector('.sing-up-email__error').innerText = 'Пользователь с таким email уже существует';
         } else {
-            const userPath = `accounts/${email.replace('.', ',').replace(/\s/g, '')}/`;
+            // const userPath = `accounts/${email.replace('.', ',').replace(/\s/g, '')}/`;
 
-            set(ref(db, userPath + "/email"), email);
-            set(ref(db, userPath + "/password"), password);
-            alert("Пользователь успешно зарегистрирован!");
+            // set(ref(db, userPath + "/email"), email);
+            // set(ref(db, userPath + "/password"), password);
+            // alert("Пользователь успешно зарегистрирован!");
             
-            // document.querySelector('.header_nav').classList.add('header_nav_authorized');
-            // document.querySelector('.li_nav_sign').style.display = 'none';
+            // // document.querySelector('.header_nav').classList.add('header_nav_authorized');
+            // // document.querySelector('.li_nav_sign').style.display = 'none';
 
-            saveCurrentUser(email);
+            // saveCurrentUser(email);
 
-            document.body.classList.remove('dialog-sign-opened');
-            clearSignData()
-            location.reload();
+            // document.body.classList.remove('dialog-sign-opened');
+            // clearSignData()
+            // location.reload();
+            sendEmailVerification(email, password)
+
+            createToast("success", "Подтверждение отправлено вам на почту");
+            setTimeout(() => {
+                closeSignInUp()
+            }, 1500);
         }
     })
     .catch((error) => {
-        console.error("Произошла ошибка при проверке пользователя:", error);
+        console.error("Произошла ошибка при проверке пользователя:", error);   
+        createToast("error", "Произошла ошибка при проверке пользователя");
+
     });
 }
 
@@ -110,7 +125,7 @@ function validationSignIn() {
                 const storedPassword = userData.password;
 
                 if (password === storedPassword) {
-                    alert("Успех");
+                    // alert("Успех");
 
                     // addCarRecord()
 
@@ -118,13 +133,16 @@ function validationSignIn() {
                     // document.querySelector('.li_nav_sign').style.display = 'none';
 
                     saveCurrentUser(email);
+                    createToast("success", "Вы вошли в аккаунт!");
 
-                    document.body.classList.remove('dialog-sign-opened');
-                    clearSignData();
-                    location.reload();
+                    setTimeout(() => {
+                        document.body.classList.remove('dialog-sign-opened');
+                        clearSignData();
+                        location.reload();
+                    }, 2000);
                 } else {
                     document.querySelector('.sing-in-pass__error').innerText = 'Неверный логин или пароль';
-        return;
+                    return;
                 }
             } else {
                 document.querySelector('.sing-in-pass__error').innerText = 'Неверный логин или пароль';
@@ -205,23 +223,27 @@ document.querySelector('.sign-in-button').addEventListener('click', function(){
 
 document.querySelectorAll('.close-sign').forEach(function(element){
     element.addEventListener('click', function(){
-        document.body.classList.remove('dialog-sign-opened');
-
-        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-in')
-        document.querySelector('.dialog-auth').classList.toggle('dialog-auth_sign-up')
-
-        
-        clearSignData()
+        closeSignInUp();
     })
 })
 
-function saveCurrentUser(userLogin) {
-    localStorage.setItem('currentUser', userLogin);
+function closeSignInUp(){
+    document.body.classList.remove('dialog-sign-opened');
+
+    document.querySelector('.dialog-auth').classList.add('dialog-auth_sign-in')
+    document.querySelector('.dialog-auth').classList.add('dialog-auth_sign-up')
+
+    
+    clearSignData()
 }
 
-this.document.querySelector('.product_tittle').addEventListener('click', function(){
-    alert(localStorage.getItem('currentUser'))
-})
+function saveCurrentUser(userLogin) {
+    localStorage.setItem('currentUser', userLogin.replace('.',','));
+}
+
+// this.document.querySelector('.product_tittle').addEventListener('click', function(){
+//     alert(localStorage.getItem('currentUser'))
+// })
 
 // var isAutorised = localStorage.getItem('currentUser');
 // if (isAutorised) {
@@ -232,7 +254,7 @@ this.document.querySelector('.product_tittle').addEventListener('click', functio
 this.document.querySelectorAll('.user-card__exit').forEach(element => {
     element.addEventListener('click', function(){
         localStorage.removeItem('currentUser');
-        window.location.href = '/index.html';
+        location.reload();
     })
 });
 
@@ -342,9 +364,36 @@ function addCar() {
     });
 }
     
-document.querySelector('h1').addEventListener('click', function(){
-    addSimpleProduct();
-})
+// document.querySelector('h1').addEventListener('click', function(){
+//     addSimpleProduct();
+// })
+
+function sendEmailVerification(userMail, userPass){
+    // alert('Письмо успешно отправлено')
+    // let userMail = "vseparoli2228@gmail.com"; // Адрес электронной почты для отправки
+    // let userPass = "testPassword123"; // Пароль для отправки
+
+    // Отправляем POST-запрос на сервер
+    fetch('https://belavtoprostavki.by/send-verification-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: userMail, password: userPass }) // Передаем адрес электронной почты и пароль в теле запроса
+    })
+    .then(response => {
+        if (response.ok) {
+            // Если запрос выполнен успешно, вы можете обновить интерфейс или вывести сообщение об успехе
+            console.log('Письмо с подтверждением отправлено');
+        } else {
+            console.error('Ошибка при отправке письма с подтверждением');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка при отправке запроса:', error);
+    });
+}
+
 })
 
 

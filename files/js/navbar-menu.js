@@ -345,19 +345,19 @@ function showInfoCard(){
 
 function changeURL(URL){
     let url = window.location.href;
-        let newUrl;
+    let newUrl;
 
-        // Проверяем, содержит ли URL уже параметр запроса
-        if (url.indexOf('?') !== -1) {
-            // Если есть параметр запроса, заменяем значение раздела на "cart"
-            newUrl = url.replace(/section=[^&]+/, `section=${URL}`);
-        } else {
-            // Если параметра запроса еще нет, добавляем его
-            newUrl = url + `?section=${URL}`;
-        }
+    // Проверяем, содержит ли URL уже параметр запроса
+    if (url.indexOf('?') !== -1) {
+        // Если есть параметр запроса, заменяем значение раздела на "cart"
+        newUrl = url.replace(/section=[^&]+/, `section=${URL}`);
+    } else {
+        // Если параметра запроса еще нет, добавляем его
+        newUrl = url + `?section=${URL}`;
+    }
 
-        // Обновляем URL без перенаправления на новую страницу
-        window.history.replaceState({}, '', newUrl);
+    // Обновляем URL без перенаправления на новую страницу
+    window.history.replaceState({}, '', newUrl);
 }
 
 let isLoading = false;

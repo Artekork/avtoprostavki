@@ -28,9 +28,8 @@
   transition: 0.7s cubic-bezier(.49, 0, .50, 1);
 }
 .brand_item:hover{
-  transform: rotate3d(0, 0, 1, 720deg) scale(1);
+  /* transform: rotate3d(0, 0, 1, 720deg) scale(1); */
 }
-
 
 .brand_item_desc__decs{
   font-size: 24px;

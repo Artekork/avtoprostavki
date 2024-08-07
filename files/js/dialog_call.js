@@ -126,24 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //     methodField.value = 'write';
     // });
 
-    // Маска для ввода телефона
-    var element = document.getElementById('number');
-    var maskOptions = {
-        mask: '+375 (00) 000-00-00',
-        lazy: false,
-        overwrite: true,
-        oncomplete: function () {
-            element.setCustomValidity('');
-        },
-        onincomplete: function () {
-            element.setCustomValidity('Введите корректный телефон');
-        },
-        oncleared: function () {
-            element.setCustomValidity('');
-        }
-    };
-    var mask = new IMask(element, maskOptions);
-
+    
     // // Добавленная проверки в момент отправки формы
     // document.querySelector('form').addEventListener('submit', function(event) {
     //     var phoneNumberInput = document.getElementById('number');

@@ -6,5 +6,5 @@ productItem.addEventListener('click', function() {
     localStorage.setItem('selectedProductId', productId);
   
     // Переадресация на страницу товара
-    window.location.href = '/files/html/item.html';
+    window.location.href = '/марки';
   });

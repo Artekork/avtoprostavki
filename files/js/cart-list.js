@@ -278,7 +278,7 @@ function displayCart(cartData) {
                     let productImageContainer = document.createElement('div');
                     productImageContainer.classList.add('section-cart_product-image');
                     let productImage = document.createElement('img');
-                    productImage.src = productData.images["1"]; // Здесь будет URL изображения товара
+                    productImage.src = productData.images["0"]; // Здесь будет URL изображения товара
                     productImage.alt = ''; // Здесь можно добавить альтернативный текст для изображения
                     productImageContainer.appendChild(productImage);
                     productDescContainer.appendChild(productImageContainer);
@@ -407,7 +407,7 @@ function displayCart(cartData) {
                             productCardDesc_M.appendChild(productCardImgCont_M);
 
                                 let productImage_M = document.createElement('img');
-                                productImage_M.src = productData.images["1"]; // Здесь будет URL изображения товара
+                                productImage_M.src = productData.images["0"]; // Здесь будет URL изображения товара
                                 productImage_M.classList.add('product-card-desc__img');
                                 productCardImgCont_M.appendChild(productImage_M);
                                 productCardDesc_M.appendChild(productCardImgCont_M);
@@ -582,7 +582,7 @@ document.querySelector(".section-cart__confirm-btn").addEventListener("click", f
     if (currentUser){
         if(validationCart() == true){
             if (checkbox.checked){
-                updateUserData();
+                // updateUserData();
                 addOrder()
                 createToast("success", "Заказ оформлен");
 

@@ -97,4 +97,27 @@
   .sample-documents__link{
     font-size: 16px;
   }
+
+  .dialog-receipt__tittle {
+    font-size: 18px;
+}
+.dialog-receipt__container {
+  border-radius: 20px;
+  position: relative;
+  padding: 20px;
+}
+.dialog-receipt__item-img {
+  width: 80%;
+}
+
+.dialog-receipt {
+  width: 300px;
+  height: 600px;
+  border-radius: 10px;
+}
+.dialog-receipt__inner-container {
+  gap: 20px;
+  max-height: 500px;
+  overflow: scroll;
+}
 }

@@ -122,14 +122,14 @@ function updateUserData(){
 
 
 
-function sendEmailOperatorOrder(orderData){
+function sendEmailOperatorOrder(orderData, userEmail){
         
     fetch('/send-order-email-operator', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ order: orderData })
+        body: JSON.stringify({ order: orderData, userEmail: userEmail })
     })
     .then(response => {
         if (!response.ok) {
@@ -145,10 +145,10 @@ function sendEmailOperatorOrder(orderData){
     });
 }
 
-function sendEmailUserOrder(orderData, userGmail) {
+function sendEmailUserOrder(orderData, userEmail) {
     const requestData = {
         order: orderData,
-        userEmail: userGmail
+        userEmail: userEmail
     };
 
     fetch('/send-order-email-user', {
@@ -181,6 +181,8 @@ function addOrderUnlogin() {
         const randomness = Math.random().toString(36).substr(2);
         return dateString + randomness;
     };
+    let mail_cart = document.querySelector("#personal-data__mail_cart").value;
+    let comment = document.querySelector(".comment-cart").value;
 
     // Получаем информацию о пользователе из куки
     var userData = Cookies.getJSON('userInfo');
@@ -211,6 +213,7 @@ function addOrderUnlogin() {
         date: new Date().toLocaleDateString('ru-RU'), // Дата заказа в формате дд.мм.гггг
         payMethod: payment_method, 
         delivery: delivery_method,
+        comment: comment,
         list: selectedProducts, // Выбранные товары и их количество
         price: {
             totalPrice,
@@ -222,7 +225,7 @@ function addOrderUnlogin() {
     };
     
 
-    sendEmailOperatorOrder(orderData);
+    sendEmailOperatorOrder(orderData, mail_cart);
     sendEmailUserOrder(orderData, mail_cart);
 
 
@@ -270,6 +273,8 @@ function addOrder(){
         let mobile_cart = document.querySelector("#personal-data__tel_cart").value;
         let mail_cart = document.querySelector("#personal-data__mail_cart").value;
 
+        let comment = document.querySelector(".comment-cart").value;
+
         // Подготавливаем информацию о заказе
 
         
@@ -282,6 +287,7 @@ function addOrder(){
             userId: currentUser,
             payMethod: payment_method, 
             delivery: delivery_method,
+            comment: comment,
             list: selectedProducts, // Выбранные товары и их количество
             price: {
                 totalPrice,
@@ -300,7 +306,7 @@ function addOrder(){
             } // Данные пользователя
         };
         
-        sendEmailOperatorOrder(orderData);
+        sendEmailOperatorOrder(orderData, mail_cart);
         sendEmailUserOrder(orderData, mail_cart);
 
         // Путь к новому заказу

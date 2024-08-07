@@ -85,6 +85,7 @@ app.post('/send-verification-email', async (req, res) => {
         to: email,
         subject: 'Подтверждение почты',
         text: `Для подтверждения почты просто перейдите по ссылке: 
+        \n\n
         https://belavtoprostavki.by/verify/${token}`
         // http://localhost:3000/verify/${token}
     };
@@ -105,15 +106,36 @@ app.post('/send-verification-email', async (req, res) => {
 
 app.post('/send-order-email-operator', async (req, res) => {
     const { order } = req.body; // Получаем заказ из запроса
+    const { userEmail } = req.body; // Получаем заказ из запроса
 
     // Преобразуем заказ в JSON строку для включения в письмо
     const orderContent = JSON.stringify(order, null, 2);
+
+    let string = "";
+    for (let key in order.list) {
+        string += `\n${key}, ${order.list[key]}шт.`;
+    }
+    
 
     const mailConfigurations = {
         from: 'belavtoprostavki@gmail.com',
         to: 'belavtoprostavki@gmail.com', // Замените на ваш адрес электронной почты
         subject: 'Новый заказ',
-        text: `Новый заказ:\n\n${orderContent}`
+        text: `Поступил новый заказ:\n
+Дата заказа: ${order.date}
+Пользователь : ${userEmail}
+Метод оплаты: ${order.payMethod}
+Метод доставки: ${order.delivery}
+Комментарий: ${order.comment}
+Список товаров: ${string}
+Стоимость к оплате: ${order.price.totalPrice}
+Информация о покупателе: 
+Адрес: ${order.userData.adres}
+Номер телефона: ${order.userData.mobile}
+Имя: ${order.userData.name}
+Отчество: ${order.userData.otchestvo}
+Фамилия: ${order.userData.surname}
+Почта: ${userEmail}`
     };
 
     // Отправляем письмо с заказом
@@ -137,11 +159,31 @@ app.post('/send-order-email-user', async (req, res) => {
     // Преобразуем заказ в JSON строку для включения в письмо
     const orderContent = JSON.stringify(order, null, 2);
 
+    let string = "";
+    for (let key in order.list) {
+        string += `\n${key}, ${order.list[key]}шт.`;
+    }
+    
+
     const mailConfigurations = {
         from: 'belavtoprostavki@gmail.com',
         to: userEmail, // Используем адрес электронной почты пользователя
         subject: 'Ваш заказ успешно оформлен',
-        text: `Ваш заказ:\n\n${orderContent}`
+        text: `Ваш заказ:\n
+Дата заказа: ${order.date}
+Пользователь : ${userEmail}
+Метод оплаты: ${order.payMethod}
+Метод доставки: ${order.delivery}
+Комментарий: ${order.comment}
+Список товаров: ${string}
+Стоимость к оплате: ${order.price.totalPrice}
+Информация о покупателе: 
+Адрес: ${order.userData.adres}
+Номер телефона: ${order.userData.mobile}
+Имя: ${order.userData.name}
+Отчество: ${order.userData.otchestvo}
+Фамилия: ${order.userData.surname}
+Почта: ${userEmail}`
     };
 
     // Отправляем письмо с заказом пользователю
@@ -168,15 +210,12 @@ app.post('/send-order-email-user', async (req, res) => {
             from: 'belavtoprostavki@gmail.com',
             to: 'belavtoprostavki@gmail.com', 
             subject: 'Была заказана консультация!',
-            text: `Информация о пользователе: asdasdsd
-            
-            \n\n\n\n
-            
-            Имя:${name}
-            Номер:${email}
-            Почта:${phone}
-            комментарий:${comment}
-            Предпочтение:${method}
+            text: `Информация о пользователе:\n
+Имя:${name}
+Номер:${email}
+Почта:${phone}
+комментарий:${comment}
+Предпочтение:${method}
             `
         };
 

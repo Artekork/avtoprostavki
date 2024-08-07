@@ -169,7 +169,7 @@ document.querySelector(".button6").addEventListener("click", function() {
 //     //         var description = prostavkaData.description;
 //     //         var productId = childSnapshot.key; // Получаем ID продукта
 //     //         var price = prostavkaData.price;
-//     //         var imageUrl = prostavkaData.images["1"];
+//     //         var imageUrl = prostavkaData.images["0"];
 
 //     //         // Создаем элемент карточки
 //     //         var productItem = document.createElement('a');
@@ -350,7 +350,7 @@ document.querySelector(".button6").addEventListener("click", function() {
 //             //     localStorage.setItem('selectedProductId', selectedProductId);
 
 //             //     // Переадресация на страницу товара
-//             //     window.location.href = '/files/html/item.html';                  
+//             //     window.location.href = '/марки';                  
 //             // }
 //             // });   
 
@@ -405,7 +405,7 @@ document.querySelector(".button6").addEventListener("click", function() {
 //                     var prostavkaData = snapshot.val();
 //                     var description = prostavkaData.description;
 //                     var price = prostavkaData.price;
-//                     var imageUrl = prostavkaData.images["1"];
+//                     var imageUrl = prostavkaData.images["0"];
     
 //                     // Создаем элемент карточки
 //                     var productItem = document.createElement('a');
@@ -587,7 +587,7 @@ document.querySelector(".button6").addEventListener("click", function() {
 //                             localStorage.setItem('selectedProductId', selectedProductId);
             
 //                             // Переадресация на страницу товара
-//                             window.location.href = '/files/html/item.html';                  
+//                             window.location.href = '/марки';                  
 //                         }
 //                         }); 
     

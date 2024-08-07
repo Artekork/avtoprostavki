@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //                 var prostavkaData = snapshot.val();
     //                 var description = prostavkaData.description;
     //                 var price = prostavkaData.price;
-    //                 var imageUrl = prostavkaData.images["1"];
+    //                 var imageUrl = prostavkaData.images["0"];
     
     //                 // Создаем элемент карточки
     //                 var productItem = document.createElement('a');
@@ -219,7 +219,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //                         localStorage.setItem('selectedProductId', selectedProductId);
             
     //                         // Переадресация на страницу товара
-    //                         window.location.href = '/files/html/item.html';                  
+    //                         window.location.href = '/товар';                  
     //                     }
     //                     }); 
     
@@ -321,9 +321,10 @@ window.addEventListener('DOMContentLoaded', function() {
             .then(function(snapshot) {
                 var prostavkaData = snapshot.val();
                 var description = prostavkaData.description;
+                var header = prostavkaData.header;
                 var productId = snapshot.key; // Получаем ID продукта
                 var price = prostavkaData.price;
-                var imageUrl = prostavkaData.images["1"];
+                var imageUrl = prostavkaData.images["0"];
         
                 // Создаем элемент карточки
                 var productItem = document.createElement('a');
@@ -367,7 +368,7 @@ window.addEventListener('DOMContentLoaded', function() {
         
                 var descriptionParagraphText = document.createElement('div');
                 descriptionParagraphText.classList.add("product_item_desc__text-desc");
-                descriptionParagraphText.textContent = description;
+                descriptionParagraphText.textContent = header;
   
                 descriptionParagraph.appendChild(descriptionParagraphText);
                 descriptionParagraph.appendChild(heartImgMobile);
@@ -530,7 +531,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     var selectedProductId = event.currentTarget.dataset.productId;
   
                     // Переадресация на страницу товара
-                    window.location.href = '/files/html/item.html?id=' + selectedProductId;                 
+                    window.location.href = '/товар?id=' + selectedProductId;                 
                   }
                 });            
   
@@ -610,6 +611,26 @@ window.addEventListener('DOMContentLoaded', function() {
                     option.text = brandsData[brand].text; // Assuming 'text' holds the brand name
                     brandSelect.add(option);
                 }
+                const urlParams = new URLSearchParams(window.location.search);
+                
+                if(urlParams.get('car')){
+                    let car = urlParams.get('car')
+                    getProductList(car).then(res => {
+                        document.querySelector(".switch-pages__btn").removeEventListener('click', showMoreHandler);
+                        showProducts(res);
+                    });
+
+                    let options = document.getElementById("brand-select").options;
+                    for(let i = 0; i < options.length; i++) {
+                        if(options[i].text === car) {
+                            options[i].selected = true;
+                            break;
+                        }
+                    }
+                }
+
+      
+
             } else {
                 console.log('No data available');
             }
@@ -757,6 +778,8 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+
+    
     
     // Функция для обновления списка товаров на основе массива massiveProductList
     
@@ -876,5 +899,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });

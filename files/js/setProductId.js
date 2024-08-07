@@ -1,3 +1,5 @@
+import { createToast } from "./notif.js";
+
 window.addEventListener('DOMContentLoaded', function() {
   // Проверяем наличие сохраненного ID в локальном хранилище
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,18 +34,20 @@ window.addEventListener('DOMContentLoaded', function() {
     // Получаем данные для конкретного элемента
     specificElementRef.once('value')
       .then(function(snapshot) {
-        var prostavkaData = snapshot.val();
+        let prostavkaData = snapshot.val();
 
-        var tittle = prostavkaData.tittle;
-        var price = prostavkaData.price;
-        var desc = prostavkaData.description;
+        let tittle = prostavkaData.tittle;
+        let price = prostavkaData.price;
+        let desc = prostavkaData.description;
+        let header = prostavkaData.header;
 
-        var condition = prostavkaData.characteristics.condition;
-        var material  = prostavkaData.characteristics.material;
-        var thickness = prostavkaData.characteristics.thickness;
-        var type       = prostavkaData.characteristics.type;
+        let condition = prostavkaData.characteristics.condition;
+        let country  = prostavkaData.characteristics.country;
+        let material  = prostavkaData.characteristics.material;
+        let thickness = prostavkaData.characteristics.thickness;
+        let type       = prostavkaData.characteristics.type;
         // Создаем объект для хранения массивов моделей по маркам
-        var modelsByBrand = {};
+        let modelsByBrand = {};
         
 
         // Перебираем дочерние элементы в characteristics.models
@@ -98,7 +102,8 @@ window.addEventListener('DOMContentLoaded', function() {
         }
 
         document.querySelector('.item-text__desc').innerText = desc;
-        document.querySelector('.contacts_info_price').innerText = price + ' руб/комплект';
+        document.querySelector('.item-tittle__tittle').innerText = header;
+        document.querySelector('.contacts_info_price').innerText = price + ' руб/компл';
 
         // Находим элемент списка
         var itemPropertiesDesc = document.querySelector('.item-properties__desc');
@@ -114,6 +119,7 @@ window.addEventListener('DOMContentLoaded', function() {
           "Материал": material,
           "Модель авто": modelsByBrand, // Объединяем модели через запятую
           "Тип по изготовителю": type,
+          "Страна производства": country,
           "Состояние": condition,
           "Толщина": thickness
         };

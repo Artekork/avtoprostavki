@@ -20,8 +20,8 @@ function getFavoritesFromCookie() {
 }
 
 // Функция для создания карточки товара
-function createProductCard(productId, description, price, imageUrl) {
-    var description = description;
+function createProductCard(productId, header, price, imageUrl) {
+    var header = header;
     var productId = productId; // Получаем ID продукта
     var price = price;
     var imageUrl = imageUrl;
@@ -68,7 +68,7 @@ function createProductCard(productId, description, price, imageUrl) {
 
     var descriptionParagraphText = document.createElement('div');
     descriptionParagraphText.classList.add("product_item_desc__text-desc");
-    descriptionParagraphText.textContent = description;
+    descriptionParagraphText.textContent = header;
 
     descriptionParagraph.appendChild(descriptionParagraphText);
     descriptionParagraph.appendChild(heartImgMobile);
@@ -235,7 +235,7 @@ function createProductCard(productId, description, price, imageUrl) {
         var selectedProductId = event.currentTarget.dataset.productId;
 
         // Переадресация на страницу товара
-        window.location.href = '/files/html/item.html?id=' + selectedProductId;                 
+        window.location.href = '/марки?id=' + selectedProductId;                 
     }
     });            
 
@@ -313,10 +313,10 @@ function loadFavoriteProductsFromDatabase(productIds) {
                     var productId = childSnapshot.key;
                     if (productIds.includes(productId)) {
                         var prostavkaData = childSnapshot.val();
-                        var description = prostavkaData.description;
+                        var header = prostavkaData.header;
                         var price = prostavkaData.price;
-                        var imageUrl = prostavkaData.images["1"];
-                        createProductCard(productId, description, price, imageUrl);
+                        var imageUrl = prostavkaData.images["0"];
+                        createProductCard(productId, header, price, imageUrl);
                     }
                 });
                 setRightElementsFavourite(productIds);

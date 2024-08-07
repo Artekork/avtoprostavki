@@ -1,0 +1,17 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/belavtopro/test_app"
+PassengerBaseURI "/"
+PassengerNodejs "/home/belavtopro/nodevenv/test_app/20/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^главная$ /index.html [L]
+RewriteRule ^профиль$ /files/html/profile.html [L]
+RewriteRule ^о_нас$ /files/html/about.html [L]
+RewriteRule ^марки$ /files/html/brands.html [L]
+RewriteRule ^товар$ /files/html/item.html [L]
+RewriteRule ^товары$ /files/html/items.html [L]
+RewriteRule ^способы_оплаты$ /files/html/methods.html [L]

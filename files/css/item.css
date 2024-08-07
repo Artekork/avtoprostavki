@@ -91,6 +91,7 @@ main{
 }
 .mySwiper .swiper-slide img {
   border-radius: 20px;
+  box-shadow: inset 0px 0px 10px rgba(120, 102, 240, 0.1);
 }
 .mySwiper2 .swiper-slide img {
   border-radius: 35px;

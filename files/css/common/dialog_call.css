@@ -15,8 +15,10 @@
   transition: .3s;
 }
 .open_dialog_btn:hover{
-  color: #7866F0;
-  background: #fff;
+  /* color: #7866F0;
+  background: #fff; */
+  transform: translateY(-1px);
+
 }
 .open_dialog_btn img{
   transition: .3s;
@@ -245,4 +247,11 @@
     font-size: 14px;
     border: none;
   }
+  .dialog_call_container {
+    padding: 10px;
+}
+.dialog_btn:hover{
+  background: #7866F0;
+  color: #fff;
+}
 }
